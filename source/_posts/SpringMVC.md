@@ -875,3 +875,227 @@ public String testHello02() {
 ```
 
 ### 3. 视图解析原理
+
+
+
+
+
+## 十一. SpringMVC CRUD 实例
+
+### 1. 配置环境问题
+
+#### 1.1 jsp uri 错误
+
+JSP 使用 <c:forEach> 时，可能会出现 uri 错误
+
+```jsp
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+```
+
+- 解决
+
+> 需要正确导入  **jstl.jar** 和 **standard.jar**
+
+#### 1.2 mvc xsd 错误
+
+xml 中 配置了 mvc 名称空间后，mvc 的 xsd 文件错误。
+
+```xml
+ xmlns:mvc="http://www.springframework.org/schema/mvc
+ 
+ 
+ // 在 xsi:schemaLocation 中添加 下面两条
+ http://www.springframework.org/schema/mvc 
+ http://www.springframework.org/schema/mvc/spring-mvc.xsd
+```
+
+### 2. 前端控制器 
+
+webxml 中配置
+
+**注意配置 SpringMVC.xml** 配置文件
+
+```xml
+<servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:SpringMVC.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+```
+
+### 3. 编码过滤器
+
+> 主要要配置  **encoding** 参数的值
+
+```xml
+<filter>
+        <filter-name>charaterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>charaterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+```
+
+### 4. POST 转 DELETE PUT 等方法
+
+```xml
+<filter>
+        <filter-name>hiddenFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+```
+
+### 5. /* 与  /  的区别
+
+### 6. 删除 操作
+
+- 前提
+  1. 删除是一个 链接，放置在 table 中
+  2. 删除使用 REST 风格，即使用 DELETE 方法
+
+那么，如果使用 链接，达到 DELETE 方法的效果呢?
+
+- 解决
+
+> 使用 连接 + JQuery 的方式
+
+```jsp
+/* 
+ * 1. 链接
+ */
+<td><a class="delete" href="empDelete/${emp.id}">Delete</a> </td>
+/* 
+ * 2. 定义一个form表单(用来将 POST 转换为 DELETE)
+ */
+<form action="" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+/* 
+ * 3. 使用 JQuery，达到点击 链接，实际是点击 form 的效果
+ */
+<script type="text/javascript" src="${pageContext.request.contextPath}/WEB-INF/scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".delete").click(function () {
+            console.log("fffff");
+            var href = $(this).attr("href");
+            $("form").attr("action", href).submit();
+            return false;
+        });
+    });
+</script>
+```
+
+#### 问题: 前端不能访问 js 静态文件？
+
+##### 原因:
+
+> 如果将DispatcherServlet请求映射配置为"/"，则Spring MVC将捕获Web容器所有的请求，包括静态资源的请求，Spring MVC会将它们当成一个普通请求处理，因此找不到对应处理器将导致错误
+
+##### 方法一：
+
+> **采用<mvc:default-servlet-handler />**
+
+```xml
+/*
+ * 配置<mvc:default-servlet-handler />后，会在Spring MVC上下文中定义一个org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler，它会像一个检查员，对进入DispatcherServlet的URL进行筛查，如果发现是静态资源的请求，就将该请求转由Web应用服务器默认的Servlet处理，如果不是静态资源的请求，才由DispatcherServlet继续处理。
+一般 WEB 应用服务器默认的 Servlet 的名称都是 default。
+若所使用的 WEB 服务器的默认 Servlet 名称不是 default，则需要通过 default-servlet-name 属性显式指定    
+ */
+<mvc:default-servlet-handler />
+```
+
+##### 方法二:
+
+> **采用<mvc:resources />**
+
+<mvc:default-servlet-handler />将静态资源的处理经由Spring MVC框架交回Web应用服务器处理。而<mvc:resources />更进一步，由Spring MVC框架自己处理静态资源，并添加一些有用的附加值功能
+
+首先，<mvc:resources />允许静态资源放在任何地方，如WEB-INF目录下、类路径下等，你甚至可以将JavaScript等静态文件打到JAR包中。通过location属性指定静态资源的位置，由于location属性是Resources类型，因此可以使用诸如"classpath:"等的资源前缀指定资源位置。传统Web容器的静态资源只能放在Web容器的根路径下，<mvc:resources />完全打破了这个限制。
+
+其次，<mvc:resources />依据当前著名的Page Speed、YSlow等浏览器优化原则对静态资源提供优化。你可以通过cacheSeconds属性指定静态资源在浏览器端的缓存时间，一般可将该时间设置为一年，以充分利用浏览器端的缓存。在输出静态资源时，会根据配置设置好响应报文头的Expires 和 Cache-Control值。
+
+在接收到静态资源的获取请求时，会检查请求头的Last-Modified值，如果静态资源没有发生变化，则直接返回303相应状态码，提示客户端使用浏览器缓存的数据，而非将静态资源的内容输出到客户端，以充分节省带宽，提高程序性能
+
+```
+/*
+ * 将Web根路径"/"及类路径下 /META-INF/publicResources/ 的目录映射为/resources路径。假设Web根路径下拥有images、js这两个资源目录,在images下面有bg.gif图片，在js下面有test.js文件，则可以通过 /resources/images/bg.gif 和 /resources/js/test.js 访问这二个静态资源。
+ */
+<mvc:resources location="/,classpath:/META-INF/publicResources/" mapping="/resources/**"/>
+```
+
+#### 问题2:
+
+​	使用 <mvc:default-servlet-handler /> 后，静态资源可以访问，但是动态资源不能访问
+
+##### 原因:
+
+@RequestMapping方式配置的处理器这时候是没用的。因为没有相应的HandlerMapping和HandlerAdapter支持注解的使用。
+
+##### 解决
+
+```
+<mvc:annotation-driven/>
+```
+
+### 7.  JSP的 form 标签
+
+> l 通过 SpringMVC 的**表单标签**可以实现将模型数据中的属性和 HTML 表单元素相绑定，以实现表单数据**更便捷编辑和表单值的回显**
+
+> 可以通过 **modelAttribute** 属性指定绑定的模型属性，若没有指定该属性，则默认从 request 域对象中读取 **command** 的表单 bean，如果该属性值也不存在，则会发生错误
+
+> **path**：**表单字段，对应 html 元素的 name 属性，支持级联属性**
+
+#### 更新用户时，使用form标签的方式达到回显
+
+```jsp
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<%--
+    1. modelAttribute 用来指定绑定的模型属性，即放在 request域中的值， 下面使用的path就是 该值的 key或者成员
+    2. 如果 modelAttribute 没有显示指定，那么默认从 request 域中查找 command 对象
+    3. form 标签使用的 path 属性对应的 值必须能找到，否则会出错
+    --%>
+<form:form action="${pageContext.request.contextPath}/empEdit/${emp.id}" method="POST" modelAttribute="emp">
+    LastName: <form:input path="lastName"/><br/>
+    <input type="hidden" name="_method" value="PUT">
+    Email: <form:input path="email"/><br/>
+    <%
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("1", "男");
+        map.put("0", "女");
+        request.setAttribute("genders", map);
+    %>
+    Gender: <form:radiobuttons path="gender" items="${genders}" delimiter="<br>"/><br/>
+    DeptName: <form:select path="department.id" items="${depList}" itemLabel="departmentName" itemValue="id"/>
+    <input type="submit" value="提交"/>
+</form:form>
+</body>
+</html>
+
+```
+
