@@ -1099,3 +1099,355 @@ webxml 中配置
 
 ```
 
+## 十二. 拦截器
+
+允许在目标方法之前进行拦截操作，或者目标方法之后，进行一些其他处理
+
+与 Filter 类似，但 Filter 是 JavaWeb提供；拦截器是由 SpringMVC 提供
+
+拦截器接口(HandlerInterceptor)
+
+![](IDEA\微信截图_20190927202414.png)
+
+### 1. 基本使用
+
+#### 创建一个拦截器
+
+> 需要实现 HandlerInterceptor 接口
+
+```java
+package com.day;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+/* 实现拦截器的接口 */
+public class Interceeptor implements HandlerInterceptor {
+    /*
+    * 目标方法运行之前*/
+    @Override
+    public boolean preHandle(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o) throws Exception {
+        System.out.println("目标方法运行之前。。。。");
+        return true;
+    }
+
+    @Override
+    public void postHandle(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+        System.out.println("目标方法运行之后。。。。");
+    }
+
+    @Override
+    public void afterCompletion(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+        System.out.println("进入目标页面之后。。。。");
+    }
+}
+
+```
+
+#### 加载拦截器
+
+> springmvc.xml中配置
+
+##### 方式一: 默认拦截所有请求
+
+```xml
+<!-- 3. 拦截器配置 -->
+    <mvc:interceptors>
+        <!-- 默认拦截所有请求 -->
+		<bean class="com.day.Interceeptor"/>
+    </mvc:interceptors>
+```
+
+##### 方式二: 拦截具体路径
+
+```xml
+<!-- 3. 拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/hello"/>
+            <bean class="com.day.Interceeptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+#### 请求&结果
+
+![](SpringMVC\微信截图_20190927203752.png)
+
+> 发现，afterComplation 在进入了 页面之后，才被调用
+
+### 2. 执行流程
+
+#### 正常流程
+
+preHandle (放行)==> 目标方法 ==> postHandle ==> 进入页面 ==> afterCompletion
+
+#### 拦截流程
+
+preHandler(不放行, 直接结束) 
+
+结果:
+
+ 只执行了 preHandle  方法，页面变空白，无后续流程
+
+#### 目标方法出现异常流程
+
+preHandle (放行)==> 目标方法 ==> 进入错误页面 ==> afterCompletion
+
+afterCompletion 能执行的原因： 只要是放行了，都会执行该方法 （类似于 final）
+
+##### 在目标方法中，添加异常
+
+```java
+@RequestMapping("/hello")
+    public String hello() {
+        System.out.println("执行目标方法。。。");
+        int i = 10/0;
+        return "success";
+    }
+```
+
+##### 执行结果:
+
+- 打印输出
+
+```
+目标方法运行之前。。。。
+执行目标方法。。。
+进入目标页面之后。。。。
+```
+
+- 页面显示
+
+![](SpringMVC\微信截图_20190927205019.png)
+
+#### 多个拦截器
+
+##### 配置两个拦截器
+
+![](SpringMVC\微信截图_20190927210053.png)
+
+##### 全部放行执行流程
+
+![](SpringMVC\微信截图_20190927205905.png)
+
+##### 拦截器2不放行执行流程
+
+![](SpringMVC\微信截图_20190927210009.png)
+
+### 3. 源码分析
+
+代码位置: DispatcherServlet 的 doDispatch 方法
+
+![微信截图_20190927210838](SpringMVC\微信截图_20190927210838.png)
+
+![微信截图_20190927211030](SpringMVC\微信截图_20190927211030.png)
+
+![微信截图_20190927211711](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927211711.png)
+
+![微信截图_20190927211830](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927211830.png)
+
+![微信截图_20190927212449](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212449.png)
+
+![微信截图_20190927212516](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212516.png)
+
+![微信截图_20190927212657](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212657.png)
+
+### 4. 拦截器与 filter
+
+1. 拦截器 是 SpringMVC 的，可以添加到 IOC 容器中；
+2. 在需要与其他组件配合使用的时候，使用拦截器；
+3. 其他情况下，使用filter
+
+## 十三. 国际化
+
+### 问题:
+
+这样一个登陆界面，如果做国际化功能，对应语言进行显示?
+
+![](SpringMVC\微信截图_20190927214245.png)
+
+### 解决:
+
+#### 1. 定义 不同语言的 properties 文件
+
+##### **注意文件编码格式为 UTF-8**
+
+![](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927220027.png)
+
+![微信截图_20190927220040](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927220040.png)
+
+##### 配置IDEA编码为UTF-8
+
+![](SpringMVC\微信截图_20190927220207.png)
+
+#### 2. 配置 国际化文件（web.xml）
+
+![](SpringMVC\微信截图_20190927220407.png)
+
+#### 3. jsp 中使用
+
+**使用form标签**
+
+![](SpringMVC\微信截图_20190927220539.png)
+
+#### 4. 效果
+
+![](SpringMVC\微信截图_20190927215847.png)
+
+![微信截图_20190927215907](SpringMVC\微信截图_20190927215907.png)
+
+### 1. 原理
+
+国际化信息是使用 SpringMVC 中的 区域解析器来解析的
+
+- Dispatcher 中有一个 localeResolver 成员，该成员就是区域解析器
+
+![](SpringMVC\微信截图_20190927221243.png)
+
+- Dispatcher 默认为 localeResolver 导入的 类是 **AcceptHeaderLocaleResolver**
+
+![微信截图_20190927221202](SpringMVC\微信截图_20190927221202.png)
+
+- AcceptHeaderLocaleResolver 实现的方法
+
+![微信截图_20190927221328](SpringMVC\微信截图_20190927221328.png)
+
+- 页面渲染的时候，首先获取 区域信息
+
+![微信截图_20190927221443](SpringMVC\微信截图_20190927221443.png)
+
+### 2. 程序中获取 国际化 值
+
+- messageSource 为在 SpringMVC.xml中配置的 bean
+
+![微信截图_20190927223125](SpringMVC\微信截图_20190927223125.png)
+
+- properties 中 配置占位符
+
+![微信截图_20190927223138](SpringMVC\微信截图_20190927223138.png)
+
+- 结果打印
+
+![](SpringMVC\微信截图_20190927222824.png)
+
+### 3. 链接切换中英文
+
+- 效果
+
+1. 点击 中文界面、英文界面，进行中英文切换
+
+![](SpringMVC\微信截图_20190927230649.png)
+
+- 思路
+
+  页面中英文是使用 localResolver 进行解析
+
+  ==> localResolver 主要是使用 resolveLocale 来获取区域信息
+
+  ​    ==>  自定义一个 localResolver， 覆盖 resolveLocale  方法，在其中返回我们指定的 区域类型
+
+   		==> resolveLocale  接受了一个 req，那么可以在 req 中增加参数，标识 区域类型
+
+  ​				==> 自定义的 resolveLocale  方法中，解析req，拿到区域类型，创建一个 Local 返回即可
+
+#### 方式一： 自定义 resolver
+
+##### 1. 创建一个 自定义的 resolver
+
+![](SpringMVC\微信截图_20190927231322.png)
+
+##### 2. 配置 resolver
+
+DispatchServlet 是如何 加载 resolver 的呢？
+
+​	==>initLocaleResolver 方法，首先看 IOC容器中有没有 用户自定义的 resolver，有就 使用 用户自定义的 resolver;如果没有，就使用  关联的 properties文件中配置的 默认 resolver
+
+![](SpringMVC\微信截图_20190927224838.png)
+
+==> 在 SpringMVC.xml 中，创建一个 id 为 localeResolver 的 bean
+
+```xml
+<!-- 5. 配置自定义 区域解析器-->
+    <bean id="localeResolver" class="com.day.MyLocalResolver" />
+```
+
+##### 3. jsp使用
+
+```jsp
+<a href="${pageContext.request.contextPath}/login?locale=zh_CN">中文界面</a><br/>
+<a href="${pageContext.request.contextPath}/login?locale=en_US">英文界面</a><br/>
+```
+
+#### 方式二: SessionLocaleResolver
+
+##### 1. LocalResolver 的实现类
+
+**其中 SessionLocaleResolver 和 CookieLocaleResolver 支持 设置 resolver**
+
+![](SpringMVC\微信截图_20190927233701.png)
+
+##### 2. SessionLocaleResolver 原理
+
+![](SpringMVC\微信截图_20190927234037.png)![微信截图_20190927234123](SpringMVC\微信截图_20190927234123.png)
+
+##### 3. 使用
+
+- springmvc.xml 中配置 SessionLocaleResolver  bean
+
+```xml
+<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+```
+
+- 控制器
+
+![](SpringMVC\微信截图_20190927235407.png)
+
+#### 方式三: SessionLocaleResolver + LocaleChangeInterceptor
+
+前面两种方式，都需要自己 通过 区域对象 str， 解析 并创建  Locale 对象，比较麻烦
+
+SpringMVC 提供了 一个 拦截器
+
+​	其预处理方法功能：
+
+	1. 从 请求的 locale 参数，获取  区域信息 字符串 （locale 参数名可配置)
+ 	2. 获取当前使用的 区域解析器
+ 	3. 根据 区域信息字符串，创建 Locale 对象
+ 	4. 调用 区域解析器的 setLocale 方法，设置 Locale对象
+
+==> 完美替代了 我们上面两种方法 
+
+- LocaleChangeInterceptor
+
+![](SpringMVC\微信截图_20190928001608.png)![微信截图_20190928001652](SpringMVC\微信截图_20190928001652.png)
+
+##### 1. 使用
+
+只需要在 SpringMVC.xml 中配置 SessionLocaleResolver 和  LocaleChangeInterceptor 即可
+
+```xml
+<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/login"/>
+            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+```
+
+##### 2. 原理
+
+1. LocaleChangeInterceptor  拦截请求，获取 locale 参数对应 zh_CN
+2. LocaleChangeInterceptor  获取 当前使用的 SessionLocaleResolver  对象
+3. 使用 zh_CN 创建 Locale 对象， 并设置到 SessionLocaleResolver   中
+4. 处理器中无操作
+5. render时，SessionLocaleResolver   获取 区域信息( 第3步已经set进去了)，然后渲染界面
+
+## 十四. SpringMVC 自定义组件
+
+1. 在 DispatchServlet 中，查找 该组件 初始化方法  init...
+2. init。。。方法中，如果发现 其从 IOC容器中 拿取 固定id的 bean，将自定义组件id修改为 该固定id即可
+
+
+
