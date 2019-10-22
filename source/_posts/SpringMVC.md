@@ -19,7 +19,7 @@ category: JAVA
 
 ## 二.  MVC 中位置
 
-![](SpringMVC\QQ截图20190923204435.png)
+![](SpringMVC/20190923204435.png)
 
 ## 三. 优势
 
@@ -44,7 +44,7 @@ category: JAVA
 
 ### 2. 导入 jar 包
 
-![](SpringMVC\QQ截图20190923215050.png)
+![](SpringMVC/20190923215050.png)
 
 ### 3.  配置前端控制器
 
@@ -52,7 +52,7 @@ category: JAVA
 - 指定 springmvc 的 xml 配置文件
 - 指定 前端控制器 管理端 路由
 
-![](SpringMVC\QQ截图20190923215316.png)
+![](SpringMVC/20190923215316.png)
 
 ### 4. 配置 SpringMVC.xml
 
@@ -83,23 +83,23 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 - 配置 自动扫描 spring 容器的注解
 - 配置 视图解析器
 
-![](SpringMVC\QQ截图20190924003738.png)
+![](SpringMVC/20190924003738.png)
 
 ### 5. 创建 controller，处理请求
 
-![](SpringMVC\QQ截图20190923225140.png)
+![](SpringMVC/20190923225140.png)
 
 ### 6. 创建 success.jsp
 
-![](SpringMVC\QQ截图20190923225731.png)
+![](SpringMVC/20190923225731.png)
 
 ### 7. 执行结果
 
-![](SpringMVC\QQ截图20190923225914.png)
+![](SpringMVC/20190923225914.png)
 
 ### 8. 执行逻辑
 
-![](SpringMVC\QQ截图20190923230056.png)
+![](SpringMVC/20190923230056.png)
 
 1. 服务器启动，应用被加载，读取 web.xml 中配置的 spring 容器，并初始化 容器中的对象
 2. 浏览器发送请求，被 DispatcherServlet 捕获
@@ -107,7 +107,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 4. 匹配到之后，执行对应的方法，返回值 根据 InternalResourceViewResolver 提供前缀和后缀，得到 jsp 页面的路径
 5. 根据 jsp 页面，渲染结果视图，响应浏览器
 
-![](SpringMVC\微信截图_20190924225931.png)
+![](SpringMVC/20190924225931.png)
 
 ## 五. 注解及组件
 
@@ -324,7 +324,7 @@ public class HelloController {
 
 #### 使用:
 
-![](SpringMVC\微信截图_20190924211552.png)
+![](SpringMVC/20190924211552.png)
 
 ## 六. 请求参数的绑定
 
@@ -396,7 +396,7 @@ public class Address implements Serializable {
 
 #### 结果
 
-![](SpringMVC\QQ截图20190923235352.png)
+![](SpringMVC/20190923235352.png)
 
 ### 3. POJO  中包含集合类型参数
 
@@ -573,7 +573,7 @@ out.write("hello springmvc");
 
 #### 问题2:
 
-![](E:\07_blog\source\_posts\SpringMVC\微信截图_20190924205447.png)
+![](SpringMVC/20190924205447.png)
 
 #### 解决:
 
@@ -595,9 +595,9 @@ Suc!!<br/>
 
 #### 过滤器原理
 
-![](SpringMVC\微信截图_20190924210910.png)
+![](SpringMVC/20190924210910.png)
 
-![](SpringMVC\微信截图_20190924211003.png)
+![](SpringMVC/20190924211003.png)
 
 ### Get方式乱码解决
 
@@ -671,7 +671,7 @@ time: ${requestScope.time}
 
 ##### 3. 结果
 
-![](SpringMVC\微信截图_20190924231332.png)
+![](SpringMVC/20190924231332.png)
 
 ### 2. Map 和 Model
 
@@ -687,7 +687,7 @@ time: ${requestScope.time}
 
 #### 继承体系
 
-![](SpringMVC\微信截图_20190924232520.png)
+![](SpringMVC/20190924232520.png)
 
 #### 示例：
 
@@ -1107,7 +1107,7 @@ webxml 中配置
 
 拦截器接口(HandlerInterceptor)
 
-![](IDEA\微信截图_20190927202414.png)
+![](IDEA/20190927202414.png)
 
 ### 1. 基本使用
 
@@ -1172,7 +1172,7 @@ public class Interceeptor implements HandlerInterceptor {
 
 #### 请求&结果
 
-![](SpringMVC\微信截图_20190927203752.png)
+![](SpringMVC/20190927203752.png)
 
 > 发现，afterComplation 在进入了 页面之后，才被调用
 
@@ -1219,39 +1219,39 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 - 页面显示
 
-![](SpringMVC\微信截图_20190927205019.png)
+![](SpringMVC/20190927205019.png)
 
 #### 多个拦截器
 
 ##### 配置两个拦截器
 
-![](SpringMVC\微信截图_20190927210053.png)
+![](SpringMVC/20190927210053.png)
 
 ##### 全部放行执行流程
 
-![](SpringMVC\微信截图_20190927205905.png)
+![](SpringMVC/20190927205905.png)
 
 ##### 拦截器2不放行执行流程
 
-![](SpringMVC\微信截图_20190927210009.png)
+![](SpringMVC/20190927210009.png)
 
 ### 3. 源码分析
 
 代码位置: DispatcherServlet 的 doDispatch 方法
 
-![微信截图_20190927210838](SpringMVC\微信截图_20190927210838.png)
+![20190927210838](SpringMVC/20190927210838.png)
 
-![微信截图_20190927211030](SpringMVC\微信截图_20190927211030.png)
+![20190927211030](SpringMVC/20190927211030.png)
 
-![微信截图_20190927211711](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927211711.png)
+![20190927211711](SpringMVC/20190927211711.png)
 
-![微信截图_20190927211830](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927211830.png)
+![20190927211830](SpringMVC/20190927211830.png)
 
-![微信截图_20190927212449](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212449.png)
+![20190927212449](SpringMVC/20190927212449.png)
 
-![微信截图_20190927212516](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212516.png)
+![20190927212516](SpringMVC/20190927212516.png)
 
-![微信截图_20190927212657](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927212657.png)
+![20190927212657](SpringMVC/20190927212657.png)
 
 ### 4. 拦截器与 filter
 
@@ -1265,7 +1265,7 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 这样一个登陆界面，如果做国际化功能，对应语言进行显示?
 
-![](SpringMVC\微信截图_20190927214245.png)
+![](SpringMVC/20190927214245.png)
 
 ### 解决:
 
@@ -1273,29 +1273,29 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 ##### **注意文件编码格式为 UTF-8**
 
-![](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927220027.png)
+![](SpringMVC/20190927220027.png)
 
-![微信截图_20190927220040](E:\07_blog\source\_posts\SpringMVC\微信截图_20190927220040.png)
+![20190927220040](SpringMVC/20190927220040.png)
 
 ##### 配置IDEA编码为UTF-8
 
-![](SpringMVC\微信截图_20190927220207.png)
+![](SpringMVC/20190927220207.png)
 
 #### 2. 配置 国际化文件（web.xml）
 
-![](SpringMVC\微信截图_20190927220407.png)
+![](SpringMVC/20190927220407.png)
 
 #### 3. jsp 中使用
 
 **使用form标签**
 
-![](SpringMVC\微信截图_20190927220539.png)
+![](SpringMVC/20190927220539.png)
 
 #### 4. 效果
 
-![](SpringMVC\微信截图_20190927215847.png)
+![](SpringMVC/20190927215847.png)
 
-![微信截图_20190927215907](SpringMVC\微信截图_20190927215907.png)
+![20190927215907](SpringMVC/20190927215907.png)
 
 ### 1. 原理
 
@@ -1303,33 +1303,33 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 - Dispatcher 中有一个 localeResolver 成员，该成员就是区域解析器
 
-![](SpringMVC\微信截图_20190927221243.png)
+![](SpringMVC/20190927221243.png)
 
 - Dispatcher 默认为 localeResolver 导入的 类是 **AcceptHeaderLocaleResolver**
 
-![微信截图_20190927221202](SpringMVC\微信截图_20190927221202.png)
+![20190927221202](SpringMVC/20190927221202.png)
 
 - AcceptHeaderLocaleResolver 实现的方法
 
-![微信截图_20190927221328](SpringMVC\微信截图_20190927221328.png)
+![20190927221328](SpringMVC/20190927221328.png)
 
 - 页面渲染的时候，首先获取 区域信息
 
-![微信截图_20190927221443](SpringMVC\微信截图_20190927221443.png)
+![20190927221443](SpringMVC/20190927221443.png)
 
 ### 2. 程序中获取 国际化 值
 
 - messageSource 为在 SpringMVC.xml中配置的 bean
 
-![微信截图_20190927223125](SpringMVC\微信截图_20190927223125.png)
+![20190927223125](SpringMVC/20190927223125.png)
 
 - properties 中 配置占位符
 
-![微信截图_20190927223138](SpringMVC\微信截图_20190927223138.png)
+![20190927223138](SpringMVC/20190927223138.png)
 
 - 结果打印
 
-![](SpringMVC\微信截图_20190927222824.png)
+![](SpringMVC/20190927222824.png)
 
 ### 3. 链接切换中英文
 
@@ -1337,7 +1337,7 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 1. 点击 中文界面、英文界面，进行中英文切换
 
-![](SpringMVC\微信截图_20190927230649.png)
+![](SpringMVC/20190927230649.png)
 
 - 思路
 
@@ -1355,7 +1355,7 @@ afterCompletion 能执行的原因： 只要是放行了，都会执行该方法
 
 ##### 1. 创建一个 自定义的 resolver
 
-![](SpringMVC\微信截图_20190927231322.png)
+![](SpringMVC/20190927231322.png)
 
 ##### 2. 配置 resolver
 
@@ -1363,7 +1363,7 @@ DispatchServlet 是如何 加载 resolver 的呢？
 
 ​	==>initLocaleResolver 方法，首先看 IOC容器中有没有 用户自定义的 resolver，有就 使用 用户自定义的 resolver;如果没有，就使用  关联的 properties文件中配置的 默认 resolver
 
-![](SpringMVC\微信截图_20190927224838.png)
+![](SpringMVC/20190927224838.png)
 
 ==> 在 SpringMVC.xml 中，创建一个 id 为 localeResolver 的 bean
 
@@ -1385,11 +1385,11 @@ DispatchServlet 是如何 加载 resolver 的呢？
 
 **其中 SessionLocaleResolver 和 CookieLocaleResolver 支持 设置 resolver**
 
-![](SpringMVC\微信截图_20190927233701.png)
+![](SpringMVC/20190927233701.png)
 
 ##### 2. SessionLocaleResolver 原理
 
-![](SpringMVC\微信截图_20190927234037.png)![微信截图_20190927234123](SpringMVC\微信截图_20190927234123.png)
+![](SpringMVC/20190927234037.png)![20190927234123](SpringMVC/20190927234123.png)
 
 ##### 3. 使用
 
@@ -1401,7 +1401,7 @@ DispatchServlet 是如何 加载 resolver 的呢？
 
 - 控制器
 
-![](SpringMVC\微信截图_20190927235407.png)
+![](SpringMVC/20190927235407.png)
 
 #### 方式三: SessionLocaleResolver + LocaleChangeInterceptor
 
@@ -1420,7 +1420,7 @@ SpringMVC 提供了 一个 拦截器
 
 - LocaleChangeInterceptor
 
-![](SpringMVC\微信截图_20190928001608.png)![微信截图_20190928001652](SpringMVC\微信截图_20190928001652.png)
+![](SpringMVC/20190928001608.png)![20190928001652](SpringMVC/20190928001652.png)
 
 ##### 1. 使用
 
