@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="高并发商城,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java &amp;#x9AD8;&amp;#x5E76;&amp;#x53D1;&amp;#x5546;&amp;#x57CE;">
+<meta name="keywords" content="高并发商城">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java高并发商城">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/Java高并发商城/index.html">
+<meta property="og:site_name" content="DayByDayの小屋">
+<meta property="og:description" content="Java &amp;#x9AD8;&amp;#x5E76;&amp;#x53D1;&amp;#x5546;&amp;#x57CE;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-19T03:58:32.564Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java高并发商城">
+<meta name="twitter:description" content="Java &amp;#x9AD8;&amp;#x5E76;&amp;#x53D1;&amp;#x5546;&amp;#x57CE;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/16/Java高并发商城/">
+
+
+
+
+
+  <title>Java高并发商城 | DayByDayの小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DayByDayの小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/Java高并发商城/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DayByDay">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DayByDayの小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java高并发商城</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T20:40:03+08:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Java &#x9AD8;&#x5E76;&#x53D1;&#x5546;&#x57CE;</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="&#x4E00;-Redis"><a href="#&#x4E00;-Redis" class="headerlink" title="&#x4E00;. Redis"></a>&#x4E00;. Redis</h2><h3 id="1-&#x52A0;&#x5165;&#x4F9D;&#x8D56;"><a href="#1-&#x52A0;&#x5165;&#x4F9D;&#x8D56;" class="headerlink" title="1. &#x52A0;&#x5165;&#x4F9D;&#x8D56;"></a>1. &#x52A0;&#x5165;&#x4F9D;&#x8D56;</h3><p>Pom &#x4E2D;&#xFF0C;&#x6DFB;&#x52A0; jedis &#x4F9D;&#x8D56;&#xFF0C;fastjson &#x7528;&#x6765; json encode &#x4E0E; decode &#x4F7F;&#x7528;</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.38<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-&#x6DFB;&#x52A0;-Redis-&#x914D;&#x7F6E;&#x4FE1;&#x606F;"><a href="#2-&#x6DFB;&#x52A0;-Redis-&#x914D;&#x7F6E;&#x4FE1;&#x606F;" class="headerlink" title="2. &#x6DFB;&#x52A0; Redis &#x914D;&#x7F6E;&#x4FE1;&#x606F;"></a>2. &#x6DFB;&#x52A0; Redis &#x914D;&#x7F6E;&#x4FE1;&#x606F;</h3><p>&#x7C7B;&#x4F3C; &#x6570;&#x636E;&#x5E93;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x9700;&#x8981;&#x4ECE;&#x8FDE;&#x63A5;&#x6C60;&#x4E2D;&#x83B7;&#x53D6;&#x8FDE;&#x63A5;&#xFF0C;&#x518D;&#x4F7F;&#x7528;&#xFF1B;</p>
+<p>&#x540C;&#x6837;&#xFF0C;Jedis &#x4E2D;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; JedisPool&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4F46;&#x6B64;&#x79CD;&#x65B9;&#x5F0F;&#x9700;&#x8981;&#x4E00;&#x76F4;&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x6BD4;&#x5982; hostName&#xFF0C;port&#x3002;&#x3002;&#x3002;</p>
+<p>&#x5728; DataSource &#x4E2D;&#xFF0C;&#x7531;&#x4E8E;&#x6709; DataSourceProperties &#x7684;&#x5B58;&#x5728;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728; &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x5C5E;&#x6027;&#xFF0C;&#x5373;&#x53EF;&#x88AB;&#x8BFB;&#x53D6;</p>
+<p>&#x5BF9;&#x4E8E; Jedis &#x800C;&#x8A00;&#xFF0C;&#x9700;&#x8981; &#x81EA;&#x5DF1;&#x914D;&#x7F6E;&#xFF0C;&#x65B9;&#x5F0F;</p>
+<ol>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; Bean&#xFF0C;&#x5E76;&#x6DFB;&#x52A0;&#x5230; &#x5BB9;&#x5668;&#x4E2D;&#xFF1B;&#x8BE5;  bean &#x4ECE; &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D; &#x8BFB;&#x53D6; &#x914D;&#x7F6E;&#x7684;&#x503C;</li>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Bean&#xFF0C;&#x7528;&#x6765;&#x5C06; JedisPool &#x653E;&#x5165; &#x5BB9;&#x5668;&#x4E2D;&#xFF08;&#x7528;&#x6765;&#x81EA;&#x52A8;&#x5BFC;&#x5165;&#xFF0C;&#x56E0;&#x4E3A; Pool &#x53EA;&#x6709;&#x4E00;&#x4E2A;)</li>
+</ol>
+<p><strong>@Data &#x6CE8;&#x89E3;:</strong></p>
+<p>&#x200B;    &#x7528;&#x6765; &#x81EA;&#x52A8;&#x751F;&#x6210; setter &#x548C; getter &#xFF0C;&#x4EE5;&#x53CA; toString()&#x65B9;&#x6CD5;&#xFF0C;&#x7B80;&#x5316;&#x4EE3;&#x7801;</p>
+<p>&#x200B;    &#x4F9D;&#x8D56;:</p>
+<pre><code>1. IDEA &#x5B89;&#x88C5; lombock &#x63D2;&#x4EF6;
+ 2. SpringBoot &#x4E2D; &#x5BFC;&#x5165;&#x8BE5;&#x4F9D;&#x8D56;</code></pre><ul>
+<li>RedisConfig.java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.redis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">&quot;redis&quot;</span>)</span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> String host;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> timeout;<span class="comment">//&#x79D2;</span></span><br><span class="line">	<span class="keyword">private</span> String password;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> poolMaxTotal;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> poolMaxIdle;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> poolMaxWait;<span class="comment">//&#x79D2;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>RedisPool.java</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.redis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisPoolFactory</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	RedisConfig redisConfig;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> JedisPool <span class="title">JedisPoolFactory</span><span class="params">()</span> </span>{</span><br><span class="line">		JedisPoolConfig poolConfig = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">		poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle());</span><br><span class="line">		poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal());</span><br><span class="line">		poolConfig.setMaxWaitMillis(redisConfig.getPoolMaxWait() * <span class="number">1000</span>);</span><br><span class="line">		JedisPool jp = <span class="keyword">new</span> JedisPool(poolConfig, redisConfig.getHost(), redisConfig.getPort(),</span><br><span class="line">				redisConfig.getTimeout()*<span class="number">1000</span>, redisConfig.getPassword(), <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">return</span> jp;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-&#x63D0;&#x4F9B;-&#x5E38;&#x7528;&#x7684;-get-set-&#x7B49;&#x65B9;&#x6CD5;"><a href="#3-&#x63D0;&#x4F9B;-&#x5E38;&#x7528;&#x7684;-get-set-&#x7B49;&#x65B9;&#x6CD5;" class="headerlink" title="3.  &#x63D0;&#x4F9B; &#x5E38;&#x7528;&#x7684; get, set &#x7B49;&#x65B9;&#x6CD5;"></a>3.  &#x63D0;&#x4F9B; &#x5E38;&#x7528;&#x7684; get, set &#x7B49;&#x65B9;&#x6CD5;</h3><p>&#x5916;&#x90E8;&#x5728;&#x4F7F;&#x7528;Redis&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x76F4;&#x63A5; &#x8C03;&#x7528; get/set &#x65B9;&#x6CD5;&#x5373;&#x53EF;&#x3002;&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x903B;&#x8F91;&#x9700;&#x8981; &#x5185;&#x90E8;&#x5C01;&#x88C5;(&#x8BE5;service&#x4E2D;&#x81EA;&#x52A8;&#x6CE8;&#x5165; JedisPool&#x5373;&#x53EF;)</p>
+<p>&#x7531;&#x4E8E; Redis &#x5185;&#x90E8;&#x5B58;&#x50A8;&#x7684;&#x662F; string&#xFF0C;&#x56E0;&#x6B64; &#x5728; get/set &#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x9700;&#x8981; json encode &#x548C; decode</p>
+<ul>
+<li>string &#x8F6C; json obj</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	1. Class&lt;T&gt; clazz &#x8868;&#x793A; &#x9700;&#x8981;&#x5C06; string &#x8F6C;&#x6362;&#x4E3A; &#x4EC0;&#x4E48;&#x7C7B;&#x578B;</span></span><br><span class="line"><span class="comment">	2. &#x5BF9;&#x4E8E; int&#xFF0C;long&#xFF0C;string &#x7B49;&#x7B80;&#x5355;&#x7C7B;&#x578B;&#xFF0C;&#x9700;&#x8981;&#x53E6;&#x5916;&#x505A;&#x5904;&#x7406;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">&quot;unchecked&quot;</span>)</span><br><span class="line">	<span class="keyword">private</span> &lt;T&gt; <span class="function">T <span class="title">stringToBean</span><span class="params">(String str, Class&lt;T&gt; clazz)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span>(str == <span class="keyword">null</span> || str.length() &lt;= <span class="number">0</span> || clazz == <span class="keyword">null</span>) {</span><br><span class="line">			 <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">if</span>(clazz == <span class="keyword">int</span>.class || clazz == Integer.class) {</span><br><span class="line">			 <span class="keyword">return</span> (T)Integer.valueOf(str);</span><br><span class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(clazz == String.class) {</span><br><span class="line">			 <span class="keyword">return</span> (T)str;</span><br><span class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(clazz == <span class="keyword">long</span>.class || clazz == Long.class) {</span><br><span class="line">			<span class="keyword">return</span>  (T)Long.valueOf(str);</span><br><span class="line">		}<span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">return</span> JSON.toJavaObject(JSON.parseObject(str), clazz);</span><br><span class="line">		}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>obj &#x8F6C; string</li>
+</ul>
+<p>&#x5BF9;&#x4E8E; int&#xFF0C; long&#xFF0C; string &#x7B49;&#x7C7B;&#x578B;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528; json&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x8F6C;&#x6362;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> &lt;T&gt; <span class="function">String <span class="title">beanToString</span><span class="params">(T value)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span>(value == <span class="keyword">null</span>) {</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		Class&lt;?&gt; clazz = value.getClass();</span><br><span class="line">		<span class="keyword">if</span>(clazz == <span class="keyword">int</span>.class || clazz == Integer.class) {</span><br><span class="line">			 <span class="keyword">return</span> <span class="string">&quot;&quot;</span>+value;</span><br><span class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(clazz == String.class) {</span><br><span class="line">			 <span class="keyword">return</span> (String)value;</span><br><span class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(clazz == <span class="keyword">long</span>.class || clazz == Long.class) {</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;&quot;</span>+value;</span><br><span class="line">		}<span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">return</span> JSON.toJSONString(value);</span><br><span class="line">		}</span><br><span class="line">	}</span><br></pre></td></tr></table></figure>
+
+<p>getter&#x65B9;&#x6CD5;&#xFF0C;&#x9700;&#x8981;&#x63D0;&#x4F9B; key&#x4EE5;&#x53CA; &#x9700;&#x8981;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x5185;&#x90E8;&#x4F1A;&#x81EA;&#x52A8;&#x5C06; string &#x8F6C;&#x6362;&#x4E3A; &#x8BE5;&#x7C7B;&#x578B;</p>
+<p>&#x7531;&#x4E8E;Redis &#x53EF;&#x80FD;&#x88AB;&#x591A;&#x4E2A;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#xFF0C;&#x4E3A;&#x4E86;&#x9632;&#x6B62; key &#x91CD;&#x590D;&#xFF0C;&#x9700;&#x8981;&#x5BF9;key&#x6DFB;&#x52A0;&#x4E00;&#x4E2A; prefix&#xFF1B;&#x5E76;&#x4E14;&#xFF0C;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;key&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</p>
+<p>==&gt; &#x62BD;&#x53D6;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x4FDD;&#x5B58; prefix &#x548C; &#x8FC7;&#x671F;&#x65F6;&#x95F4;&#xFF0C;&#x6BCF;&#x4E2A;&#x6A21;&#x5757;&#x76F4;&#x63A5;&#x7EE7;&#x627F;&#x8BE5;&#x7C7B;&#xFF0C;&#x5B9A;&#x4E49;&#x4E00;&#x4E9B;&#x56FA;&#x5B9A;&#x7684;key&#x5373;&#x53EF;</p>
+<ul>
+<li>BasePrefix.java(&#x57FA;&#x7C7B;)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.imooc.miaosha.redis;</span><br><span class="line"></span><br><span class="line">public abstract class BasePrefix implements KeyPrefix{</span><br><span class="line">	</span><br><span class="line">	private int expireSeconds;</span><br><span class="line">	</span><br><span class="line">	private String prefix;</span><br><span class="line">	</span><br><span class="line">	public BasePrefix(String prefix) {//0&#x4EE3;&#x8868;&#x6C38;&#x4E0D;&#x8FC7;&#x671F;</span><br><span class="line">		this(0, prefix);</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	public BasePrefix( int expireSeconds, String prefix) {</span><br><span class="line">		this.expireSeconds = expireSeconds;</span><br><span class="line">		this.prefix = prefix;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	public int expireSeconds() {//&#x9ED8;&#x8BA4;0&#x4EE3;&#x8868;&#x6C38;&#x4E0D;&#x8FC7;&#x671F;</span><br><span class="line">		return expireSeconds;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	public String getPrefix() {</span><br><span class="line">		String className = getClass().getSimpleName();</span><br><span class="line">		return className+&quot;:&quot; + prefix;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Userkey.java</li>
+</ul>
+<p>&#x5177;&#x4F53;&#x6A21;&#x5757;&#x4F7F;&#x7528;&#x7684;key (MiaoshaUserKey)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.redis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MiaoshaUserKey</span> <span class="keyword">extends</span> <span class="title">BasePrefix</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TOKEN_EXPIRE = <span class="number">3600</span>*<span class="number">24</span> * <span class="number">2</span>;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">MiaoshaUserKey</span><span class="params">(<span class="keyword">int</span> expireSeconds, String prefix)</span> </span>{</span><br><span class="line">		<span class="keyword">super</span>(expireSeconds, prefix);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> MiaoshaUserKey token = <span class="keyword">new</span> MiaoshaUserKey(TOKEN_EXPIRE, <span class="string">&quot;tk&quot;</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>&#x6B65;&#x9AA4;:</p>
+<pre><code>1. &#x83B7;&#x53D6;&#x8FDE;&#x63A5;
+ 2. &#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;key </code></pre><ol start="3">
+<li>&#x83B7;&#x53D6;&#x503C;</li>
+<li>&#x8F6C;&#x6362;&#x7C7B;&#x578B;</li>
+<li>&#x91CA;&#x653E;&#x8FDE;&#x63A5;</li>
+</ol>
+<ul>
+<li>getter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">get</span><span class="params">(KeyPrefix prefix, String key,  Class&lt;T&gt; clazz)</span> </span>{</span><br><span class="line">		 Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">		 <span class="keyword">try</span> {</span><br><span class="line">			 jedis =  jedisPool.getResource();</span><br><span class="line">			 <span class="comment">//&#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;key</span></span><br><span class="line">			 String realKey  = prefix.getPrefix() + key;</span><br><span class="line">			 String  str = jedis.get(realKey);</span><br><span class="line">			 T t =  stringToBean(str, clazz);</span><br><span class="line">			 <span class="keyword">return</span> t;</span><br><span class="line">		 }<span class="keyword">finally</span> {</span><br><span class="line">			  returnToPool(jedis);</span><br><span class="line">		 }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">boolean</span> <span class="title">set</span><span class="params">(KeyPrefix prefix, String key,  T value)</span> </span>{</span><br><span class="line">		 Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">		 <span class="keyword">try</span> {</span><br><span class="line">			 jedis =  jedisPool.getResource();</span><br><span class="line">			 String str = beanToString(value);</span><br><span class="line">			 <span class="keyword">if</span>(str == <span class="keyword">null</span> || str.length() &lt;= <span class="number">0</span>) {</span><br><span class="line">				 <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			 }</span><br><span class="line">			<span class="comment">//&#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;key</span></span><br><span class="line">			 String realKey  = prefix.getPrefix() + key;</span><br><span class="line">			 <span class="keyword">int</span> seconds =  prefix.expireSeconds();</span><br><span class="line">			 <span class="keyword">if</span>(seconds &lt;= <span class="number">0</span>) {</span><br><span class="line">				 jedis.set(realKey, str);</span><br><span class="line">			 }<span class="keyword">else</span> {</span><br><span class="line">				 jedis.setex(realKey, seconds, str);</span><br><span class="line">			 }</span><br><span class="line">			 <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		 }<span class="keyword">finally</span> {</span><br><span class="line">			  returnToPool(jedis);</span><br><span class="line">		 }</span><br><span class="line">	}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>incr</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">Long <span class="title">incr</span><span class="params">(KeyPrefix prefix, String key)</span> </span>{</span><br><span class="line">		 Jedis jedis = <span class="keyword">null</span>;</span><br><span class="line">		 <span class="keyword">try</span> {</span><br><span class="line">			 jedis =  jedisPool.getResource();</span><br><span class="line">			<span class="comment">//&#x751F;&#x6210;&#x771F;&#x6B63;&#x7684;key</span></span><br><span class="line">			 String realKey  = prefix.getPrefix() + key;</span><br><span class="line">			<span class="keyword">return</span>  jedis.incr(realKey);</span><br><span class="line">		 }<span class="keyword">finally</span> {</span><br><span class="line">			  returnToPool(jedis);</span><br><span class="line">		 }</span><br><span class="line">	}</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x4E8C;-&#x767B;&#x5F55;"><a href="#&#x4E8C;-&#x767B;&#x5F55;" class="headerlink" title="&#x4E8C;. &#x767B;&#x5F55;"></a>&#x4E8C;. &#x767B;&#x5F55;</h2><h3 id="1-&#x6570;&#x636E;&#x6821;&#x9A8C;"><a href="#1-&#x6570;&#x636E;&#x6821;&#x9A8C;" class="headerlink" title="1. &#x6570;&#x636E;&#x6821;&#x9A8C;"></a>1. &#x6570;&#x636E;&#x6821;&#x9A8C;</h3><p>&#x767B;&#x9646;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x653E;&#x5165; Vo&#x4E2D;&#xFF08;View Object)</p>
+<p>&#x4F7F;&#x7528; @Valid &#x6CE8;&#x89E3; &#x6765;&#x8FDB;&#x884C;&#x6821;&#x9A8C;</p>
+<ul>
+<li>&#x4F9D;&#x8D56;</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x5B57;&#x6BB5;&#x6821;&#x9A8C;&#x89C4;&#x5219;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.vo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.constraints.NotNull;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.Length;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.miaosha.validator.IsMobile;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginVo</span> </span>{</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@NotNull</span></span><br><span class="line">	<span class="meta">@IsMobile</span></span><br><span class="line">	<span class="keyword">private</span> String mobile;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@NotNull</span></span><br><span class="line">	<span class="meta">@Length</span>(min=<span class="number">32</span>)</span><br><span class="line">	<span class="keyword">private</span> String password;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4F7F;&#x7528;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">&quot;/do_login&quot;</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result&lt;Boolean&gt; <span class="title">doLogin</span><span class="params">(HttpServletResponse response, @Valid LoginVo loginVo)</span> </span>{</span><br><span class="line">    	log.info(loginVo.toString());</span><br><span class="line">    	<span class="comment">//&#x767B;&#x5F55;</span></span><br><span class="line">    	userService.login(response, loginVo);</span><br><span class="line">    	<span class="keyword">return</span> Result.success(<span class="keyword">true</span>);</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-&#x81EA;&#x5B9A;&#x4E49;&#x6821;&#x9A8C;&#x6CE8;&#x89E3;"><a href="#2-&#x81EA;&#x5B9A;&#x4E49;&#x6821;&#x9A8C;&#x6CE8;&#x89E3;" class="headerlink" title="2. &#x81EA;&#x5B9A;&#x4E49;&#x6821;&#x9A8C;&#x6CE8;&#x89E3;"></a>2. &#x81EA;&#x5B9A;&#x4E49;&#x6821;&#x9A8C;&#x6CE8;&#x89E3;</h3><ul>
+<li>&#x65B0;&#x5EFA;&#x6CE8;&#x89E3;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })</span><br><span class="line"><span class="meta">@Retention</span>(RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Constraint</span>(validatedBy = {IsMobileValidator.class })</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span>  IsMobile {</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function">String <span class="title">message</span><span class="params">()</span> <span class="keyword">default</span> &quot;&#x624B;&#x673A;&#x53F7;&#x7801;&#x683C;&#x5F0F;&#x9519;&#x8BEF;&quot;</span>;</span><br><span class="line"></span><br><span class="line">	Class&lt;?&gt;[] groups() <span class="keyword">default</span> { };</span><br><span class="line"></span><br><span class="line">	Class&lt;? extends Payload&gt;[] payload() <span class="keyword">default</span> { };</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x6CE8;&#x89E3;&#x89E3;&#x6790;&#x5668;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.validator;</span><br><span class="line"><span class="keyword">import</span>  javax.validation.ConstraintValidator;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintValidatorContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.miaosha.util.ValidatorUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IsMobileValidator</span> <span class="keyword">implements</span> <span class="title">ConstraintValidator</span>&lt;<span class="title">IsMobile</span>, <span class="title">String</span>&gt; </span>{</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> required = <span class="keyword">false</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(IsMobile constraintAnnotation)</span> </span>{</span><br><span class="line">		required = constraintAnnotation.required();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String value, ConstraintValidatorContext context)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span>(required) {</span><br><span class="line">			<span class="keyword">return</span> ValidatorUtil.isMobile(value);</span><br><span class="line">		}<span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">if</span>(StringUtils.isEmpty(value)) {</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			}<span class="keyword">else</span> {</span><br><span class="line">				<span class="keyword">return</span> ValidatorUtil.isMobile(value);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-&#x767B;&#x9646;&#x5904;&#x7406;&#x6B65;&#x9AA4;"><a href="#3-&#x767B;&#x9646;&#x5904;&#x7406;&#x6B65;&#x9AA4;" class="headerlink" title="3. &#x767B;&#x9646;&#x5904;&#x7406;&#x6B65;&#x9AA4;"></a>3. &#x767B;&#x9646;&#x5904;&#x7406;&#x6B65;&#x9AA4;</h3><ol>
+<li>&#x6570;&#x636E;&#x6821;&#x9A8C;</li>
+<li>md5(&#x8F93;&#x5165;&#x7684;&#x5BC6;&#x7801; + salt) &#x4E0E; &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5BC6;&#x7801;&#x6BD4;&#x8F83;</li>
+<li>&#x6210;&#x529F;&#x540E;&#xFF0C;&#x521B;&#x5EFA;token&#xFF0C;&#x5B58;&#x50A8;&#x5230; Redis&#x4E2D;</li>
+<li>&#x8FD4;&#x56DE;cookie</li>
+</ol>
+<h2 id="&#x4E09;-cookie-&#x83B7;&#x53D6;-user"><a href="#&#x4E09;-cookie-&#x83B7;&#x53D6;-user" class="headerlink" title="&#x4E09;. cookie &#x83B7;&#x53D6; user"></a>&#x4E09;. cookie &#x83B7;&#x53D6; user</h2><p>&#x5BF9;&#x4E8E;&#x5F88;&#x591A;&#x4E1A;&#x52A1;&#x8BF7;&#x6C42;&#xFF0C;&#x90FD;&#x662F;&#x5E26;&#x6709;cookie&#xFF0C;&#x9700;&#x8981;&#x4ECE;cookie&#x4E2D;&#x89E3;&#x6790;&#x51FA; &#x7528;&#x6237;&#x4FE1;&#x606F;</p>
+<p>&#x7531;&#x4E8E;&#x5728;&#x5F88;&#x591A;&#x8BF7;&#x6C42;&#x4E2D;&#x90FD;&#x4F7F;&#x7528;&#x5230;&#x4E86;&#xFF0C;&#x56E0;&#x6B64; &#x53EF;&#x4EE5;&#x62BD;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x653E;&#x5728;&#x62E6;&#x622A;&#x5668;&#x4E2D;</p>
+<ul>
+<li>&#x7528;&#x6237;&#x53C2;&#x6570;&#x89E3;&#x6790;&#x5668;</li>
+</ul>
+<p>&#x4ECE;&#x8BF7;&#x6C42;&#x4E2D;&#x83B7;&#x53D6; cookie</p>
+<p>&#x6839;&#x636E; cookie&#x4E2D; token&#xFF0C;&#x83B7;&#x53D6; user &#x5BF9;&#x8C61;</p>
+<p>resolveArgument &#x5BF9;&#x8C61;&#x8FD4;&#x56DE;&#x7684;&#x4E3A; object&#xFF0C;&#x662F;&#x81EA;&#x52A8;&#x653E;&#x5165;&#x5230; request &#x57DF;&#x4E2D;&#x4E86;&#xFF1F; &#x7136;&#x540E; &#x9690;&#x85CF;&#x6A21;&#x578B;&#x5F97;&#x5230;&#xFF0C;&#x5C06;&#x5176;&#x7C7B;&#x578B;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x4F5C;&#x4E3A;key&#xFF0C;&#x8FDB;&#x884C;&#x5B58;&#x50A8;&#x3002;&#x7136;&#x540E;&#x518D; controller &#x4E2D;&#xFF0C;&#x53C2;&#x6570;&#x4E2D;&#x5199;&#x5165;&#x8BE5;&#x7C7B;&#x578B;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x518D; &#x9690;&#x85CF;&#x6A21;&#x578B;&#x4E2D;&#x6839;&#x636E;&#x7C7B;&#x578B;&#x83B7;&#x53D6;&#x5230;&#xFF1F;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserArgumentResolver</span> <span class="keyword">implements</span> <span class="title">HandlerMethodArgumentResolver</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	MiaoshaUserService userService;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsParameter</span><span class="params">(MethodParameter parameter)</span> </span>{</span><br><span class="line">		Class&lt;?&gt; clazz = parameter.getParameterType();</span><br><span class="line">		<span class="keyword">return</span> clazz==MiaoshaUser.class;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">resolveArgument</span><span class="params">(MethodParameter parameter, ModelAndViewContainer mavContainer,</span></span></span><br><span class="line"><span class="function"><span class="params">			NativeWebRequest webRequest, WebDataBinderFactory binderFactory)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">		HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);</span><br><span class="line">		HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);</span><br><span class="line">		</span><br><span class="line">		String paramToken = request.getParameter(MiaoshaUserService.COOKI_NAME_TOKEN);</span><br><span class="line">		String cookieToken = getCookieValue(request, MiaoshaUserService.COOKI_NAME_TOKEN);</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(cookieToken) &amp;&amp; StringUtils.isEmpty(paramToken)) {</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		String token = StringUtils.isEmpty(paramToken)?cookieToken:paramToken;</span><br><span class="line">		<span class="keyword">return</span> userService.getByToken(response, token);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> String <span class="title">getCookieValue</span><span class="params">(HttpServletRequest request, String cookiName)</span> </span>{</span><br><span class="line">		Cookie[]  cookies = request.getCookies();</span><br><span class="line">		<span class="keyword">for</span>(Cookie cookie : cookies) {</span><br><span class="line">			<span class="keyword">if</span>(cookie.getName().equals(cookiName)) {</span><br><span class="line">				<span class="keyword">return</span> cookie.getValue();</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x6DFB;&#x52A0;ArgumentResolvers</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebConfig</span>  <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span></span>{</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	UserArgumentResolver userArgumentResolver;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addArgumentResolvers</span><span class="params">(List&lt;HandlerMethodArgumentResolver&gt; argumentResolvers)</span> </span>{</span><br><span class="line">		argumentResolvers.add(userArgumentResolver);</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x56DB;-&#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x89C4;&#x5219;"><a href="#&#x56DB;-&#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x89C4;&#x5219;" class="headerlink" title="&#x56DB;. &#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x89C4;&#x5219;"></a>&#x56DB;. &#x7A0B;&#x5E8F;&#x8C03;&#x7528;&#x89C4;&#x5219;</h2><ol>
+<li>Controller &#x8C03;&#x7528;  Service</li>
+<li>Service &#x8C03;&#x7528;Dao</li>
+<li>&#x5373;&#x4F7F; Controller &#x9700;&#x8981;&#x7528;&#x5230; &#x5176;&#x4ED6; Service &#x7684; Dao&#xFF0C;&#x4E5F;&#x9700;&#x8981; &#x81EA;&#x52A8;&#x5BFC;&#x5165;  &#x5BF9;&#x5E94;&#x7684; Service &#x6765;&#x4F7F;&#x7528;&#xFF0C;&#x800C;&#x4E0D;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x5BFC;&#x5165;&#x5BF9;&#x5E94;&#x7684; Dao</li>
+</ol>
+<h2 id="&#x4E94;-&#x9875;&#x9762;&#x7F13;&#x5B58;"><a href="#&#x4E94;-&#x9875;&#x9762;&#x7F13;&#x5B58;" class="headerlink" title="&#x4E94;.  &#x9875;&#x9762;&#x7F13;&#x5B58;"></a>&#x4E94;.  &#x9875;&#x9762;&#x7F13;&#x5B58;</h2><p>&#x5728;Request&#x4E2D;<br>    ContentType &#x7528;&#x6765;&#x544A;&#x8BC9;&#x670D;&#x52A1;&#x5668;&#x5F53;&#x524D;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x662F;&#x4EC0;&#x4E48;&#x683C;&#x5F0F;<br>    Accept      &#x7528;&#x6765;&#x544A;&#x8BC9;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x80FD;&#x8BA4;&#x8BC6;&#x54EA;&#x4E9B;&#x683C;&#x5F0F;,&#x6700;&#x597D;&#x8FD4;&#x56DE;&#x8FD9;&#x4E9B;&#x683C;&#x5F0F;&#x4E2D;&#x7684;&#x5176;&#x4E2D;&#x4E00;&#x79CD;</p>
+<p>&#x5BF9;&#x5E94;&#x7684;&#xFF0C;&#x5728; @RequestMapping &#x4E2D;:</p>
+<p>&#x200B;    consumes &#x7528;&#x6765;&#x9650;&#x5236;ContentType<br>&#x200B;    produces &#x7528;&#x6765;&#x9650;&#x5236;Accept   </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">&quot;/to_list&quot;</span>, produces=<span class="string">&quot;text/html&quot;</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">list</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Model model,MiaoshaUser user)</span> </span>{</span><br><span class="line">	model.addAttribute(<span class="string">&quot;user&quot;</span>, user);</span><br><span class="line">	List&lt;GoodsVo&gt; goodsList = goodsService.listGoodsVo();</span><br><span class="line">	model.addAttribute(<span class="string">&quot;goodsList&quot;</span>, goodsList);</span><br><span class="line">	SpringWebContext ctx = <span class="keyword">new</span> SpringWebContext(request,response,</span><br><span class="line">			request.getServletContext(),request.getLocale(), model.asMap(), applicationContext );</span><br><span class="line">	<span class="comment">//&#x624B;&#x52A8;&#x6E32;&#x67D3;</span></span><br><span class="line">	String html = thymeleafViewResolver.getTemplateEngine().process(<span class="string">&quot;goods_list&quot;</span>, ctx);</span><br><span class="line">	<span class="keyword">if</span>(!StringUtils.isEmpty(html)) {</span><br><span class="line">		redisService.set(GoodsKey.getGoodsList, <span class="string">&quot;&quot;</span>, html);</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> html;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x516D;-&#x9A8C;&#x8BC1;&#x7801;"><a href="#&#x516D;-&#x9A8C;&#x8BC1;&#x7801;" class="headerlink" title="&#x516D;. &#x9A8C;&#x8BC1;&#x7801;"></a>&#x516D;. &#x9A8C;&#x8BC1;&#x7801;</h2><p>&#x6B65;&#x9AA4;:</p>
+<pre><code>1. &#x968F;&#x673A;&#x751F;&#x6210;&#x51E0;&#x4E2A; &#x8FD0;&#x7B97;&#x8868;&#x8FBE;&#x5F0F; (&#x7C7B;&#x4F3C;1+1)&#xFF0C;&#x5E76;&#x5B58;&#x50A8;&#x5230; redis&#x4E2D;&#xFF0C;key&#x4E3A; userId+goodsId, value &#x4E3A; &#x8FD0;&#x7B97;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x503C; 
+ 2. &#x8FD4;&#x56DE; &#x56FE;&#x7247; &#x5230; &#x5BA2;&#x6237;&#x7AEF;</code></pre><ul>
+<li>controller</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">&quot;/verifyCode&quot;</span>, method=RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">getMiaoshaVerifyCod</span><span class="params">(HttpServletResponse response,MiaoshaUser user,</span></span></span><br><span class="line"><span class="function"><span class="params">    		@RequestParam(<span class="string">&quot;goodsId&quot;</span>)</span><span class="keyword">long</span> goodsId) </span>{</span><br><span class="line">    	<span class="keyword">if</span>(user == <span class="keyword">null</span>) {</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.SESSION_ERROR);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="keyword">try</span> {</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            	&#x751F;&#x6210; &#x4E00;&#x4E2A; &#x9A8C;&#x8BC1;&#x7801; &#x56FE;&#x7247;</span></span><br><span class="line"><span class="comment">            	&#x4F7F;&#x7528; &#x6D41;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD4;&#x56DE;&#x7ED9; &#x5BA2;&#x6237;&#x7AEF;</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">    		BufferedImage image  = miaoshaService.createVerifyCode(user, goodsId);</span><br><span class="line">    		OutputStream out = response.getOutputStream();</span><br><span class="line">    		ImageIO.write(image, <span class="string">&quot;JPEG&quot;</span>, out);</span><br><span class="line">    		out.flush();</span><br><span class="line">    		out.close();</span><br><span class="line">    		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    	}<span class="keyword">catch</span>(Exception e) {</span><br><span class="line">    		e.printStackTrace();</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.MIAOSHA_FAIL);</span><br><span class="line">    	}</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>service</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> BufferedImage <span class="title">createVerifyCode</span><span class="params">(MiaoshaUser user, <span class="keyword">long</span> goodsId)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span>(user == <span class="keyword">null</span> || goodsId &lt;=<span class="number">0</span>) {</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">int</span> width = <span class="number">80</span>;</span><br><span class="line">		<span class="keyword">int</span> height = <span class="number">32</span>;</span><br><span class="line">		<span class="comment">//create the image</span></span><br><span class="line">		BufferedImage image = <span class="keyword">new</span> BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);</span><br><span class="line">		Graphics g = image.getGraphics();</span><br><span class="line">		<span class="comment">// set the background color</span></span><br><span class="line">		g.setColor(<span class="keyword">new</span> Color(<span class="number">0xDCDCDC</span>));</span><br><span class="line">		g.fillRect(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">		<span class="comment">// draw the border</span></span><br><span class="line">		g.setColor(Color.black);</span><br><span class="line">		g.drawRect(<span class="number">0</span>, <span class="number">0</span>, width - <span class="number">1</span>, height - <span class="number">1</span>);</span><br><span class="line">		<span class="comment">// create a random instance to generate the codes</span></span><br><span class="line">		Random rdm = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="comment">// make some confusion</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++) {</span><br><span class="line">			<span class="keyword">int</span> x = rdm.nextInt(width);</span><br><span class="line">			<span class="keyword">int</span> y = rdm.nextInt(height);</span><br><span class="line">			g.drawOval(x, y, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		}</span><br><span class="line">		<span class="comment">// generate a random code</span></span><br><span class="line">		String verifyCode = generateVerifyCode(rdm);</span><br><span class="line">		g.setColor(<span class="keyword">new</span> Color(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>));</span><br><span class="line">		g.setFont(<span class="keyword">new</span> Font(<span class="string">&quot;Candara&quot;</span>, Font.BOLD, <span class="number">24</span>));</span><br><span class="line">		g.drawString(verifyCode, <span class="number">8</span>, <span class="number">24</span>);</span><br><span class="line">		g.dispose();</span><br><span class="line">		<span class="comment">//&#x628A;&#x9A8C;&#x8BC1;&#x7801;&#x5B58;&#x5230;redis&#x4E2D;</span></span><br><span class="line">		<span class="keyword">int</span> rnd = calc(verifyCode);</span><br><span class="line">		redisService.set(MiaoshaKey.getMiaoshaVerifyCode, user.getId()+<span class="string">&quot;,&quot;</span>+goodsId, rnd);</span><br><span class="line">		<span class="comment">//&#x8F93;&#x51FA;&#x56FE;&#x7247;	</span></span><br><span class="line">		<span class="keyword">return</span> image;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">generateVerifyCode</span><span class="params">(Random rdm)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> num1 = rdm.nextInt(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">int</span> num2 = rdm.nextInt(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">int</span> num3 = rdm.nextInt(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">char</span> op1 = ops[rdm.nextInt(<span class="number">3</span>)];</span><br><span class="line">    <span class="keyword">char</span> op2 = ops[rdm.nextInt(<span class="number">3</span>)];</span><br><span class="line">    String exp = <span class="string">&quot;&quot;</span>+ num1 + op1 + num2 + op2 + num3;</span><br><span class="line">    <span class="keyword">return</span> exp;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calc</span><span class="params">(String exp)</span> </span>{</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        ScriptEngineManager manager = <span class="keyword">new</span> ScriptEngineManager();</span><br><span class="line">        ScriptEngine engine = manager.getEngineByName(<span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> (Integer)engine.eval(exp);</span><br><span class="line">    }<span class="keyword">catch</span>(Exception e) {</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">char</span>[] ops = <span class="keyword">new</span> <span class="keyword">char</span>[] {<span class="string">&apos;+&apos;</span>, <span class="string">&apos;-&apos;</span>, <span class="string">&apos;*&apos;</span>};</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x4E03;-&#x9690;&#x85CF;&#x79D2;&#x6740;&#x63A5;&#x53E3;"><a href="#&#x4E03;-&#x9690;&#x85CF;&#x79D2;&#x6740;&#x63A5;&#x53E3;" class="headerlink" title="&#x4E03;. &#x9690;&#x85CF;&#x79D2;&#x6740;&#x63A5;&#x53E3;"></a>&#x4E03;. &#x9690;&#x85CF;&#x79D2;&#x6740;&#x63A5;&#x53E3;</h2><p>&#x83B7;&#x53D6;&#x79D2;&#x6740;&#x5730;&#x5740;&#xFF0C;&#x9700;&#x8981; &#x53E6;&#x5916;&#x8C03;&#x7528;&#x63A5;&#x53E3; + &#x9A8C;&#x8BC1;&#x7801; &#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;&#x4E00;&#x4E2A; randomtoken &#xFF08;&#x968F;&#x673A; uuid)&#xFF0C;&#x5E76;&#x5B58;&#x5165;Redis&#x4E2D;&#xFF0C;key&#x4E3A; userId + miaosha_addr, value &#x4E3A;  randomtoken </p>
+<p>controller &#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x7531;&#x4E3A;  {randomtoken}/do_miaosha, &#x8BE5;controller &#x9996;&#x5148;&#x5224;&#x65AD; &#x8BE5;&#x7528;&#x6237; &#x7684; randomtoken &#x4E0E;  redis &#x4E2D; &#x5B58;&#x50A8;&#x7684;&#x662F;&#x5426;&#x4E00;&#x81F4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</p>
+<h2 id="&#x516B;-&#x79D2;&#x6740;"><a href="#&#x516B;-&#x79D2;&#x6740;" class="headerlink" title="&#x516B;. &#x79D2;&#x6740;"></a>&#x516B;. &#x79D2;&#x6740;</h2><p>&#x6B65;&#x9AA4;:</p>
+<pre><code>1. &#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x540E;&#xFF0C;&#x5C06;&#x6240;&#x6709;&#x5546;&#x54C1;&#x7684;&#x5E93;&#x5B58;&#x9884;&#x52A0;&#x8F7D;&#x5230; Redis&#x4E2D;
+ 2. &#x5224;&#x65AD;&#x79D2;&#x6740;&#x5730;&#x5740;&#x662F;&#x5426;&#x6B63;&#x786E;
+ 3. &#x5224;&#x65AD;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x65E0;&#x5E93;&#x5B58;(&#x5185;&#x5B58;&#x4E2D;&#x6807;&#x5FD7;&#xFF0C;&#x4E0D;&#x7528;&#x8BF7;&#x6C42;redis&#xFF0C;&#x66F4;&#x5FEB;)
+ 4. Redis &#x9884; &#x51CF;&#x5C11; &#x5E93;&#x5B58;
+ 5. &#x5224;&#x65AD;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x79D2;&#x6740;&#x8FC7;
+ 6. &#x6DFB;&#x52A0;&#x5230; amqp&#x5BF9;&#x4E86;&#xFF0C;&#x7B49;&#x5F85; &#x771F;&#x6B63; &#x4E0B;&#x5355;&#x64CD;&#x4F5C;
+ 7. &#x5BA2;&#x6237;&#x7AEF;&#x8F6E;&#x8BE2;&#xFF0C;&#x662F;&#x5426;&#x79D2;&#x6740;&#x6210;&#x529F;</code></pre><ul>
+<li>&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x9884;&#x52A0;&#x8F7D;&#x6240;&#x6709;&#x5E93;&#x5B58;</li>
+</ul>
+<ol>
+<li>&#x5B9E;&#x73B0; InitializingBean &#x63A5;&#x53E3;&#x5373;&#x53EF;</li>
+<li>&#x91CD;&#x5199; afterPropertiesSet &#x65B9;&#x6CD5;</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MiaoshaController implements InitializingBean {</span><br><span class="line">	/**</span><br><span class="line">	 * &#x7CFB;&#x7EDF;&#x521D;&#x59CB;&#x5316;</span><br><span class="line">	 * */</span><br><span class="line">	public void afterPropertiesSet() throws Exception {</span><br><span class="line">		List&lt;GoodsVo&gt; goodsList = goodsService.listGoodsVo();</span><br><span class="line">		if(goodsList == null) {</span><br><span class="line">			return;</span><br><span class="line">		}</span><br><span class="line">		for(GoodsVo goods : goodsList) {</span><br><span class="line">			redisService.set(GoodsKey.getMiaoshaGoodsStock, &quot;&quot;+goods.getId(), goods.getStockCount());</span><br><span class="line">			localOverMap.put(goods.getId(), false);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x79D2;&#x6740;&#x63A5;&#x53E3;&#x5904;&#x7406;</li>
+</ul>
+<p>&#x95EE;&#x9898;&#xFF1A; &#x5148;&#x9884;&#x51CF;&#x5C11;&#x5E93;&#x5B58;&#xFF0C;&#x5728;&#x8FDB;&#x884C; &#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x79D2;&#x6740;&#x8FC7;&#x5224;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x79D2;&#x6740;&#x8FC7;&#xFF0C;&#x5E94;&#x5F53; &#x5728;&#x52A0;&#x56DE;&#x5E93;&#x5B58;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">&quot;/{path}/do_miaosha&quot;</span>, method=RequestMethod.POST)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result&lt;Integer&gt; <span class="title">miaosha</span><span class="params">(Model model,MiaoshaUser user,</span></span></span><br><span class="line"><span class="function"><span class="params">    		@RequestParam(<span class="string">&quot;goodsId&quot;</span>)</span><span class="keyword">long</span> goodsId,</span></span><br><span class="line"><span class="function">    		@<span class="title">PathVariable</span><span class="params">(<span class="string">&quot;path&quot;</span>)</span> String path) </span>{</span><br><span class="line">    	model.addAttribute(<span class="string">&quot;user&quot;</span>, user);</span><br><span class="line">    	<span class="keyword">if</span>(user == <span class="keyword">null</span>) {</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.SESSION_ERROR);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="comment">//&#x9A8C;&#x8BC1;path</span></span><br><span class="line">    	<span class="keyword">boolean</span> check = miaoshaService.checkPath(user, goodsId, path);</span><br><span class="line">    	<span class="keyword">if</span>(!check){</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.REQUEST_ILLEGAL);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="comment">//&#x5185;&#x5B58;&#x6807;&#x8BB0;&#xFF0C;&#x51CF;&#x5C11;redis&#x8BBF;&#x95EE;</span></span><br><span class="line">    	<span class="keyword">boolean</span> over = localOverMap.get(goodsId);</span><br><span class="line">    	<span class="keyword">if</span>(over) {</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.MIAO_SHA_OVER);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="comment">//&#x9884;&#x51CF;&#x5E93;&#x5B58;</span></span><br><span class="line">    	<span class="keyword">long</span> stock = redisService.decr(GoodsKey.getMiaoshaGoodsStock, <span class="string">&quot;&quot;</span>+goodsId);<span class="comment">//10</span></span><br><span class="line">    	<span class="keyword">if</span>(stock &lt; <span class="number">0</span>) {</span><br><span class="line">    		 localOverMap.put(goodsId, <span class="keyword">true</span>);</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.MIAO_SHA_OVER);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="comment">//&#x5224;&#x65AD;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x79D2;&#x6740;&#x5230;&#x4E86;</span></span><br><span class="line">    	MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);</span><br><span class="line">    	<span class="keyword">if</span>(order != <span class="keyword">null</span>) {</span><br><span class="line">    		<span class="keyword">return</span> Result.error(CodeMsg.REPEATE_MIAOSHA);</span><br><span class="line">    	}</span><br><span class="line">    	<span class="comment">//&#x5165;&#x961F;</span></span><br><span class="line">    	MiaoshaMessage mm = <span class="keyword">new</span> MiaoshaMessage();</span><br><span class="line">    	mm.setUser(user);</span><br><span class="line">    	mm.setGoodsId(goodsId);</span><br><span class="line">    	sender.sendMiaoshaMessage(mm);</span><br><span class="line">    	<span class="keyword">return</span> Result.success(<span class="number">0</span>);<span class="comment">//&#x6392;&#x961F;&#x4E2D;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x4E5D;-&#x9875;&#x9762;&#x9650;&#x6D41;"><a href="#&#x4E5D;-&#x9875;&#x9762;&#x9650;&#x6D41;" class="headerlink" title="&#x4E5D;. &#x9875;&#x9762;&#x9650;&#x6D41;"></a>&#x4E5D;. &#x9875;&#x9762;&#x9650;&#x6D41;</h2><p>&#x4E3A;&#x4E86;&#x7B80;&#x5355;&#x4E14;&#x901A;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x65B0;&#x589E;&#x4E00;&#x4E2A;&#x6CE8;&#x89E3;&#xFF0C;&#x53EA;&#x6709;&#x6DFB;&#x52A0;&#x4E86;&#x6539;&#x6CE8;&#x89E3;&#x7684; &#x63A5;&#x53E3;&#xFF0C;&#x624D;&#x4F1A;&#x88AB;&#x9650;&#x6D41;</p>
+<p>==&gt; &#x4F7F;&#x7528; &#x62E6;&#x622A;&#x5668;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5224;&#x65AD;&#x65B9;&#x6CD5;&#x4E0A;&#x662F;&#x5426;&#x6709;&#x8BE5;&#x6CE8;&#x89E3;&#xFF0C;&#x5982;&#x679C;&#x6709;&#xFF0C;&#x5224;&#x65AD;&#x8BE5;&#x6CE8;&#x89E3;&#x7684;&#x5C5E;&#x6027;</p>
+<p>==&gt; &#x5C06; &#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x653E;&#x5728;  Redis&#x4E2D;&#xFF0C;&#x4F7F;&#x7528; Incr &#x589E;&#x52A0;&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#xFF1B;</p>
+<p>==&gt; &#x5BF9;&#x4E8E; n&#x79D2;&#x9650;&#x5236;m&#x6B21;&#xFF0C;&#x53EA;&#x9700;&#x8981; &#x5C06; n &#x8BBE;&#x7F6E;&#x4E3A; &#x8BE5;key &#x7684; &#x8FC7;&#x671F;&#x65F6;&#x95F4;&#x5373;&#x53EF;</p>
+<p>&#x5BF9;&#x4E8E;&#x539F;&#x6765; &#x5728; ArgumentResolver &#x4E2D; &#x8FDB;&#x884C; cookie ==&gt; user &#x89E3;&#x6790;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x653E;&#x5728;&#x4E86; &#x62E6;&#x622A;&#x5668;&#x4E2D;(&#x63A5;&#x53E3;&#x9650;&#x6D41;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x7528;&#x6237;&#x4FE1;&#x606F;)</p>
+<p>==&#x300B; &#x90A3;&#x4E48;&#x5728; ArgumentResolver  &#x5C31;&#x4E0D;&#x5E94;&#x5F53;&#x518D;&#x8FDB;&#x884C;&#x4E00;&#x6B21; cookie ==&gt; user &#x7684;&#x89E3;&#x6790;&#x64CD;&#x4F5C;&#x4E86;&#xFF0C;&#x7531;&#x4E8E; &#x4E00;&#x4E2A; &#x8BF7;&#x6C42;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x90FD;&#x662F;&#x518D;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E2D;&#x6267;&#x884C;&#x7684;</p>
+<p>==&gt; &#x5C06; user &#x5B58;&#x50A8;&#x5230; ThreadLocal &#x4E2D;&#xFF0C;&#x5728; ArgumentResolver  &#x4E2D;&#xFF0C;&#x76F4;&#x63A5;&#x8FDB;&#x884C; &#x83B7;&#x53D6;&#x5373;&#x53EF;</p>
+<ul>
+<li>&#x6CE8;&#x89E3;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Retention(RUNTIME)</span><br><span class="line">@Target(METHOD)</span><br><span class="line">public @interface AccessLimit {</span><br><span class="line">	int seconds();</span><br><span class="line">	int maxCount();</span><br><span class="line">	boolean needLogin() default true;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x62E6;&#x622A;&#x5668;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.miaosha.access;</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccessInterceptor</span>  <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span></span>{</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	MiaoshaUserService userService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	RedisService redisService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> Exception </span>{</span><br><span class="line">		<span class="keyword">if</span>(handler <span class="keyword">instanceof</span> HandlerMethod) {</span><br><span class="line">			MiaoshaUser user = getUser(request, response);</span><br><span class="line">			UserContext.setUser(user);</span><br><span class="line">			HandlerMethod hm = (HandlerMethod)handler;</span><br><span class="line">			AccessLimit accessLimit = hm.getMethodAnnotation(AccessLimit.class);</span><br><span class="line">			<span class="keyword">if</span>(accessLimit == <span class="keyword">null</span>) {</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			}</span><br><span class="line">			<span class="keyword">int</span> seconds = accessLimit.seconds();</span><br><span class="line">			<span class="keyword">int</span> maxCount = accessLimit.maxCount();</span><br><span class="line">			<span class="keyword">boolean</span> needLogin = accessLimit.needLogin();</span><br><span class="line">			String key = request.getRequestURI();</span><br><span class="line">			<span class="keyword">if</span>(needLogin) {</span><br><span class="line">				<span class="keyword">if</span>(user == <span class="keyword">null</span>) {</span><br><span class="line">					render(response, CodeMsg.SESSION_ERROR);</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">				}</span><br><span class="line">				key += <span class="string">&quot;_&quot;</span> + user.getId();</span><br><span class="line">			}<span class="keyword">else</span> {</span><br><span class="line">				<span class="comment">//do nothing</span></span><br><span class="line">			}</span><br><span class="line">			AccessKey ak = AccessKey.withExpire(seconds);</span><br><span class="line">			Integer count = redisService.get(ak, key, Integer.class);</span><br><span class="line">	    	<span class="keyword">if</span>(count  == <span class="keyword">null</span>) {</span><br><span class="line">	    		 redisService.set(ak, key, <span class="number">1</span>);</span><br><span class="line">	    	}<span class="keyword">else</span> <span class="keyword">if</span>(count &lt; maxCount) {</span><br><span class="line">	    		 redisService.incr(ak, key);</span><br><span class="line">	    	}<span class="keyword">else</span> {</span><br><span class="line">	    		render(response, CodeMsg.ACCESS_LIMIT_REACHED);</span><br><span class="line">	    		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	    	}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">render</span><span class="params">(HttpServletResponse response, CodeMsg cm)</span><span class="keyword">throws</span> Exception </span>{</span><br><span class="line">		response.setContentType(<span class="string">&quot;application/json;charset=UTF-8&quot;</span>);</span><br><span class="line">		OutputStream out = response.getOutputStream();</span><br><span class="line">		String str  = JSON.toJSONString(Result.error(cm));</span><br><span class="line">		out.write(str.getBytes(<span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">		out.flush();</span><br><span class="line">		out.close();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> MiaoshaUser <span class="title">getUser</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> </span>{</span><br><span class="line">		String paramToken = request.getParameter(MiaoshaUserService.COOKI_NAME_TOKEN);</span><br><span class="line">		String cookieToken = getCookieValue(request, MiaoshaUserService.COOKI_NAME_TOKEN);</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(cookieToken) &amp;&amp; StringUtils.isEmpty(paramToken)) {</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		String token = StringUtils.isEmpty(paramToken)?cookieToken:paramToken;</span><br><span class="line">		<span class="keyword">return</span> userService.getByToken(response, token);</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> String <span class="title">getCookieValue</span><span class="params">(HttpServletRequest request, String cookiName)</span> </span>{</span><br><span class="line">		Cookie[]  cookies = request.getCookies();</span><br><span class="line">		<span class="keyword">if</span>(cookies == <span class="keyword">null</span> || cookies.length &lt;= <span class="number">0</span>){</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">for</span>(Cookie cookie : cookies) {</span><br><span class="line">			<span class="keyword">if</span>(cookie.getName().equals(cookiName)) {</span><br><span class="line">				<span class="keyword">return</span> cookie.getValue();</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4FDD;&#x5B58;&#x5728; ThreadLocal &#x4E2D;&#x7684; &#x7528;&#x6237;&#x4FE1;&#x606F;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserContext</span> </span>{</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> ThreadLocal&lt;MiaoshaUser&gt; userHolder = <span class="keyword">new</span> ThreadLocal&lt;MiaoshaUser&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(MiaoshaUser user)</span> </span>{</span><br><span class="line">		userHolder.set(user);</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> MiaoshaUser <span class="title">getUser</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">return</span> userHolder.get();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x9650;&#x6D41;&#x7684;&#x4F7F;&#x7528;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AccessLimit</span>(seconds=<span class="number">5</span>, maxCount=<span class="number">5</span>, needLogin=<span class="keyword">true</span>)</span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">&quot;/path&quot;</span>, method=RequestMethod.GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">getMiaoshaPath</span><span class="params">(HttpServletRequest request, MiaoshaUser user,</span></span></span><br><span class="line"><span class="function"><span class="params">	... </span></span></span><br><span class="line"><span class="function"><span class="params">}</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x5341;-&#x9519;&#x8BEF;&#x5904;&#x7406;"><a href="#&#x5341;-&#x9519;&#x8BEF;&#x5904;&#x7406;" class="headerlink" title="&#x5341;. &#x9519;&#x8BEF;&#x5904;&#x7406;"></a>&#x5341;. &#x9519;&#x8BEF;&#x5904;&#x7406;</h2><p>&#x5BF9;&#x4E8E; &#x4E1A;&#x52A1;&#x9519;&#x8BEF;&#xFF0C;&#x9700;&#x8981;&#x4E5F;&#x8FD4;&#x56DE; code, msg, data &#x7684; json&#x5F62;&#x5F0F;</p>
+<p>==&gt; &#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;&#xFF0C;&#x5E76;&#x6DFB;&#x52A0; &#x9519;&#x8BEF;&#x5904;&#x7406;</p>
+<ul>
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x9519;&#x8BEF;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> CodeMsg cm;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GlobalException</span><span class="params">(CodeMsg cm)</span> </span>{</span><br><span class="line">		<span class="keyword">super</span>(cm.toString());</span><br><span class="line">		<span class="keyword">this</span>.cm = cm;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> CodeMsg <span class="title">getCm</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">return</span> cm;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x9519;&#x8BEF;&#x5904;&#x7406;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>{</span><br><span class="line">	<span class="meta">@ExceptionHandler</span>(value=Exception.class)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Result&lt;String&gt; <span class="title">exceptionHandler</span><span class="params">(HttpServletRequest request, Exception e)</span></span>{</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		<span class="keyword">if</span>(e <span class="keyword">instanceof</span> GlobalException) {</span><br><span class="line">			GlobalException ex = (GlobalException)e;</span><br><span class="line">			<span class="keyword">return</span> Result.error(ex.getCm());</span><br><span class="line">		}<span class="keyword">else</span> <span class="keyword">if</span>(e <span class="keyword">instanceof</span> BindException) {</span><br><span class="line">			BindException ex = (BindException)e;</span><br><span class="line">			List&lt;ObjectError&gt; errors = ex.getAllErrors();</span><br><span class="line">			ObjectError error = errors.get(<span class="number">0</span>);</span><br><span class="line">			String msg = error.getDefaultMessage();</span><br><span class="line">			<span class="keyword">return</span> Result.error(CodeMsg.BIND_ERROR.fillArgs(msg));</span><br><span class="line">		}<span class="keyword">else</span> {</span><br><span class="line">			<span class="keyword">return</span> Result.error(CodeMsg.SERVER_ERROR);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x5341;&#x4E00;-Jmeter-&#x4F7F;&#x7528;"><a href="#&#x5341;&#x4E00;-Jmeter-&#x4F7F;&#x7528;" class="headerlink" title="&#x5341;&#x4E00;. Jmeter &#x4F7F;&#x7528;"></a>&#x5341;&#x4E00;. Jmeter &#x4F7F;&#x7528;</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/高并发商城/" rel="tag"># 高并发商城</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/16/SpringBoot/" rel="next" title="SpringBoot">
+                <i class="fa fa-chevron-left"></i> SpringBoot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/22/Spring/" rel="prev" title="spring">
+                spring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DayByDay">
+            
+              <p class="site-author-name" itemprop="name">DayByDay</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-Redis"><span class="nav-number">1.</span> <span class="nav-text">一. Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-加入依赖"><span class="nav-number">1.1.</span> <span class="nav-text">1. 加入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-添加-Redis-配置信息"><span class="nav-number">1.2.</span> <span class="nav-text">2. 添加 Redis 配置信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-提供-常用的-get-set-等方法"><span class="nav-number">1.3.</span> <span class="nav-text">3.  提供 常用的 get, set 等方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-登录"><span class="nav-number">2.</span> <span class="nav-text">二. 登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据校验"><span class="nav-number">2.1.</span> <span class="nav-text">1. 数据校验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自定义校验注解"><span class="nav-number">2.2.</span> <span class="nav-text">2. 自定义校验注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-登陆处理步骤"><span class="nav-number">2.3.</span> <span class="nav-text">3. 登陆处理步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-cookie-获取-user"><span class="nav-number">3.</span> <span class="nav-text">三. cookie 获取 user</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-程序调用规则"><span class="nav-number">4.</span> <span class="nav-text">四. 程序调用规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-页面缓存"><span class="nav-number">5.</span> <span class="nav-text">五.  页面缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-验证码"><span class="nav-number">6.</span> <span class="nav-text">六. 验证码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七-隐藏秒杀接口"><span class="nav-number">7.</span> <span class="nav-text">七. 隐藏秒杀接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八-秒杀"><span class="nav-number">8.</span> <span class="nav-text">八. 秒杀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九-页面限流"><span class="nav-number">9.</span> <span class="nav-text">九. 页面限流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十-错误处理"><span class="nav-number">10.</span> <span class="nav-text">十. 错误处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一-Jmeter-使用"><span class="nav-number">11.</span> <span class="nav-text">十一. Jmeter 使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DayByDay</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

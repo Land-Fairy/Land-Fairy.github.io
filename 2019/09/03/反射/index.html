@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java &amp;#x4E2D;&amp;#x53CD;&amp;#x5C04;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="反射">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/反射/index.html">
+<meta property="og:site_name" content="DayByDayの小屋">
+<meta property="og:description" content="Java &amp;#x4E2D;&amp;#x53CD;&amp;#x5C04;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/09/03/反射/E:%5C07_blog%5Csource_posts%5C%E5%8F%8D%E5%B0%84%5Creflect001.png">
+<meta property="og:updated_time" content="2019-11-19T03:58:32.615Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="反射">
+<meta name="twitter:description" content="Java &amp;#x4E2D;&amp;#x53CD;&amp;#x5C04;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/03/反射/E:%5C07_blog%5Csource_posts%5C%E5%8F%8D%E5%B0%84%5Creflect001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/03/反射/">
+
+
+
+
+
+  <title>反射 | DayByDayの小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DayByDayの小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/03/反射/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DayByDay">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DayByDayの小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">反射</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-03T20:18:02+08:00">
+                2019-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Java &#x4E2D;&#x53CD;&#x5C04;&#x7684;&#x6982;&#x5FF5;</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1-&#x7C7B;&#x7684;&#x52A0;&#x8F7D;-amp-&#x8FDE;&#x63A5;-amp-&#x521D;&#x59CB;&#x5316;"><a href="#1-&#x7C7B;&#x7684;&#x52A0;&#x8F7D;-amp-&#x8FDE;&#x63A5;-amp-&#x521D;&#x59CB;&#x5316;" class="headerlink" title="1. &#x7C7B;&#x7684;&#x52A0;&#x8F7D;&amp;&#x8FDE;&#x63A5;&amp;&#x521D;&#x59CB;&#x5316;"></a>1. &#x7C7B;&#x7684;&#x52A0;&#x8F7D;&amp;&#x8FDE;&#x63A5;&amp;&#x521D;&#x59CB;&#x5316;</h3><h4 id="1-1-JVM-&#x548C;-&#x7C7B;"><a href="#1-1-JVM-&#x548C;-&#x7C7B;" class="headerlink" title="1.1 JVM &#x548C; &#x7C7B;"></a>1.1 JVM &#x548C; &#x7C7B;</h4><p>&#x200B;    &#x8C03;&#x7528; Java&#x547D;&#x4EE4;&#x6267;&#x884C;Java&#x7A0B;&#x5E8F; =&gt; &#x542F;&#x52A8;&#x4E00;&#x4E2A;Java&#x865A;&#x62DF;&#x673A;&#x8FDB;&#x7A0B;</p>
+<blockquote>
+<p>&#x4E0D;&#x7BA1;&#x8BE5;Java&#x7A0B;&#x5E8F;&#x6709;&#x591A;&#x590D;&#x6742;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x7EBF;&#x7A0B;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x5904;&#x4E8E;&#x8BE5; &#x865A;&#x62DF;&#x673A;&#x8FDB;&#x7A0B;&#x4E2D;</p>
+</blockquote>
+<blockquote>
+<p>&#x540C;&#x4E00;JVM&#x7684;&#x6240;&#x6709;&#x8FDB;&#x7A0B;&#xFF0C;&#x6240;&#x6709;&#x53D8;&#x91CF;&#x90FD;&#x5904;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E2D;&#xFF0C;&#x90FD;&#x4F7F;&#x7528;&#x8BE5; JVM&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;</p>
+</blockquote>
+<blockquote>
+<p>&#x4E0D;&#x540C;&#x7684;&#x7A0B;&#x5E8F; &#x4F4D;&#x4E8E; &#x4E0D;&#x540C;&#x7684; JVM &#x865A;&#x62DF;&#x673A;&#x8FDB;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E92;&#x4E0D;&#x5E72;&#x6270;</p>
+</blockquote>
+<ul>
+<li><p>&#x7591;&#x95EE;</p>
+<p>&#x540C;&#x4E00;Java&#x7A0B;&#x5E8F;&#x53EA;&#x80FD;&#x662F;&#x591A;&#x7EBF;&#x7A0B;&#xFF0C; &#x800C;&#x975E;&#x591A;&#x8FDB;&#x7A0B;&#xFF1F;</p>
+</li>
+</ul>
+<h4 id="1-2-&#x7C7B;&#x7684;&#x52A0;&#x8F7D;"><a href="#1-2-&#x7C7B;&#x7684;&#x52A0;&#x8F7D;" class="headerlink" title="1.2 &#x7C7B;&#x7684;&#x52A0;&#x8F7D;"></a>1.2 &#x7C7B;&#x7684;&#x52A0;&#x8F7D;</h4><ul>
+<li>Class &#x7C7B;</li>
+</ul>
+<blockquote>
+<ol>
+<li>&#x7531;&#x4E8E;&#x4E8B;&#x7269;&#x6709;&#x4E00;&#x4E9B;&#x7279;&#x5F81;&#xFF0C;&#x53EF;&#x4EE5;&#x62BD;&#x53D6;&#x5176;&#x7279;&#x70B9; =&gt; &#x5373;&#x4E3A;&#x7C7B;</li>
+<li>&#x90A3;&#x4E48;&#x7C7B;&#x4E5F;&#x6709;&#x4E00;&#x4E9B;&#x7279;&#x5F81;&#xFF0C;&#x6BD4;&#x5982;&#x5177;&#x6709; &#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x6709;&#x65B9;&#x6CD5;&#x7B49;&#x7B49; =&gt; &#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x7C7B; (&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x7C7B;&#x7684;)</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>&#x6BCF;&#x4E2A;&#x7C7B;&#x90FD;&#x662F;&#x4E00;&#x6279;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7279;&#x5F81;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x7CFB;&#x7EDF;&#x4E2D;&#x6240;&#x6709;&#x7C7B;&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x90FD;&#x662F; java.lang.Class&#x7684;&#x5B9E;&#x4F8B;</p>
+</blockquote>
+<blockquote>
+<p>&#x6BCF;&#x4E2A; java.lang.Class &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x7C7B; &#x7C7B;&#xFF08;&#x56E0;&#x4E3A;&#x8BE5;&#x7C7B;&#x578B;&#x7C7B;&#x5177;&#x6709;&#x7EDF;&#x4E00;&#x7279;&#x70B9;)</p>
+</blockquote>
+<h5 id="1-&#x7C7B;&#x52A0;&#x8F7D;"><a href="#1-&#x7C7B;&#x52A0;&#x8F7D;" class="headerlink" title="1. &#x7C7B;&#x52A0;&#x8F7D;"></a>1. &#x7C7B;&#x52A0;&#x8F7D;</h5><blockquote>
+<p>&#x5C06;&#x7C7B;&#x7684; class &#x6587;&#x4EF6; &#x8BFB;&#x5165;&#x5185;&#x5B58; =&#x300B; &#x521B;&#x5EFA;&#x4E00;&#x4E2A; java.lang.Class&#x5BF9;&#x8C61;</p>
+</blockquote>
+<ul>
+<li>&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</li>
+</ul>
+<blockquote>
+<p>&#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x662F;&#x7531; &#x7C7B;&#x52A0;&#x8F7D;&#x5668; &#x6765;&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x901A;&#x5E38;&#x7531; JVM&#x6765;&#x63D0;&#x4F9B;</p>
+</blockquote>
+<h5 id="2-&#x7C7B;&#x7684;&#x8FDE;&#x63A5;"><a href="#2-&#x7C7B;&#x7684;&#x8FDE;&#x63A5;" class="headerlink" title="2. &#x7C7B;&#x7684;&#x8FDE;&#x63A5;"></a>2. &#x7C7B;&#x7684;&#x8FDE;&#x63A5;</h5><blockquote>
+<p>&#x751F;&#x6210; Class&#x5BF9;&#x8C61;&#x540E;&#xFF0C;&#x4F1A;&#x8FDB;&#x5165;&#x8FDE;&#x63A5;&#x9636;&#x6BB5;&#xFF0C;&#x8BE5;&#x9636;&#x6BB5;&#x8D1F;&#x8D23;&#x628A; &#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x5408;&#x5E76;&#x5230; JRE&#x4E2D;&#xFF0C;&#x7C7B;&#x7684;&#x8FDE;&#x63A5;&#x53C8;&#x6709;3&#x4E2A;&#x9636;&#x6BB5;</p>
+</blockquote>
+<ol>
+<li>&#x9A8C;&#x8BC1;&#x9636;&#x6BB5;: &#x68C0;&#x9A8C;&#x88AB;&#x52A0;&#x8F7D;&#x7684;&#x7C7B;&#x662F;&#x5426;&#x6709;&#x6B63;&#x786E;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;</li>
+<li>&#x51C6;&#x5907;&#x9636;&#x6BB5;: &#x8D1F;&#x8D23;&#x4E3A;&#x7C7B;&#x7684;&#x53D8;&#x91CF;&#x5206;&#x914D;&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;</li>
+<li>&#x89E3;&#x6790;&#x9636;&#x6BB5;: &#x5C06;&#x7D2F;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x636E;&#x4E2D;&#x7684;&#x7B26;&#x53F7;&#x5F15;&#x7528;&#x66FF;&#x6362;&#x4E3A;&#x76F4;&#x63A5;&#x5F15;&#x7528;</li>
+</ol>
+<h5 id="3-&#x7C7B;&#x7684;&#x521D;&#x59CB;&#x5316;"><a href="#3-&#x7C7B;&#x7684;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="3. &#x7C7B;&#x7684;&#x521D;&#x59CB;&#x5316;"></a>3. &#x7C7B;&#x7684;&#x521D;&#x59CB;&#x5316;</h5><blockquote>
+<p>&#x8BE5;&#x9636;&#x6BB5; &#x53EA;&#x8981;&#x662F;&#x5BF9;&#x7C7B;&#x53D8;&#x91CF; &#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;</p>
+</blockquote>
+<ul>
+<li>Java &#x4E2D;&#x7C7B;&#x53D8;&#x91CF;&#x521D;&#x59CB;&#x503C;&#x65B9;&#x6CD5;</li>
+</ul>
+<blockquote>
+<p>&#x58F0;&#x660E;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x6307;&#x5B9A;&#x521D;&#x59CB;&#x503C;</p>
+</blockquote>
+<p><img src="/2019/09/03/&#x53CD;&#x5C04;/E:%5C07_blog%5Csource_posts%5C%E5%8F%8D%E5%B0%84%5Creflect001.png" alt="reflect001"></p>
+<h3 id="2-&#x83B7;&#x53D6;-Class-&#x5BF9;&#x8C61;"><a href="#2-&#x83B7;&#x53D6;-Class-&#x5BF9;&#x8C61;" class="headerlink" title="2. &#x83B7;&#x53D6; Class &#x5BF9;&#x8C61;"></a>2. &#x83B7;&#x53D6; Class &#x5BF9;&#x8C61;</h3><ul>
+<li>&#x4F7F;&#x7528;&#x5168;&#x7C7B;&#x540D;</li>
+</ul>
+<blockquote>
+<p>&#x5C06;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x8FD4;&#x56DE;Class&#x5BF9;&#x8C61;</p>
+</blockquote>
+<blockquote>
+<p>&#x591A;&#x7528;&#x4E8E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5C06;&#x7C7B;&#x540D;&#x5B9A;&#x4E49;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x8BFB;&#x53D6;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x52A0;&#x8F7D;&#x7C7B;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(&quot;&#x5168;&#x7C7B;&#x540D;&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4F7F;&#x7528; &#x7C7B;&#x540D;</li>
+</ul>
+<blockquote>
+<p>&#x901A;&#x8FC7;&#x7C7B;&#x540D;&#x7684; class &#x5C5E;&#x6027; &#x6765;&#x83B7;&#x53D6; Class &#x5BF9;&#x8C61; &#xFF08;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF0C;&#x7531;&#x4E8E;&#x662F;&#x5C5E;&#x6027;&#xFF0C;&#x901F;&#x5EA6;&#x6700;&#x5FEB;)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x7C7B;&#x540D;.class</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getClass()&#x65B9;&#x6CD5;</li>
+</ul>
+<blockquote>
+<p>&#x901A;&#x8FC7; &#x7C7B;&#x5B9E;&#x4F8B;&#x7684; getClass()&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.getClass()</span><br></pre></td></tr></table></figure>
+
+<h4 id="&#x6D4B;&#x8BD5;"><a href="#&#x6D4B;&#x8BD5;" class="headerlink" title="&#x6D4B;&#x8BD5;"></a>&#x6D4B;&#x8BD5;</h4><blockquote>
+<p>&#x4E09;&#x79CD;&#x65B9;&#x5F0F;&#x83B7;&#x53D6;&#x5230;&#x7684;Class &#x90FD;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;(&#x4E00;&#x4E2A;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#xFF0C;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;Class&#x5BF9;&#x8C61;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>{</span><br><span class="line">       <span class="comment">//1. &#x5168;&#x7C7B;&#x540D;&#x7684;&#x65B9;&#x5F0F;</span></span><br><span class="line">       Class cls1 = Class.forName(<span class="string">&quot;com.day.domain.Person&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2. &#x4F7F;&#x7528;&#x7C7B;&#x540D;.class &#x65B9;&#x5F0F;</span></span><br><span class="line">       Class cls2 = Person.class;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//3. getClass() &#x65B9;&#x5F0F;</span></span><br><span class="line">       Person p = <span class="keyword">new</span> Person();</span><br><span class="line">       Class cls3 = p.getClass();</span><br><span class="line"></span><br><span class="line">       <span class="comment">// &#x6BD4;&#x8F83;&#x4E09;&#x4E2A;&#x5BF9;&#x8C61; </span></span><br><span class="line">       System.out.println(cls1 == cls2); <span class="comment">// true</span></span><br><span class="line">       System.out.println(cls2 == cls3); <span class="comment">// true</span></span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Class&#x5BF9;&#x8C61;&#x529F;&#x80FD;"><a href="#3-Class&#x5BF9;&#x8C61;&#x529F;&#x80FD;" class="headerlink" title="3. Class&#x5BF9;&#x8C61;&#x529F;&#x80FD;"></a>3. Class&#x5BF9;&#x8C61;&#x529F;&#x80FD;</h3><h4 id="3-1-&#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;"><a href="#3-1-&#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;" class="headerlink" title="3.1 &#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;"></a>3.1 &#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Field getField&#x200B;(String name);</span><br><span class="line">Field[] getFields();</span><br><span class="line"></span><br><span class="line">Field getDeclaredField&#x200B;(String name);</span><br><span class="line">Field[] getDeclaredFields();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getFields</li>
+</ul>
+<blockquote>
+<p>&#x53EA;&#x80FD;&#x83B7;&#x53D6; public &#x7684; &#x6210;&#x5458;&#x53D8;&#x91CF;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> Class personCls = Person.class;</span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * &#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"> Field[] fields = personCls.getFields();</span><br><span class="line"> <span class="keyword">for</span>(Field field: fields){</span><br><span class="line"> 	System.out.println(field); </span><br><span class="line"> }</span><br><span class="line"><span class="comment">// &#x7ED3;&#x679C;:&#xFF08;&#x53D1;&#x73B0;&#x53EA;&#x6709;public&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;)</span></span><br><span class="line"><span class="keyword">public</span> java.lang.String com.day.domain.Person.name</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getField(String name)</li>
+</ul>
+<blockquote>
+<p>&#x7528;&#x6765;&#x83B7;&#x53D6; &#x6307;&#x5B9A;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x7684; &#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C; &#x53EF;&#x80FD;&#x4F1A;&#x6709; NoSuchFieldException &#x5F02;&#x5E38;</p>
+</blockquote>
+<blockquote>
+<p>&#x83B7;&#x53D6;&#x5230;&#x7684; Field &#x7C7B;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5BF9; &#x8BE5;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x503C; </p>
+<p>get(obj): &#x83B7;&#x53D6; obj &#x8FD9;&#x4E2A;&#x5BF9;&#x8C61; &#x7684; &#x5BF9;&#x5E94;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x503C;, &#x53EF;&#x80FD;&#x4F1A;&#x6709; IllegalAccessException &#x5F02;&#x5E38;</p>
+<p>set(obj, value)&#xFF1A; &#x7ED9;obj &#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684; &#x8BE5;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#x503C;&#x4E3A; value</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchFieldException, IllegalAccessException </span>{</span><br><span class="line">        Class personCls = Person.class;</span><br><span class="line"></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.setName(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * &#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        Field name = personCls.getField(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x503C; */</span></span><br><span class="line">        Object obj = name.get(p);</span><br><span class="line">        System.out.println(obj);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x8BBE;&#x7F6E;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x7684;&#x503C; */</span></span><br><span class="line">        name.set(p, <span class="string">&quot;bbbb&quot;</span>);</span><br><span class="line">        System.out.println(p);</span><br><span class="line">    }</span><br><span class="line"><span class="comment">// &#x6253;&#x5370;&#x7ED3;&#x679C;</span></span><br><span class="line">aaa</span><br><span class="line">Person{name=<span class="string">&apos;bbbb&apos;</span>, age=<span class="number">0</span>}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>getDeclaredFields</li>
+</ul>
+<blockquote>
+<p>&#x7528;&#x6765;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5305;&#x62EC; &#x79C1;&#x6709;</p>
+</blockquote>
+<blockquote>
+<p>&#x53EF;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3001;&#x8BBE;&#x7F6E; &#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</p>
+</blockquote>
+<blockquote>
+<p>age.setAccessible(true); &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E; age &#x8FD9;&#x4E2A;&#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x6709; IllegalAccessException &#x5F02;&#x5E38;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchFieldException, IllegalAccessException </span>{</span><br><span class="line">        Class personCls = Person.class;</span><br><span class="line"></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        p.setName(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        p.setAge(<span class="number">100</span>);</span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6; &#x6240;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF; */</span></span><br><span class="line">        Field[] declaredFields = personCls.getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span>(Field field: declaredFields) {</span><br><span class="line">            System.out.println(field);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6; age &#x6210;&#x5458;&#x53D8;&#x91CF; */</span></span><br><span class="line">        Field age = personCls.getDeclaredField(<span class="string">&quot;age&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x8BBE;&#x7F6E; &#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x53EF;&#x8BBF;&#x95EE; */</span></span><br><span class="line">        age.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6; &#x6210;&#x5458;&#x53D8;&#x91CF;&#x503C; */</span></span><br><span class="line">        Object ageV = age.get(p);</span><br><span class="line">        System.out.println(ageV);</span><br><span class="line"></span><br><span class="line">        age.set(p, <span class="number">100</span>);</span><br><span class="line">        System.out.println(p);</span><br><span class="line">    }</span><br><span class="line"><span class="comment">// &#x6253;&#x5370;&#x7ED3;&#x679C;</span></span><br><span class="line"><span class="keyword">public</span> java.lang.String com.day.domain.Person.name</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> com.day.domain.Person.age</span><br><span class="line"><span class="number">100</span></span><br><span class="line">Person{name=<span class="string">&apos;aaa&apos;</span>, age=<span class="number">100</span>}</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-&#x83B7;&#x53D6;-&#x6784;&#x9020;&#x65B9;&#x6CD5;"><a href="#3-2-&#x83B7;&#x53D6;-&#x6784;&#x9020;&#x65B9;&#x6CD5;" class="headerlink" title="3.2 &#x83B7;&#x53D6; &#x6784;&#x9020;&#x65B9;&#x6CD5;"></a>3.2 &#x83B7;&#x53D6; &#x6784;&#x9020;&#x65B9;&#x6CD5;</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;T&gt; getConstructor&#x200B;(Class&lt;?&gt;... parameterTypes);</span><br><span class="line">Constructor&lt;?&gt;[] getConstructors();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>getConstructor(Class): &#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x5BF9;&#x5E94; &#x53C2;&#x6570;&#x7684; &#x6784;&#x9020;&#x51FD;&#x6570;</p>
+</blockquote>
+<blockquote>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; &#x6784;&#x9020;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x7684; newInstance &#x6765;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x5BF9;&#x8C61;</p>
+</blockquote>
+<blockquote>
+<p>&#x5982;&#x679C;&#x8C03;&#x7528;&#x7A7A;&#x53C2;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528; Class.newInstance() &#x6765;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException </span>{</span><br><span class="line">        Class personCls = Person.class;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6;&#x53EA;&#x6709;&#x4E00;&#x4E2A; string &#x7C7B;&#x578B;&#x7684; &#x6784;&#x9020;&#x51FD;&#x6570;*/</span></span><br><span class="line">        Constructor constructor = personCls.getConstructor(String.class);</span><br><span class="line"></span><br><span class="line">        Object p = constructor.newInstance(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">        System.out.println(p);</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"><span class="comment">// &#x6253;&#x5370;</span></span><br><span class="line">Person{name=<span class="string">&apos;aaa&apos;</span>, age=<span class="number">0</span>}</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-&#x83B7;&#x53D6;-&#x65B9;&#x6CD5;"><a href="#3-3-&#x83B7;&#x53D6;-&#x65B9;&#x6CD5;" class="headerlink" title="3.3 &#x83B7;&#x53D6; &#x65B9;&#x6CD5;"></a>3.3 &#x83B7;&#x53D6; &#x65B9;&#x6CD5;</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method getMethod&#x200B;(String name, Class&lt;?&gt;... parameterTypes);</span><br><span class="line">Method[] getMethods();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&#x4F7F;&#x7528; getMethod(&#x201C;eat&#x201D;, String.class) &#x6765;&#x83B7;&#x53D6; &#x53C2;&#x6570;&#x7C7B;&#x578B;&#x4E3A; string&#xFF0C;&#x65B9;&#x6CD5;&#x540D;&#x4E3A; eat &#x7684;&#x65B9;&#x6CD5;</p>
+</blockquote>
+<blockquote>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528; invoke &#x6765;&#x5BF9;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8C03;&#x7528;</p>
+</blockquote>
+<blockquote>
+<p>&#x5BF9;&#x4E8E; private &#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; setAccessible &#x8BBE;&#x7F6E;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, IllegalAccessException </span>{</span><br><span class="line">        Class personCls = Person.class;</span><br><span class="line"></span><br><span class="line">        Person p = <span class="keyword">new</span> Person();</span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6;&#x53C2;&#x6570;&#x4E3A; string &#x7684; eat &#x65B9;&#x6CD5; */</span></span><br><span class="line">        Method eat = personCls.getMethod(<span class="string">&quot;eat&quot;</span>, String.class);</span><br><span class="line">        <span class="comment">/* &#x8C03;&#x7528;eat &#x65B9;&#x6CD5; */</span></span><br><span class="line">        Object res = eat.invoke(p, <span class="string">&quot;&#x82F9;&#x679C;&quot;</span>);</span><br><span class="line">        <span class="comment">/* &#x7531;&#x4E8E;&#x8FD4;&#x56DE;&#x503C;&#x4E3A;void&#xFF0C;&#x56E0;&#x6B64;res &#x4E3A; null*/</span></span><br><span class="line">        System.out.println(res);</span><br><span class="line">    }</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-&#x83B7;&#x53D6;&#x6CE8;&#x89E3;"><a href="#3-4-&#x83B7;&#x53D6;&#x6CE8;&#x89E3;" class="headerlink" title="3.4 &#x83B7;&#x53D6;&#x6CE8;&#x89E3;"></a>3.4 &#x83B7;&#x53D6;&#x6CE8;&#x89E3;</h4><h3 id="4-&#x6848;&#x4F8B;"><a href="#4-&#x6848;&#x4F8B;" class="headerlink" title="4. &#x6848;&#x4F8B;"></a>4. &#x6848;&#x4F8B;</h3><ul>
+<li>&#x9700;&#x6C42;</li>
+</ul>
+<ol>
+<li>properties &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x6709; &#x5168;&#x7C7B;&#x540D; &#x548C;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x5229;&#x7528;&#x53CD;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x52A0;&#x8F7D; &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684; &#x7C7B;&#xFF0C;&#x5E76;&#x6267;&#x884C;&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;</li>
+</ol>
+<ul>
+<li>&#x5B9E;&#x73B0;</li>
+</ul>
+<blockquote>
+<p>properties &#x6587;&#x4EF6;&#x653E;&#x5728; src &#x76EE;&#x5F55;&#x4E0B; &#xFF08;&#x5373; classpath&#x4E0B;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// properties  &#x6587;&#x4EF6;&#x7684;&#x5185;&#x5BB9;</span></span><br><span class="line">className=com.day.domain.Person</span><br><span class="line">methodName=eat</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>&#x5B9E;&#x73B0;&#x7C7B;</p>
+</blockquote>
+<blockquote>
+<p>&#x4F7F;&#x7528; calssLoader &#x6765;&#x52A0;&#x8F7D; &#x914D;&#x7F6E;&#x6587;&#x4EF6;</p>
+</blockquote>
+<blockquote>
+<p>Properties &#x7684;&#x4F7F;&#x7528;</p>
+<p>pClass.getDeclaredConstructor().newInstance() &#x6765;&#x66FF;&#x4EE3; &#x5DF2;&#x5E9F;&#x5F03;&#x7684; Class.newInstance()&#x65B9;&#x6CD5;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Reflect</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException </span>{</span><br><span class="line">        <span class="comment">/* &#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="comment">        * 1. &#x9996;&#x5148;&#x83B7;&#x53D6;&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x7684; classLoader</span></span><br><span class="line"><span class="comment">        * 2. &#x65E2;&#x7136;calssLoader &#x53EF;&#x4EE5;&#x627E;&#x5230; &#x8BE5;&#x7C7B;&#x7684;&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x80AF;&#x5B9A;&#x4E5F;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x540C;&#x5728; classpath&#x4E0B;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span></span><br><span class="line"><span class="comment">        * 3. &#x4F7F;&#x7528; calssLoader &#x7684;&#x65B9;&#x6CD5; &#x83B7;&#x53D6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;/&#x6216;&#x8005;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;&#x5176;&#x4E3A;&#x6D41;</span></span><br><span class="line"><span class="comment">        * */</span></span><br><span class="line">        ClassLoader classLoader = Reflect.class.getClassLoader();</span><br><span class="line">        InputStream resourceAsStream = classLoader.getResourceAsStream(<span class="string">&quot;pro.properties&quot;</span>);</span><br><span class="line">        <span class="comment">/* &#x521B;&#x5EFA; Properties &#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x6D41;&#x5BF9;&#x8C61;&#x5E76;&#x89E3;&#x6790;*/</span></span><br><span class="line">        Properties pro = <span class="keyword">new</span> Properties();</span><br><span class="line">        pro.load(resourceAsStream);</span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6;&#x5C5E;&#x6027;&#x503C; */</span></span><br><span class="line">        String className = pro.getProperty(<span class="string">&quot;className&quot;</span>);</span><br><span class="line">        String methodName = pro.getProperty(<span class="string">&quot;methodName&quot;</span>);</span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6; Class&#x5BF9;&#x8C61;*/</span></span><br><span class="line">        Class pClass = Class.forName(className);</span><br><span class="line">        <span class="comment">/* &#x521B;&#x5EFA;&#x5BF9;&#x8C61; */</span></span><br><span class="line">        Object obj = pClass.getDeclaredConstructor().newInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* &#x83B7;&#x53D6;&#x65B9;&#x6CD5; */</span></span><br><span class="line">        Method method = pClass.getMethod(methodName);</span><br><span class="line">        method.invoke(obj);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/01/IO流/" rel="next" title="IO流">
+                <i class="fa fa-chevron-left"></i> IO流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/03/Junit测试/" rel="prev" title="Junit测试">
+                Junit测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DayByDay">
+            
+              <p class="site-author-name" itemprop="name">DayByDay</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-类的加载-amp-连接-amp-初始化"><span class="nav-number">1.</span> <span class="nav-text">1. 类的加载&amp;连接&amp;初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-JVM-和-类"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 JVM 和 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-类的加载"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 类的加载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-类加载"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 类加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-类的连接"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 类的连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-类的初始化"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 类的初始化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-获取-Class-对象"><span class="nav-number">2.</span> <span class="nav-text">2. 获取 Class 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">2.1.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Class对象功能"><span class="nav-number">3.</span> <span class="nav-text">3. Class对象功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-获取成员变量"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 获取成员变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-获取-构造方法"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 获取 构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-获取-方法"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 获取 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-获取注解"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 获取注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-案例"><span class="nav-number">4.</span> <span class="nav-text">4. 案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DayByDay</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

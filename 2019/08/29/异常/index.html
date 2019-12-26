@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JAVA&amp;#x5F02;&amp;#x5E38;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/异常/index.html">
+<meta property="og:site_name" content="DayByDayの小屋">
+<meta property="og:description" content="JAVA&amp;#x5F02;&amp;#x5E38;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-19T03:58:32.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异常">
+<meta name="twitter:description" content="JAVA&amp;#x5F02;&amp;#x5E38;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/29/异常/">
+
+
+
+
+
+  <title>异常 | DayByDayの小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DayByDayの小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/异常/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DayByDay">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DayByDayの小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">异常</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T23:12:28+08:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>JAVA&#x5F02;&#x5E38;</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="1-&#x5206;&#x7C7B;"><a href="#1-&#x5206;&#x7C7B;" class="headerlink" title="1. &#x5206;&#x7C7B;"></a>1. &#x5206;&#x7C7B;</h3><p>Throwable &#x7C7B;&#x662F; JAVA &#x4E2D;&#x6240;&#x6709;&#x9519;&#x8BEF;&#x6216;&#x8005;&#x5F02;&#x5E38;&#x7684;&#x8D85;&#x7C7B;</p>
+<ul>
+<li>&#x53EA;&#x6709;&#x5F53;&#x5BF9;&#x8C61;&#x662F; &#x6B64;&#x7C7B;&#x6216;&#x8005;&#x5B50;&#x7C7B;&#x4E4B;&#x4E00; &#x7684;&#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x901A;&#x8FC7; JAVA &#x865A;&#x62DF;&#x673A;&#x6216;&#x8005; throw &#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x629B;&#x51FA;</li>
+</ul>
+<h3 id="2-&#x7EE7;&#x627F;&#x4F53;&#x7CFB;"><a href="#2-&#x7EE7;&#x627F;&#x4F53;&#x7CFB;" class="headerlink" title="2. &#x7EE7;&#x627F;&#x4F53;&#x7CFB;"></a>2. &#x7EE7;&#x627F;&#x4F53;&#x7CFB;</h3><ul>
+<li><p>Throwable</p>
+<ul>
+<li>Error</li>
+</ul>
+<blockquote>
+<p>&#x4E25;&#x91CD;&#x9519;&#x8BEF;&#xFF0C;&#x4E00;&#x822C;&#x4E0D;&#x4FBF;&#x643A;&#x9488;&#x5BF9;&#x6027;&#x7684;&#x4EE3;&#x7801;</p>
+</blockquote>
+<ul>
+<li>Exception</li>
+</ul>
+<blockquote>
+<p>&#x975E;&#x4E25;&#x91CD;&#x9519;&#x8BEF;&#xFF0C;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5904;&#x7406;</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-JVM&#x7684;&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;&#x5904;&#x7406;"><a href="#3-JVM&#x7684;&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;&#x5904;&#x7406;" class="headerlink" title="3. JVM&#x7684;&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;&#x5904;&#x7406;"></a>3. JVM&#x7684;&#x9ED8;&#x8BA4;&#x5F02;&#x5E38;&#x5904;&#x7406;</h3><ul>
+<li><p>main &#x65B9;&#x6CD5;&#x63A5;&#x53D7;&#x5230;&#x5F02;&#x5E38;</p>
+<p>&#x5904;&#x7406;&#x65B9;&#x5F0F;:</p>
+<ul>
+<li>&#x81EA;&#x5DF1;&#x5904;&#x7406;(try-catch)&#xFF0C;&#x7136;&#x540E;&#x7EE7;&#x7EED;&#x8FD0;&#x884C;</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x5904;&#x7406;&#xFF0C;&#x4EA4;&#x7ED9; main &#x7684; jvm&#x8FDB;&#x884C;&#x5904;&#x7406;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JVM &#x9ED8;&#x8BA4;&#x7684;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x673A;&#x5236;: &#x5904;&#x7406;&#x5F02;&#x5E38;&#xFF0C;&#x5E76;&#x6253;&#x5370;&#x5F02;&#x5E38;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x505C;&#x6B62;&#x7A0B;&#x5E8F;&#x7684;&#x8FD0;&#x884C;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-&#x4F7F;&#x7528;"><a href="#4-&#x4F7F;&#x7528;" class="headerlink" title="4. &#x4F7F;&#x7528;"></a>4. &#x4F7F;&#x7528;</h3><h4 id="4-1-&#x51FD;&#x6570;&#x58F0;&#x660E;&#x5F02;&#x5E38;"><a href="#4-1-&#x51FD;&#x6570;&#x58F0;&#x660E;&#x5F02;&#x5E38;" class="headerlink" title="4.1 &#x51FD;&#x6570;&#x58F0;&#x660E;&#x5F02;&#x5E38;"></a>4.1 &#x51FD;&#x6570;&#x58F0;&#x660E;&#x5F02;&#x5E38;</h4><p>throws Exception  &#x6807;&#x660E;&#x8BE5;&#x65B9;&#x6CD5;&#x53EF;&#x80FD;&#x4F1A;&#x4EA7;&#x751F;&#x5F02;&#x5E38;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x5904;&#x7406;&#x8BE5;&#x5F02;&#x5E38;&#xFF0C;&#x6216;&#x8005;&#x7EE7;&#x7EED;&#x8FDB;&#x884C;&#x629B;&#x51FA;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x5355;&#x4E2A;&#x5F02;&#x5E38;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">}</span><br><span class="line"><span class="comment">// &#x591A;&#x4E2A;&#x5F02;&#x5E38;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception1, Exception2 </span>{</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x65F6;&#xFF0C;&#x6700;&#x597D;&#x58F0;&#x660E;&#x5177;&#x4F53;&#x7684;&#x5F02;&#x5E38;&#x7C7B;&#x578B; &#xFF08;&#x65B9;&#x4FBF;&#x5916;&#x90E8; &#x9488;&#x5BF9;&#x6027;&#x8FDB;&#x884C;&#x5904;&#x7406;)</li>
+</ul>
+<h4 id="4-2-&#x5904;&#x7406;"><a href="#4-2-&#x5904;&#x7406;" class="headerlink" title="4.2 &#x5904;&#x7406;"></a>4.2 &#x5904;&#x7406;</h4><ul>
+<li>&#x5BF9;&#x4E8E;&#x5F02;&#x5E38;&#x7684;&#x6355;&#x83B7; &#x4F7F;&#x7528; try  catch</li>
+<li>try &#x53EF;&#x4EE5;&#x5339;&#x914D; &#x591A;&#x4E2A; catch, &#x6BCF;&#x4E2A;catch&#x5BF9;&#x4E8E;&#x4E00;&#x79CD;&#x5F02;&#x5E38;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> {</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">4</span>/<span class="number">0</span>;</span><br><span class="line">} <span class="keyword">catch</span> (Exception e)</span><br><span class="line">{</span><br><span class="line">	System.out.println(e.getMessage());</span><br><span class="line">}<span class="keyword">finally</span> {</span><br><span class="line">	System.out.println(<span class="string">&quot;&#x6700;&#x7EC8;&#x80AF;&#x5B9A;&#x6267;&#x884C;&quot;</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x6CE8;&#x610F;&#xFF1A;<ul>
+<li>&#x5982;&#x679C; &#x591A;&#x4E2A; catch&#x5757;&#x4E2D;&#x5F02;&#x5E38;&#x6709;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF0C;&#x7236;&#x7C7B;&#x5F02;&#x5E38; catch &#x5757; &#x653E;&#x5728;&#x6700;&#x4E0B;&#x9762;</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-3-&#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;"><a href="#4-3-&#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;" class="headerlink" title="4.3 &#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;"></a>4.3 &#x81EA;&#x5B9A;&#x4E49;&#x5F02;&#x5E38;</h3><ul>
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5F02;&#x5E38; &#x7EE7;&#x627F; Exception&#x7C7B;&#x5373;&#x53EF; </li>
+</ul>
+<blockquote>
+<p>&#x5982;&#x679C;&#x662F;&#x4E25;&#x91CD;&#x9519;&#x8BEF;&#xFF0C;&#x505C;&#x6B62;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;  RuntimeException &#x6216;&#x5176;&#x5B50;&#x7C7B;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Collection1</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        Demo d = <span class="keyword">new</span> Demo();</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            <span class="keyword">int</span> c = d.div(<span class="number">4</span>, -<span class="number">1</span>);</span><br><span class="line">        } <span class="keyword">catch</span> (FushuException e)</span><br><span class="line">        {</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        }<span class="keyword">finally</span> {</span><br><span class="line">            System.out.println(<span class="string">&quot;&#x6700;&#x7EC8;&#x80AF;&#x5B9A;&#x6267;&#x884C;&quot;</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FushuException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>{</span><br><span class="line">    <span class="comment">/* Exception &#x6709; String &#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x8C03;&#x7528;&#x4E86;&#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;</span></span><br><span class="line"><span class="comment">    *  &#x56E0;&#x6B64; &#x6B64;&#x5904;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528; &#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;</span></span><br><span class="line"><span class="comment">    *  &#x800C;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1; &#x91CD;&#x5199; getMessage&#x65B9;&#x6CD5;</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    FushuException(String msg)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>{</span><br><span class="line">    <span class="comment">/* &#x65B9;&#x6CD5;&#x9700;&#x8981;&#x629B;&#x51FA;&#x5F02;&#x5E38;*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">div</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> <span class="keyword">throws</span> FushuException </span>{</span><br><span class="line">        <span class="keyword">if</span> (b &lt; <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> FushuException(<span class="string">&quot;&#x4E0D;&#x53EF;&#x4E3A;&#x8D1F;&#x6570;&quot;</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> a/b;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4-throws-&#x4E0E;-throw&#x533A;&#x522B;"><a href="#4-4-throws-&#x4E0E;-throw&#x533A;&#x522B;" class="headerlink" title="4.4 throws &#x4E0E; throw&#x533A;&#x522B;"></a>4.4 throws &#x4E0E; throw&#x533A;&#x522B;</h3><ul>
+<li>throws &#x7528;&#x4E8E; &#x51FD;&#x6570;&#x4E0A;&#xFF0C; throw &#x7528;&#x4E8E;&#x51FD;&#x6570;&#x5185;&#x90E8;</li>
+<li>throws &#x53EF;&#x4EE5;&#x8DDF;&#x591A;&#x4E2A;&#x5F02;&#x5E38;&#x7C7B;&#xFF0C;&#x7528;&#x9017;&#x53F7;&#x9694;&#x5F00;&#xFF1B; throw &#x8DDF;&#x7684;&#x662F;&#x5F02;&#x5E38;&#x5BF9;&#x8C61;</li>
+</ul>
+<h3 id="4-5-RuntimeException"><a href="#4-5-RuntimeException" class="headerlink" title="4.5 RuntimeException"></a>4.5 RuntimeException</h3><ul>
+<li>&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x7279;&#x6B8A;&#x7684;&#x5F02;&#x5E38;</li>
+</ul>
+<blockquote>
+<p>&#x5982;&#x679C;&#x5728;&#x51FD;&#x6570;&#x5185;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#xFF08;&#x6216;&#x8BE5;&#x5F02;&#x5E38;&#x5B50;&#x7C7B;), &#x51FD;&#x6570;&#x4E0A;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x58F0;&#x660E;&#xFF0C; &#x7F16;&#x8BD1;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;</p>
+<p>&#x5982;&#x679C; &#x51FD;&#x6570;&#x4E0A;&#x58F0;&#x660E;&#x4E86;&#x8BE5;&#x5F02;&#x5E38;&#xFF0C; &#x8C03;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x5904;&#x7406;&#xFF0C;&#x7F16;&#x8BD1;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;</p>
+</blockquote>
+<ul>
+<li>&#x8BE5;&#x5F02;&#x5E38;&#x4F5C;&#x7528;:</li>
+</ul>
+<blockquote>
+<p>&#x8BE5;&#x5F02;&#x5E38;&#x53D1;&#x751F;&#xFF0C;&#x8868;&#x793A;&#x53D1;&#x751F;&#x4E86;&#x9A8C;&#x8BC1;&#x9519;&#x8BEF;&#xFF0C;&#x5E0C;&#x671B;&#x7A0B;&#x5E8F;&#x8FDB;&#x884C;&#x505C;&#x6B62;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x4E5F;&#x4E0D;&#x60F3;&#x8981;&#x8BE5;&#x5F02;&#x5E38;&#x88AB;&#x5904;&#x7406;</p>
+<p>&#x9700;&#x8981;&#x5BF9;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4FEE;&#x6B63;&#xFF0C;&#x800C;&#x975E;&#x7B80;&#x5355;&#x7684; try catch</p>
+</blockquote>
+<h3 id="4-6-finally"><a href="#4-6-finally" class="headerlink" title="4.6 finally"></a>4.6 finally</h3><ul>
+<li>finally &#x90E8;&#x5206;&#x7684;&#x5185;&#x5BB9;&#x80AF;&#x5B9A;&#x4F1A;&#x88AB;&#x6267;&#x884C;</li>
+<li>try finally &#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x642D;&#x914D;&#xFF0C;&#x4E0D;&#x9002;&#x7528; catch</li>
+</ul>
+<blockquote>
+<p>&#x4EC5;&#x4EC5; &#x4F7F;&#x7528; try finally&#xFF0C;&#x8868;&#x793A; &#x4E0D;&#x5BF9;&#x5F02;&#x5E38;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF08;&#x629B;&#x51FA;&#xFF09;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x5FC5;&#x987B;&#x8981;&#x6267;&#x884C;&#x7684;&#x4EE3;&#x7801;(&#x6240;&#x4EE5;&#x653E;&#x5728; finally&#x4E2D;)</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>{</span><br><span class="line"></span><br><span class="line">}<span class="keyword">finally</span>{</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-7-&#x5B50;&#x7236;&#x7C7B;&#x5F02;&#x5E38;"><a href="#4-7-&#x5B50;&#x7236;&#x7C7B;&#x5F02;&#x5E38;" class="headerlink" title="4.7 &#x5B50;&#x7236;&#x7C7B;&#x5F02;&#x5E38;"></a>4.7 &#x5B50;&#x7236;&#x7C7B;&#x5F02;&#x5E38;</h3><ul>
+<li>&#x5B50;&#x7C7B;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x9700;&#x8981;&#x5C0F;&#x4E8E; &#x7236;&#x7C7B;&#x7684;&#x5F02;&#x5E38;</li>
+</ul>
+<blockquote>
+<p>&#x5B50;&#x7C7B;&#x5728;&#x8986;&#x76D6;&#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x4E86;&#x5F02;&#x5E38;&#xFF0C;&#x90A3;&#x4E48;&#x5B50;&#x7C7B;&#x53EA;&#x80FD;&#x629B;&#x51FA; &#x7236;&#x7C7B;&#x7684;&#x629B;&#x51FA;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x6216;&#x8005;&#x8BE5;&#x5F02;&#x5E38;&#x7684;&#x5B50;&#x7C7B; </p>
+</blockquote>
+<blockquote>
+<p>&#x5982;&#x679C; &#x7236;&#x7C7B;&#x65B9;&#x6CD5;&#x629B;&#x51FA; &#x591A;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C; &#x90A3;&#x4E48;&#x5B50;&#x7C7B;&#x5728;&#x8986;&#x76D6;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x53EA;&#x80FD;&#x629B;&#x51FA;&#x7236;&#x7C7B;&#x5F02;&#x5E38;&#x7684;&#x5B50;&#x96C6;</p>
+</blockquote>
+<blockquote>
+<p>&#x5982;&#x679C; &#x7236;&#x7C7B;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;  &#x90A3;&#x4E48;&#x5B50;&#x7C7B;&#x8986;&#x76D6;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x4E5F;&#x4E0D;&#x53EF;&#x4EE5;&#x629B;&#x51FA; &#x5F02;&#x5E38;!!!!!!</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/29/面向对象/" rel="next" title="面向对象">
+                <i class="fa fa-chevron-left"></i> 面向对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/30/多线程/" rel="prev" title="多线程">
+                多线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DayByDay">
+            
+              <p class="site-author-name" itemprop="name">DayByDay</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-分类"><span class="nav-number">1.</span> <span class="nav-text">1. 分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-继承体系"><span class="nav-number">2.</span> <span class="nav-text">2. 继承体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-JVM的默认异常处理"><span class="nav-number">3.</span> <span class="nav-text">3. JVM的默认异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-使用"><span class="nav-number">4.</span> <span class="nav-text">4. 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-函数声明异常"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 函数声明异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-处理"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-自定义异常"><span class="nav-number">5.</span> <span class="nav-text">4.3 自定义异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-throws-与-throw区别"><span class="nav-number">6.</span> <span class="nav-text">4.4 throws 与 throw区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-RuntimeException"><span class="nav-number">7.</span> <span class="nav-text">4.5 RuntimeException</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-finally"><span class="nav-number">8.</span> <span class="nav-text">4.6 finally</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-7-子父类异常"><span class="nav-number">9.</span> <span class="nav-text">4.7 子父类异常</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DayByDay</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

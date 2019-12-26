@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Tomcat + Servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="servlet">
+<meta property="og:url" content="http://yoursite.com/2019/09/06/servlet/index.html">
+<meta property="og:site_name" content="DayByDayの小屋">
+<meta property="og:description" content="Tomcat + Servlet">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-19T03:58:32.615Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="servlet">
+<meta name="twitter:description" content="Tomcat + Servlet">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/06/servlet/">
+
+
+
+
+
+  <title>servlet | DayByDayの小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DayByDayの小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/06/servlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DayByDay">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DayByDayの小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">servlet</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-06T20:30:12+08:00">
+                2019-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Tomcat + Servlet</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="1-Web"><a href="#1-Web" class="headerlink" title="1. Web"></a>1. Web</h2><h3 id="1-1-&#x67B6;&#x6784;"><a href="#1-1-&#x67B6;&#x6784;" class="headerlink" title="1.1 &#x67B6;&#x6784;"></a>1.1 &#x67B6;&#x6784;</h3><ul>
+<li>C/S</li>
+<li>B/S</li>
+</ul>
+<h3 id="1-2-&#x8D44;&#x6E90;&#x5206;&#x7C7B;"><a href="#1-2-&#x8D44;&#x6E90;&#x5206;&#x7C7B;" class="headerlink" title="1.2 &#x8D44;&#x6E90;&#x5206;&#x7C7B;"></a>1.2 &#x8D44;&#x6E90;&#x5206;&#x7C7B;</h3><ul>
+<li>&#x9759;&#x6001;&#x8D44;&#x6E90;</li>
+</ul>
+<blockquote>
+<p>&#x6240;&#x6709;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x76F8;&#x540C;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x88AB;&#x6D4F;&#x89C8;&#x5668;&#x8FDB;&#x884C;&#x89E3;&#x6790;</p>
+</blockquote>
+<blockquote>
+<p>&#x6BD4;&#x5982;:html, css, JavaScript  &#x7B49;</p>
+</blockquote>
+<ul>
+<li>&#x52A8;&#x6001;&#x8D44;&#x6E90;</li>
+</ul>
+<blockquote>
+<p>&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x76F8;&#x540C;&#x8D44;&#x6E90;&#x540E;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x4E0D;&#x4E00;&#x6837;</p>
+</blockquote>
+<blockquote>
+<p>&#x52A8;&#x6001;&#x8D44;&#x6E90;&#x88AB;&#x8BBF;&#x95EE;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x8F6C;&#x6362;&#x4E3A;&#x9759;&#x6001;&#x8D44;&#x6E90;&#xFF0C;&#x5728;&#x8FD4;&#x56DE;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;</p>
+</blockquote>
+<blockquote>
+<p>&#x6BD4;&#x5982;: servlet/jsp,php,asp&#x2026;.</p>
+</blockquote>
+<h2 id="2-Tomcat"><a href="#2-Tomcat" class="headerlink" title="2. Tomcat"></a>2. Tomcat</h2><p>&#x200B;    Web &#x670D;&#x52A1;&#x5668;&#x8F6F;&#x4EF6;</p>
+<h3 id="2-1-&#x5B89;&#x88C5;"><a href="#2-1-&#x5B89;&#x88C5;" class="headerlink" title="2.1 &#x5B89;&#x88C5;"></a>2.1 &#x5B89;&#x88C5;</h3><p>&#x200B;    &#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x5305; &amp; &#x89E3;&#x538B;&#x5373;&#x53EF;</p>
+<h3 id="2-2-&#x542F;&#x52A8;"><a href="#2-2-&#x542F;&#x52A8;" class="headerlink" title="2.2 &#x542F;&#x52A8;"></a>2.2 &#x542F;&#x52A8;</h3><ul>
+<li>&#x9700;&#x8981;&#x6B63;&#x786E;&#x7684;&#x914D;&#x7F6E;&#x4E86; JAVA_HOME &#x73AF;&#x5883;&#x53D8;&#x91CF;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/startup.bat &#x8FD0;&#x884C;&#x5373;&#x53EF;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-&#x8BBF;&#x95EE;"><a href="#2-3-&#x8BBF;&#x95EE;" class="headerlink" title="2.3 &#x8BBF;&#x95EE;"></a>2.3 &#x8BBF;&#x95EE;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x5728;&#x6D4F;&#x89C8;&#x5668; http://localhost:8080</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53F7;"><a href="#2-4-&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53F7;" class="headerlink" title="2.4 &#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53F7;"></a>2.4 &#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53F7;</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- A &quot;Connector&quot; represents an endpoint by which requests are received</span></span><br><span class="line"><span class="comment">         and responses are returned. Documentation at :</span></span><br><span class="line"><span class="comment">         Java HTTP Connector: /docs/config/http.html</span></span><br><span class="line"><span class="comment">         Java AJP  Connector: /docs/config/ajp.html</span></span><br><span class="line"><span class="comment">         APR (HTTP/AJP) Connector: /docs/apr.html</span></span><br><span class="line"><span class="comment">         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8080&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5-&#x5173;&#x95ED;"><a href="#2-5-&#x5173;&#x95ED;" class="headerlink" title="2.5 &#x5173;&#x95ED;"></a>2.5 &#x5173;&#x95ED;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;(&#x6B63;&#x5E38;&#x5173;&#x95ED;)</span><br><span class="line">	bin/shutdown.bat</span><br><span class="line">&#x65B9;&#x5F0F;&#x4E8C;: (&#x6B63;&#x5E38;&#x5173;&#x95ED;)</span><br><span class="line">	ctrl+c</span><br><span class="line">&#x65B9;&#x5F0F;&#x4E09;: (&#x975E;&#x6B63;&#x5E38;&#x5173;&#x95ED;)</span><br><span class="line">	&#x70B9;&#x51FB;&#x542F;&#x52A8;&#x7A97;&#x53E3;&#x7684;&#xD7;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6-&#x9879;&#x76EE;&#x90E8;&#x7F72;"><a href="#2-6-&#x9879;&#x76EE;&#x90E8;&#x7F72;" class="headerlink" title="2.6 &#x9879;&#x76EE;&#x90E8;&#x7F72;"></a>2.6 &#x9879;&#x76EE;&#x90E8;&#x7F72;</h3><ul>
+<li>&#x65B9;&#x5F0F;&#x4E00;: &#x76F4;&#x63A5;&#x5C06;&#x9879;&#x76EE;&#x653E;&#x5230; webapps &#x76EE;&#x5F55;&#x4E0B;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;</span><br><span class="line">	&#x5C06;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x5939;&#x62F7;&#x8D1D;&#x5230; webapps &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x8BBF;&#x95EE;&#x8DEF;&#x5F84;&#x4E3A; /&#x6587;&#x4EF6;&#x5939;&#x540D;</span><br><span class="line">&#x65B9;&#x5F0F;&#x4E8C;:</span><br><span class="line">	&#x5C06;&#x9879;&#x76EE;&#x6253;&#x6210;&#x4E00;&#x4E2A; war &#x5305;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x5176;&#x653E;&#x5230; webapps &#x76EE;&#x5F55;&#x4E0B;&#xFF0C;war&#x5305;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x89E3;&#x538B;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x65B9;&#x5F0F;&#x4E8C;:&#x914D;&#x7F6E; conf/server.xml&#x6587;&#x4EF6;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x5728;&lt;Host&gt;&#x6807;&#x7B7E;&#x4F53;&#x4E2D;&#x914D;&#x7F6E;</span><br><span class="line">    &lt;Context docBase=&quot;D:\hello&quot; path=&quot;/hehe&quot; /&gt;</span><br><span class="line">    * docBase:&#x9879;&#x76EE;&#x5B58;&#x653E;&#x7684;&#x8DEF;&#x5F84;</span><br><span class="line">    * path&#xFF1A;&#x865A;&#x62DF;&#x76EE;&#x5F55;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x65B9;&#x5F0F;&#x4E09;: &#x5728;conf\Catalina\localhost&#x521B;&#x5EFA;&#x4EFB;&#x610F;&#x540D;&#x79F0;&#x7684;xml&#x6587;&#x4EF6;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x6587;&#x4EF6;&#x5185;&#x5BB9;:</span><br><span class="line">	&lt;Context docBase=&quot;D:\hello&quot; /&gt;</span><br><span class="line">	* &#x865A;&#x62DF;&#x76EE;&#x5F55;&#xFF1A;xml&#x6587;&#x4EF6;&#x7684;&#x540D;&#x79F0;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x65B9;&#x5F0F;&#x56DB;&#xFF1A;&#x5C06; Tomcat &#x7EE7;&#x627F;&#x5230; IDEA&#x4E2D;&#xFF0C;&#x5E76;&#x521B;&#x5EFA; JAVAEE&#x9879;&#x76EE;&#xFF0C;&#x8FDB;&#x884C;&#x90E8;&#x7F72;</li>
+</ul>
+<h3 id="2-7-JAVA-&#x52A8;&#x6001;&#x9879;&#x76EE;"><a href="#2-7-JAVA-&#x52A8;&#x6001;&#x9879;&#x76EE;" class="headerlink" title="2.7 JAVA &#x52A8;&#x6001;&#x9879;&#x76EE;"></a>2.7 JAVA &#x52A8;&#x6001;&#x9879;&#x76EE;</h3><ul>
+<li>&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x7ED3;&#x6784;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x9879;&#x76EE;&#x7684;&#x6839;&#x76EE;&#x5F55;</span><br><span class="line">	- WEB-INFO &#x76EE;&#x5F55;</span><br><span class="line">		- web.xml: web&#x9879;&#x76EE;&#x7684;&#x6838;&#x5FC3;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</span><br><span class="line">		- classes&#x76EE;&#x5F55;: &#x653E;&#x7F6E;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x7684;&#x76EE;&#x5F55;</span><br><span class="line">		- lib&#x76EE;&#x5F55;: &#x653E;&#x7F6E;&#x4F9D;&#x8D56;&#x7684; jar &#x5305;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Servlet-server-applet"><a href="#3-Servlet-server-applet" class="headerlink" title="3. Servlet(server applet)"></a>3. Servlet(server applet)</h2><h3 id="3-1-&#x6982;&#x5FF5;"><a href="#3-1-&#x6982;&#x5FF5;" class="headerlink" title="3.1 &#x6982;&#x5FF5;"></a>3.1 &#x6982;&#x5FF5;</h3><p>&#x200B;    &#x8FD0;&#x884C;&#x5728; &#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x5C0F;&#x7A0B;&#x5E8F;</p>
+<blockquote>
+<p>Servlet&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5B9A;&#x4E49;&#x4E86;Java&#x7C7B;&#x88AB;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#x5230;(tomcat&#x8BC6;&#x522B;)&#x7684;&#x89C4;&#x5219;</p>
+</blockquote>
+<blockquote>
+<p>&#x5BF9;&#x7A0B;&#x5E8F;&#x5143;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x5B9E;&#x73B0; Servlet &#x63A5;&#x53E3;&#xFF0C;&#x590D;&#x5199;&#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE;&#x7684;&#x65F6;&#x5019;&#xFF0C;tomcat &#x4F1A;&#x521B;&#x5EFA;&#x8BE5;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x8C03;&#x7528; &#x590D;&#x5199;&#x7684;&#x65B9;&#x6CD5; &#x8FDB;&#x884C;&#x6267;&#x884C;</p>
+</blockquote>
+<h3 id="3-2-xml-&#x914D;&#x7F6E;&#x65B9;&#x5F0F;"><a href="#3-2-xml-&#x914D;&#x7F6E;&#x65B9;&#x5F0F;" class="headerlink" title="3.2 xml &#x914D;&#x7F6E;&#x65B9;&#x5F0F;"></a>3.2 xml &#x914D;&#x7F6E;&#x65B9;&#x5F0F;</h3><ul>
+<li>&#x521B;&#x5EFA; JAVAEE web &#x9879;&#x76EE;</li>
+<li>&#x5B9A;&#x4E49;&#x7C7B;&#xFF0C;&#x5B9E;&#x73B0; servlet &#x63A5;&#x53E3;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo1</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;init...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;service...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;destroy...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x914D;&#x7F6E; web.xml </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo1<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.servlet.ServletDemo1<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo1<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo1<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x914D;&#x7F6E; Tomcat&#xFF0C;&#x8FDB;&#x884C;&#x6267;&#x884C;</li>
+</ul>
+<h4 id="&#x6267;&#x884C;&#x539F;&#x7406;"><a href="#&#x6267;&#x884C;&#x539F;&#x7406;" class="headerlink" title="&#x6267;&#x884C;&#x539F;&#x7406;:"></a>&#x6267;&#x884C;&#x539F;&#x7406;:</h4><ul>
+<li>server &#x63A5;&#x53D7;&#x5230; &#x6D4F;&#x89C8;&#x5668;&#x8BF7;&#x6C42;&#xFF0C;&#x4F1A;&#x89E3;&#x6790; URL&#x8DEF;&#x5F84;&#xFF0C;&#x83B7;&#x53D6;&#x8BBF;&#x95EE;&#x7684; Servlet &#x7684;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;</li>
+<li>&#x67E5;&#x627E; web.xml&#xFF0C;&#x6839;&#x636E; url-pattern &#x4E0E; Servlet &#x7684;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x627E;&#x5230;&#xFF0C;&#x6839;&#x636E; servlet-name &#x627E;&#x5230; servlet-class</li>
+<li>tomcat &#x5C06; servlet-class&#x5BF9;&#x5E94;&#x7C7B;&#x52A0;&#x8F7D;&#x8FDB;&#x5185;&#x5B58;&#xFF0C;&#x521B;&#x5EFA;&#x5176;&#x5BF9;&#x8C61;</li>
+<li>&#x7531;&#x4E8E;&#x5BF9;&#x8C61;&#x5B9E;&#x73B0;&#x4E86; Servlet &#x63A5;&#x53E3;&#xFF0C;&#x56E0;&#x6B64;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+<h4 id="Servlet&#x63A5;&#x53E3;"><a href="#Servlet&#x63A5;&#x53E3;" class="headerlink" title="Servlet&#x63A5;&#x53E3;"></a>Servlet&#x63A5;&#x53E3;</h4><ul>
+<li>init()&#x65B9;&#x6CD5;</li>
+</ul>
+<blockquote>
+<p>&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;</p>
+</blockquote>
+<ul>
+<li>Servlet&#x5BF9;&#x8C61;</li>
+</ul>
+<blockquote>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x88AB;&#x8BBF;&#x95EE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x521B;&#x5EFA;Servlet</p>
+</blockquote>
+<blockquote>
+<p>&#x7531;&#x4E8E; init()&#x65B9;&#x6CD5;&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x8BF4;&#x660E;Servlet&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x53EA;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5373;&#x5176;&#x5B9E;&#x5355;&#x4F8B;&#x7684;</p>
+</blockquote>
+<blockquote>
+<p>&#x5728;&#x591A;&#x4E2A;&#x7528;&#x6237;&#x540C;&#x65F6;&#x8BBF;&#x95EE;&#x8BE5;&#x63A5;&#x53E3;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x540C;&#x4E00;&#x4E2A; Servlet&#xFF0C;&#x56E0;&#x6B64; &#x5C3D;&#x91CF;&#x4E0D;&#x8981;&#x5728; Servlet&#x4E2D;&#x5B9A;&#x4E49;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5373;&#x4F7F;&#x5B9A;&#x4E49;&#x4E86;&#xFF0C;&#x4E5F;&#x4E0D;&#x8981;&#x5BF9;&#x5176;&#x503C;&#x8FDB;&#x884C;&#x4FEE;&#x6539; &#xFF08;&#x9632;&#x6B62;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x95EE;&#x9898;)</p>
+</blockquote>
+<blockquote>
+<p>&#x53EF;&#x4EE5;&#x5728; servlet&#x6807;&#x7B7E;&#x4E0B;&#x8FDB;&#x884C;&#x914D;&#x7F6E;</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//&#x8D1F;&#x503C;&#x8868;&#x793A;&#x7B2C;&#x4E00;&#x6B21;&#x8BBF;&#x95EE;&#x65F6;&#x521B;&#x5EFA;</span><br><span class="line">//&#x4E3A;0&#x6216;&#x8005;&#x6B63;&#x6574;&#x6570;&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x670D;&#x52A1;&#x5668;&#x542F;&#x52A8;&#x540E;&#x95F4;&#x9694;&#x591A;&#x4E45;&#x521B;&#x5EFA;</span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>service()&#x65B9;&#x6CD5;</li>
+</ul>
+<blockquote>
+<p>&#x6BCF;&#x6B21;&#x8BBF;&#x95EE;Servlet&#x65F6;&#xFF0C;Service&#x65B9;&#x6CD5;&#x90FD;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#x3002;</p>
+</blockquote>
+<ul>
+<li><p>destroy()&#x65B9;&#x6CD5;</p>
+<blockquote>
+<p>&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x5728;Servlet&#x88AB;&#x9500;&#x6BC1;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x6267;&#x884C;</p>
+</blockquote>
+<pre><code>1. &#x53EA;&#x6709;&#x670D;&#x52A1;&#x5668;&#x6B63;&#x5E38;&#x5173;&#x95ED;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x6267;&#x884C;destroy&#x65B9;&#x6CD5;
+
+ 2. destroy&#x65B9;&#x6CD5;&#x5728;Servlet&#x88AB;&#x9500;&#x6BC1;&#x4E4B;&#x524D;&#x6267;&#x884C;&#xFF0C;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x91CA;&#x653E;&#x8D44;&#x6E90;</code></pre></li>
+</ul>
+<h3 id="3-3-&#x6CE8;&#x89E3;&#x65B9;&#x5F0F;"><a href="#3-3-&#x6CE8;&#x89E3;&#x65B9;&#x5F0F;" class="headerlink" title="3.3 &#x6CE8;&#x89E3;&#x65B9;&#x5F0F;"></a>3.3 &#x6CE8;&#x89E3;&#x65B9;&#x5F0F;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x9009;&#x62E9;Servlet&#x7684;&#x7248;&#x672C;3.0&#x4EE5;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x4E0D;&#x521B;&#x5EFA;web.xml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x521B;&#x5EFA;JavaEE&#x9879;&#x76EE;</li>
+<li>&#x5B9E;&#x73B0; Servlet &#x63A5;&#x53E3;</li>
+<li>&#x4F7F;&#x7528; &#x6CE8;&#x89E3;  @WebServlet(&#x201C;/demo2&#x201D;)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">&quot;/demo2&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo2</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>{</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>{</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Servlet-&#x5B9E;&#x73B0;&#x7C7B;"><a href="#4-Servlet-&#x5B9E;&#x73B0;&#x7C7B;" class="headerlink" title="4. Servlet &#x5B9E;&#x73B0;&#x7C7B;"></a>4. Servlet &#x5B9E;&#x73B0;&#x7C7B;</h2><h3 id="4-1-HttpServlet"><a href="#4-1-HttpServlet" class="headerlink" title="4.1  HttpServlet"></a>4.1  HttpServlet</h3><blockquote>
+<p>&#x5BF9;http&#x534F;&#x8BAE;&#x7684;&#x4E00;&#x79CD;&#x5C01;&#x88C5;&#xFF0C;&#x7B80;&#x5316;&#x64CD;&#x4F5C;</p>
+</blockquote>
+<ul>
+<li>&#x4F7F;&#x7528;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. &#x5B9A;&#x4E49;&#x7C7B;&#x7EE7;&#x627F;HttpServlet</span><br><span class="line">2. &#x590D;&#x5199;doGet/doPost&#x65B9;&#x6CD5;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">&quot;/demo4&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo4</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;get...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;post...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-GenericServlet"><a href="#4-2-GenericServlet" class="headerlink" title="4.2  GenericServlet"></a>4.2  GenericServlet</h3><blockquote>
+<p>&#x5C06;Servlet&#x63A5;&#x53E3;&#x4E2D;&#x5176;&#x4ED6;&#x7684;&#x65B9;&#x6CD5;&#x505A;&#x4E86;&#x9ED8;&#x8BA4;&#x7A7A;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x5C06;service()&#x65B9;&#x6CD5;&#x4F5C;&#x4E3A;&#x62BD;&#x8C61;</p>
+</blockquote>
+<ul>
+<li>&#x4F7F;&#x7528;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. &#x7EE7;&#x627F;GenericServlet</span><br><span class="line">2. &#x5B9E;&#x73B0;service()&#x65B9;&#x6CD5;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">&quot;/demo3&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo3</span> <span class="keyword">extends</span> <span class="title">GenericServlet</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        System.out.println(<span class="string">&quot;do someting...&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Request"><a href="#5-Request" class="headerlink" title="5. Request"></a>5. Request</h2><h3 id="5-1-&#x7EE7;&#x627F;&#x4F53;&#x7CFB;"><a href="#5-1-&#x7EE7;&#x627F;&#x4F53;&#x7CFB;" class="headerlink" title="5.1 &#x7EE7;&#x627F;&#x4F53;&#x7CFB;"></a>5.1 &#x7EE7;&#x627F;&#x4F53;&#x7CFB;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServletRequest   ==&gt; &#x63A5;&#x53E3;</span><br><span class="line">	HttpServletRequest ==&gt; &#x5B50;&#x63A5;&#x53E3;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x6D88;&#x606F;&#x6570;&#x636E;"><a href="#5-2-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x6D88;&#x606F;&#x6570;&#x636E;" class="headerlink" title="5.2 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x6D88;&#x606F;&#x6570;&#x636E;"></a>5.2 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x6D88;&#x606F;&#x6570;&#x636E;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x8BF7;&#x6C42;URL</span></span><br><span class="line">GET /day14/demo1?name=zhangsan HTTP/<span class="number">1.1</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">// &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F; &#xFF1A;GET</span></span><br><span class="line">    <span class="function">String <span class="title">getMethod</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;&#x865A;&#x62DF;&#x76EE;&#x5F55;&#xFF1A;/day14</span></span></span><br><span class="line"><span class="function">    String <span class="title">getContextPath</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;Servlet&#x8DEF;&#x5F84;: /demo1</span></span></span><br><span class="line"><span class="function">    String <span class="title">getServletPath</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;get&#x65B9;&#x5F0F;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;name=zhangsan</span></span></span><br><span class="line"><span class="function">    String <span class="title">getQueryString</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;&#x8BF7;&#x6C42;URI&#xFF1A;/day14/demo1 </span></span></span><br><span class="line"><span class="function">    <span class="comment">// URI &#x4E0E; URL &#x7684;&#x533A;&#x522B;</span></span></span><br><span class="line"><span class="function">    String <span class="title">getRequestURI</span><span class="params">()</span>		/day14/demo1</span></span><br><span class="line"><span class="function">    StringBuffer <span class="title">getRequestURL</span><span class="params">()</span>  http:<span class="comment">//localhost/day14/demo1</span></span></span><br><span class="line"><span class="function"><span class="comment">//  &#x83B7;&#x53D6;&#x534F;&#x8BAE;&#x53CA;&#x7248;&#x672C;&#xFF1A;HTTP/1.1</span></span></span><br><span class="line"><span class="function">	String <span class="title">getProtocol</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;&#x5BA2;&#x6237;&#x673A;&#x7684;IP&#x5730;&#x5740;&#xFF1A;</span></span></span><br><span class="line"><span class="function">    String <span class="title">getRemoteAddr</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x5934;&#x6570;&#x636E;"><a href="#5-3-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x5934;&#x6570;&#x636E;" class="headerlink" title="5.3 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x5934;&#x6570;&#x636E;"></a>5.3 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x5934;&#x6570;&#x636E;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x901A;&#x8FC7;&#x8BF7;&#x6C42;&#x5934;&#x7684;&#x540D;&#x79F0;&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x5934;&#x7684;&#x503C;</span></span><br><span class="line"><span class="function">String <span class="title">getHeader</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function"><span class="comment">// &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;&#x8BF7;&#x6C42;&#x5934;&#x540D;&#x79F0;</span></span></span><br><span class="line"><span class="function">Enumeration&lt;String&gt; <span class="title">getHeaderNames</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x4F53;&#x6570;&#x636E;"><a href="#5-4-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x4F53;&#x6570;&#x636E;" class="headerlink" title="5.4 &#x83B7;&#x53D6;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x4F53;&#x6570;&#x636E;"></a>5.4 &#x83B7;&#x53D6;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x4F53;&#x6570;&#x636E;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. &#x83B7;&#x53D6;&#x6D41;</span></span><br><span class="line"><span class="function">BufferedReader <span class="title">getReader</span><span class="params">()</span> <span class="comment">//&#x83B7;&#x53D6;&#x5B57;&#x7B26;&#x8F93;&#x5165;&#x6D41;&#xFF0C;&#x53EA;&#x80FD;&#x64CD;&#x4F5C;&#x5B57;&#x7B26;&#x6570;&#x636E;</span></span></span><br><span class="line"><span class="function">ServletInputStream <span class="title">getInputStream</span><span class="params">()</span> <span class="comment">//&#x83B7;&#x53D6;&#x5B57;&#x8282;&#x8F93;&#x5165;&#x6D41;&#xFF0C;&#x53EF;&#x4EE5;&#x64CD;&#x4F5C;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x6570;&#x636E;</span></span></span><br><span class="line"><span class="function"><span class="comment">// 2. &#x4ECE;&#x6D41;&#x4E2D;&#x83B7;&#x53D6;&#x6570;&#x636E;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-5-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;"><a href="#5-5-&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;" class="headerlink" title="5.5 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;"></a>5.5 &#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//&#x6839;&#x636E;&#x53C2;&#x6570;&#x540D;&#x79F0;&#x83B7;&#x53D6;&#x53C2;&#x6570;&#x503C;   </span></span><br><span class="line"><span class="function">String <span class="title">getParameter</span><span class="params">(String name)</span> </span></span><br><span class="line"><span class="function"><span class="comment">//&#x6839;&#x636E;&#x53C2;&#x6570;&#x540D;&#x79F0;&#x83B7;&#x53D6;&#x53C2;&#x6570;&#x503C;&#x7684;&#x6570;&#x7EC4;</span></span></span><br><span class="line"><span class="function">String[] <span class="title">getParameterValues</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function"><span class="comment">//&#x83B7;&#x53D6;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x7684;&#x53C2;&#x6570;&#x540D;&#x79F0;</span></span></span><br><span class="line"><span class="function">Enumeration&lt;String&gt; <span class="title">getParameterNames</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//&#x83B7;&#x53D6;&#x6240;&#x6709;&#x53C2;&#x6570;&#x7684;map&#x96C6;&#x5408;</span></span></span><br><span class="line"><span class="function">Map&lt;String,String[]&gt; <span class="title">getParameterMap</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-6-&#x4E2D;&#x6587;&#x4E71;&#x7801;&#x95EE;&#x9898;"><a href="#5-6-&#x4E2D;&#x6587;&#x4E71;&#x7801;&#x95EE;&#x9898;" class="headerlink" title="5.6 &#x4E2D;&#x6587;&#x4E71;&#x7801;&#x95EE;&#x9898;"></a>5.6 &#x4E2D;&#x6587;&#x4E71;&#x7801;&#x95EE;&#x9898;</h3><ul>
+<li>get &#x65B9;&#x5F0F;</li>
+</ul>
+<blockquote>
+<p>tomcat 8 &#x5DF2;&#x7ECF;&#x5C06;get&#x65B9;&#x5F0F;&#x4E71;&#x7801;&#x95EE;&#x9898;&#x89E3;&#x51B3;&#x4E86;</p>
+</blockquote>
+<ul>
+<li>post &#x65B9;&#x5F0F;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x5728;&#x83B7;&#x53D6;&#x53C2;&#x6570;&#x524D;&#xFF0C;&#x8BBE;&#x7F6E;request&#x7684;&#x7F16;&#x7801;</span></span><br><span class="line">request.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-7-&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;"><a href="#5-7-&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;" class="headerlink" title="5.7 &#x8BF7;&#x6C42;&#x8F6C;&#x53D1;"></a>5.7 &#x8BF7;&#x6C42;&#x8F6C;&#x53D1;</h3><blockquote>
+<p>&#x4E00;&#x79CD;&#x5728;  &#x670D;&#x52A1;&#x5668;&#x5185;&#x90E8;  &#x7684;&#x8D44;&#x6E90;&#x8DF3;&#x8F6C;&#x65B9;&#x5F0F;</p>
+</blockquote>
+<h4 id="&#x4F7F;&#x7528;"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;:"></a>&#x4F7F;&#x7528;:</h4><ul>
+<li>&#x83B7;&#x53D6;&#x8F6C;&#x53D1;&#x5BF9;&#x8C61;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">RequestDispatcher <span class="title">getRequestDispatcher</span><span class="params">(String path)</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x8F6C;&#x53D1;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forward(ServletRequest request, ServletResponse response)</span><br></pre></td></tr></table></figure>
+
+<h4 id="&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7684;&#x7279;&#x70B9;"><a href="#&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7684;&#x7279;&#x70B9;" class="headerlink" title="&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7684;&#x7279;&#x70B9;:"></a>&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7684;&#x7279;&#x70B9;:</h4><ul>
+<li>&#x6D4F;&#x89C8;&#x5668;&#x5730;&#x5740;&#x680F;&#x8DEF;&#x5F84;&#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;</li>
+<li>&#x53EA;&#x80FD;&#x8F6C;&#x53D1;&#x5230;&#x5F53;&#x524D;&#x670D;&#x52A1;&#x5668;&#x5185;&#x90E8;&#x8D44;&#x6E90;&#x4E2D;</li>
+<li>&#x5373;&#x4F7F;&#x591A;&#x6B21;&#x8F6C;&#x53D1;&#xFF0C;&#x4E5F;&#x662F;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;</li>
+</ul>
+<h4 id="&#x5171;&#x4EAB;&#x6570;&#x636E;"><a href="#&#x5171;&#x4EAB;&#x6570;&#x636E;" class="headerlink" title="&#x5171;&#x4EAB;&#x6570;&#x636E;"></a>&#x5171;&#x4EAB;&#x6570;&#x636E;</h4><ul>
+<li>&#x57DF;&#x5BF9;&#x8C61;</li>
+</ul>
+<blockquote>
+<p>&#x4E00;&#x4E2A;&#x6709;&#x4F5C;&#x7528;&#x8303;&#x56F4;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x8303;&#x56F4;&#x5185;&#x5171;&#x4EAB;&#x6570;&#x636E;</p>
+</blockquote>
+<ul>
+<li>request &#x57DF;</li>
+</ul>
+<blockquote>
+<p>&#x4EE3;&#x8868;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#x7684;&#x8303;&#x56F4;&#xFF0C;&#x4E00;&#x822C;&#x7528;&#x4E8E;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7684;&#x591A;&#x4E2A;&#x8D44;&#x6E90;&#x4E2D;&#x5171;&#x4EAB;&#x6570;&#x636E;</p>
+</blockquote>
+<ul>
+<li>&#x65B9;&#x6CD5;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. <span class="function"><span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(String name,Object obj)</span>:&#x5B58;&#x50A8;&#x6570;&#x636E;</span></span><br><span class="line"><span class="function">2. Object <span class="title">getAttitude</span><span class="params">(String name)</span>:&#x901A;&#x8FC7;&#x952E;&#x83B7;&#x53D6;&#x503C;</span></span><br><span class="line"><span class="function">3. <span class="keyword">void</span> <span class="title">removeAttribute</span><span class="params">(String name)</span>:&#x901A;&#x8FC7;&#x952E;&#x79FB;&#x9664;&#x952E;&#x503C;&#x5BF9;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x7528;&#x6237;&#x767B;&#x5F55;Demo"><a href="#&#x7528;&#x6237;&#x767B;&#x5F55;Demo" class="headerlink" title="&#x7528;&#x6237;&#x767B;&#x5F55;Demo"></a>&#x7528;&#x6237;&#x767B;&#x5F55;Demo</h3><ul>
+<li>&#x5BFC;&#x5165;jar&#x5305;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">web/WEB-INFO/lib &#x76EE;&#x5F55;&#x4E0B;</span><br><span class="line"><span class="number">1</span>. commons-logging-<span class="number">1.2</span>.jar</span><br><span class="line"><span class="number">2</span>. druid-<span class="number">1.0</span>.9.jar</span><br><span class="line"><span class="number">3</span>. mysql-connector-java-<span class="number">5.1</span>.37-bin.jar</span><br><span class="line"><span class="number">4</span>. spring-beans-<span class="number">5.0</span>.0.RELEASE.jar</span><br><span class="line"><span class="number">5</span>. spring-core-<span class="number">5.0</span>.0.RELEASE.jar</span><br><span class="line"><span class="number">6</span>. spring-jdbc-<span class="number">5.0</span>.0.RELEASE.jar</span><br><span class="line"><span class="number">7</span>. spring-tx-<span class="number">5.0</span>.0.RELEASE.jar</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x521B;&#x5EFA; User &#x8868;</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> day1;</span><br><span class="line"><span class="keyword">USE</span> day1;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">USER</span>(</span><br><span class="line"></span><br><span class="line">          <span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">          userName <span class="built_in">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">          passwd <span class="built_in">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">      );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x521B;&#x5EFA; &#x7528;&#x6237;&#x5B9E;&#x4F53;&#x7C7B;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.day.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> String passwd;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>{</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String userName, String passwd)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">        <span class="keyword">this</span>.passwd = passwd;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> userName;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPasswd</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> passwd;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String passwd)</span> </span>{</span><br><span class="line">        <span class="keyword">this</span>.passwd = passwd;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User{&quot;</span> +</span><br><span class="line">                <span class="string">&quot;userName=&apos;&quot;</span> + userName + <span class="string">&apos;\&apos;&apos;</span> +</span><br><span class="line">                <span class="string">&quot;, passwd=&apos;&quot;</span> + passwd + <span class="string">&apos;\&apos;&apos;</span> +</span><br><span class="line">                <span class="string">&apos;}&apos;</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x521B;&#x5EFA; dao</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.day.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.day.domain.User;</span><br><span class="line"><span class="keyword">import</span> com.day.utils.JdbcUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.dao.DataAccessException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.core.BeanPropertyRowMapper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.jdbc.core.JdbcTemplate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> JdbcTemplate tmplate = <span class="keyword">new</span> JdbcTemplate(JdbcUtils.getDataSource());</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">login</span><span class="params">(User loginUser)</span> </span>{</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            String sql = <span class="string">&quot;select * from user where userName=? and passwd=?&quot;</span>;</span><br><span class="line">            User user = tmplate.queryForObject(sql, <span class="keyword">new</span> BeanPropertyRowMapper&lt;User&gt;(User.class),</span><br><span class="line">                    loginUser.getUserName(), loginUser.getPasswd());</span><br><span class="line">            <span class="keyword">return</span> user;</span><br><span class="line">        } <span class="keyword">catch</span> (DataAccessException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#x521B;&#x5EFA; JdbcUtils</p>
+<ol>
+<li>Druid&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;</li>
+<li>&#x914D;&#x7F6E;&#x6587;&#x4EF6;</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src &#x76EE;&#x5F55;&#x4E0B; druid.properties</span></span><br><span class="line">driverClassName=com.mysql.jdbc.Driver</span><br><span class="line">url=jdbc:mysql:<span class="comment">//127.0.0.1:3306/db1</span></span><br><span class="line">username=root</span><br><span class="line">password=<span class="number">123456</span></span><br><span class="line">initialSize=<span class="number">5</span></span><br><span class="line">maxActive=<span class="number">10</span></span><br><span class="line">maxWait=<span class="number">3000</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.day.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.druid.pool.DruidDataSourceFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcUtils</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DataSource ds;</span><br><span class="line">    <span class="keyword">static</span> {</span><br><span class="line">        <span class="keyword">try</span> {</span><br><span class="line">            <span class="comment">/* &#x52A0;&#x8F7D;&#x914D;&#x7F6E;&#x6587;&#x4EF6; */</span></span><br><span class="line">            InputStream is = JdbcUtils.class.getClassLoader().getResourceAsStream(<span class="string">&quot;druid.properties&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* &#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5BF9;&#x8C61; */</span></span><br><span class="line">            Properties pro = <span class="keyword">new</span> Properties();</span><br><span class="line">            pro.load(is);</span><br><span class="line">            ds = DruidDataSourceFactory.createDataSource(pro);</span><br><span class="line">        } <span class="keyword">catch</span> (IOException e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DataSource <span class="title">getDataSource</span><span class="params">()</span> </span>{</span><br><span class="line">        <span class="keyword">return</span> ds;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>{</span><br><span class="line">        <span class="keyword">return</span> ds.getConnection();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Connection conn, Statement st, ResultSet rs)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="keyword">null</span>) {</span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                conn.close();</span><br><span class="line">            } <span class="keyword">catch</span> (SQLException e) {</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (st != <span class="keyword">null</span>) {</span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                st.close();</span><br><span class="line">            } <span class="keyword">catch</span> (SQLException e) {</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="keyword">null</span>) {</span><br><span class="line">            <span class="keyword">try</span> {</span><br><span class="line">                rs.close();</span><br><span class="line">            } <span class="keyword">catch</span> (SQLException e) {</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Servlet</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.day.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.day.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> com.day.domain.User;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">&quot;/login&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>{</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        <span class="comment">/* &#x8BBE;&#x7F6E;&#x7F16;&#x7801;&#xFF0C;&#x9632;&#x6B62;&#x4E71;&#x7801; */</span></span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html;charset=utf8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        String userName = req.getParameter(<span class="string">&quot;userName&quot;</span>);</span><br><span class="line">        String passwd = req.getParameter(<span class="string">&quot;passwd&quot;</span>);</span><br><span class="line"></span><br><span class="line">        User loginUser = <span class="keyword">new</span> User(userName, passwd);</span><br><span class="line"></span><br><span class="line">        UserDao userDao = <span class="keyword">new</span> UserDao();</span><br><span class="line">        User user = userDao.login(loginUser);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) {</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;&#x767B;&#x5F55;&#x5931;&#x8D25;&quot;</span>);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;suc.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>index.jsp</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- Created by IntelliJ IDEA. --%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;&#x6D4B;&#x8BD5; Servlet&lt;/title&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;form method=<span class="string">&quot;get&quot;</span> action=<span class="string">&quot;login&quot;</span> &gt;</span><br><span class="line">      &#x7528;&#x6237;&#x540D;: &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;userName&quot;</span>&gt;</span><br><span class="line">      &#x5BC6;&#x7801;: &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;passwd&quot;</span>&gt;</span><br><span class="line">      &#x63D0;&#x4EA4;: &lt;input type=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>suc.jsp</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: gao</span><br><span class="line">  Date: <span class="number">2019</span>/<span class="number">9</span>/<span class="number">6</span></span><br><span class="line">  Time: <span class="number">23</span>:<span class="number">42</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;&#x767B;&#x5F55;&#x6210;&#x529F;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &#x6B22;&#x8FCE;&#x767B;&#x5F55;!!!</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Response"><a href="#6-Response" class="headerlink" title="6. Response"></a>6. Response</h2><h3 id="6-1-&#x54CD;&#x5E94;&#x884C;"><a href="#6-1-&#x54CD;&#x5E94;&#x884C;" class="headerlink" title="6.1 &#x54CD;&#x5E94;&#x884C;"></a>6.1 &#x54CD;&#x5E94;&#x884C;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setStatus(<span class="keyword">int</span> sc)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-&#x54CD;&#x5E94;&#x5934;"><a href="#6-2-&#x54CD;&#x5E94;&#x5934;" class="headerlink" title="6.2 &#x54CD;&#x5E94;&#x5934;"></a>6.2 &#x54CD;&#x5E94;&#x5934;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setHeader(String name, String value)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-&#x54CD;&#x5E94;&#x4F53;"><a href="#6-3-&#x54CD;&#x5E94;&#x4F53;" class="headerlink" title="6.3 &#x54CD;&#x5E94;&#x4F53;"></a>6.3 &#x54CD;&#x5E94;&#x4F53;</h3><ul>
+<li>&#x5B57;&#x7B26;&#x8F93;&#x51FA;&#x6D41;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PrintWriter <span class="title">getWriter</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x5B57;&#x8282;&#x8F93;&#x51FA;&#x6D41;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ServletOutputStream <span class="title">getOutputStream</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-&#x91CD;&#x5B9A;&#x5411;"><a href="#6-4-&#x91CD;&#x5B9A;&#x5411;" class="headerlink" title="6.4 &#x91CD;&#x5B9A;&#x5411;"></a>6.4 &#x91CD;&#x5B9A;&#x5411;</h3><blockquote>
+<p>&#x8D44;&#x6E90;&#x8DF3;&#x8F6C;&#x7684;&#x65B9;&#x5F0F;</p>
+</blockquote>
+<ul>
+<li>&#x5B9E;&#x73B0;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. &#x8BBE;&#x7F6E;&#x72B6;&#x6001;&#x7801;&#x4E3A;302</span></span><br><span class="line">response.setStatus(<span class="number">302</span>);</span><br><span class="line"><span class="comment">//2.&#x8BBE;&#x7F6E;&#x54CD;&#x5E94;&#x5934;location</span></span><br><span class="line">response.setHeader(<span class="string">&quot;location&quot;</span>,<span class="string">&quot;/day15/responseDemo2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#x7B80;&#x5355;&#x7684;&#x91CD;&#x5B9A;&#x5411;&#x65B9;&#x6CD5;</span></span><br><span class="line">response.sendRedirect(<span class="string">&quot;/day15/responseDemo2&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x7279;&#x70B9;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. &#x5730;&#x5740;&#x680F;&#x53D1;&#x751F;&#x53D8;&#x5316;</span><br><span class="line">2. &#x91CD;&#x5B9A;&#x5411;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x7AD9;&#x70B9;(&#x670D;&#x52A1;&#x5668;)&#x7684;&#x8D44;&#x6E90;</span><br><span class="line">3. &#x91CD;&#x5B9A;&#x5411;&#x662F;&#x4E24;&#x6B21;&#x8BF7;&#x6C42;&#x3002;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;request&#x5BF9;&#x8C61;&#x6765;&#x5171;&#x4EAB;&#x6570;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-ServletContext&#x5BF9;&#x8C61;"><a href="#7-ServletContext&#x5BF9;&#x8C61;" class="headerlink" title="7. ServletContext&#x5BF9;&#x8C61;"></a>7. ServletContext&#x5BF9;&#x8C61;</h2><h3 id="7-1-&#x6982;&#x5FF5;"><a href="#7-1-&#x6982;&#x5FF5;" class="headerlink" title="7.1 &#x6982;&#x5FF5;"></a>7.1 &#x6982;&#x5FF5;</h3><p>&#x4EE3;&#x8868;&#x6574;&#x4E2A;web&#x5E94;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x548C;&#x7A0B;&#x5E8F;&#x7684;&#x5BB9;&#x5668;(&#x670D;&#x52A1;&#x5668;)&#x6765;&#x901A;&#x4FE1;</p>
+<h3 id="7-2-&#x83B7;&#x53D6;"><a href="#7-2-&#x83B7;&#x53D6;" class="headerlink" title="7.2 &#x83B7;&#x53D6;"></a>7.2 &#x83B7;&#x53D6;</h3><ul>
+<li>&#x901A;&#x8FC7; request &#x5BF9;&#x8C61;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getServletContext();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x901A;&#x8FC7; HttpServlet &#x5BF9;&#x8C61;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.getServletContext();</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-&#x529F;&#x80FD;"><a href="#7-3-&#x529F;&#x80FD;" class="headerlink" title="7.3 &#x529F;&#x80FD;"></a>7.3 &#x529F;&#x80FD;</h3><ul>
+<li>&#x83B7;&#x53D6; MIME &#x7C7B;&#x578B;</li>
+</ul>
+<blockquote>
+<p>&#x5728;&#x4E92;&#x8054;&#x7F51;&#x901A;&#x4FE1;&#x8FC7;&#x7A0B;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x79CD;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x7C7B;&#x578B;</p>
+<ul>
+<li>&#x683C;&#x5F0F;&#xFF1A; &#x5927;&#x7C7B;&#x578B;/&#x5C0F;&#x7C7B;&#x578B;   text/html        image/jpeg</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getMimeType</span><span class="params">(String file)</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x57DF;&#x5BF9;&#x8C61;=&#x300B;&#x5171;&#x4EAB;&#x6570;&#x636E;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. setAttribute(String name,Object value)</span><br><span class="line"><span class="number">2</span>. getAttribute(String name)</span><br><span class="line"><span class="number">3</span>. removeAttribute(String name)</span><br><span class="line"> * ServletContext&#x5BF9;&#x8C61;&#x8303;&#x56F4;&#xFF1A;&#x6240;&#x6709;&#x7528;&#x6237;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x7684;&#x6570;&#x636E;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x83B7;&#x53D6;&#x6587;&#x4EF6;&#x7684;&#x771F;&#x5B9E;&#x8DEF;&#x5F84;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getRealPath</span><span class="params">(String path)</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#x901A;&#x8FC7;HttpServlet&#x83B7;&#x53D6;</span></span><br><span class="line">ServletContext context = <span class="keyword">this</span>.getServletContext();</span><br><span class="line"><span class="comment">// &#x83B7;&#x53D6;&#x6587;&#x4EF6;&#x7684;&#x670D;&#x52A1;&#x5668;&#x8DEF;&#x5F84;</span></span><br><span class="line">String b = context.getRealPath(<span class="string">&quot;/b.txt&quot;</span>);<span class="comment">//web&#x76EE;&#x5F55;&#x4E0B;&#x8D44;&#x6E90;&#x8BBF;&#x95EE;</span></span><br><span class="line">System.out.println(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">//WEB-INF&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x8D44;&#x6E90;&#x8BBF;&#x95EE;</span></span><br><span class="line">String c = context.getRealPath(<span class="string">&quot;/WEB-INF/c.txt&quot;</span>);</span><br><span class="line">System.out.println(c);</span><br><span class="line"></span><br><span class="line"><span class="comment">// /src&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x8D44;&#x6E90;&#x8BBF;&#x95EE;</span></span><br><span class="line">String a = context.getRealPath(<span class="string">&quot;/WEB-INF/classes/a.txt&quot;</span>);</span><br><span class="line">System.out.println(a);</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-&#x751F;&#x6210;&#x9A8C;&#x8BC1;&#x7801;Demo"><a href="#8-&#x751F;&#x6210;&#x9A8C;&#x8BC1;&#x7801;Demo" class="headerlink" title="8. &#x751F;&#x6210;&#x9A8C;&#x8BC1;&#x7801;Demo"></a>8. &#x751F;&#x6210;&#x9A8C;&#x8BC1;&#x7801;Demo</h2><ul>
+<li>html</li>
+</ul>
+<blockquote>
+<p>&#x5BF9; url &#x540E;&#x62FC;&#x63A5;&#x65F6;&#x95F4;&#x6233;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62; &#x9759;&#x6001;url &#x7F13;&#x5B58;&#xFF0C;&#x5BFC;&#x81F4; &#x9A8C;&#x8BC1;&#x7801;&#x56FE;&#x7247;&#x4E0D;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x95EE;&#x9898;</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">            &#x5206;&#x6790;&#xFF1A;</span></span><br><span class="line"><span class="comment">                &#x70B9;&#x51FB;&#x8D85;&#x94FE;&#x63A5;&#x6216;&#x8005;&#x56FE;&#x7247;&#xFF0C;&#x9700;&#x8981;&#x6362;&#x4E00;&#x5F20;</span></span><br><span class="line"><span class="comment">                1.&#x7ED9;&#x8D85;&#x94FE;&#x63A5;&#x548C;&#x56FE;&#x7247;&#x7ED1;&#x5B9A;&#x5355;&#x51FB;&#x4E8B;&#x4EF6;</span></span><br><span class="line"><span class="comment">                2.&#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x56FE;&#x7247;&#x7684;src&#x5C5E;&#x6027;&#x503C;</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    window.onload = function(){</span><br><span class="line">        <span class="comment">//1.&#x83B7;&#x53D6;&#x56FE;&#x7247;&#x5BF9;&#x8C61;</span></span><br><span class="line">        <span class="keyword">var</span> img = document.getElementById(<span class="string">&quot;checkCode&quot;</span>);</span><br><span class="line">        <span class="comment">//2.&#x7ED1;&#x5B9A;&#x5355;&#x51FB;&#x4E8B;&#x4EF6;</span></span><br><span class="line">        img.onclick = function(){</span><br><span class="line">            <span class="comment">//&#x52A0;&#x65F6;&#x95F4;&#x6233;</span></span><br><span class="line">            <span class="keyword">var</span> date = <span class="keyword">new</span> Date().getTime();</span><br><span class="line"></span><br><span class="line">            img.src = <span class="string">&quot;/checkCodeServlet?&quot;</span>+date;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;img id=<span class="string">&quot;checkCode&quot;</span> src=<span class="string">&quot;/checkCodeServlet&quot;</span> /&gt;</span><br><span class="line">    &lt;a id=&quot;change&quot; href=&quot;&quot;&gt;&#x770B;&#x4E0D;&#x6E05;&#x6362;&#x4E00;&#x5F20;&#xFF1F;&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>servlet</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">&quot;/checkCodeServlet&quot;</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckCodeServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>{</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        <span class="keyword">int</span> width = <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">int</span> height = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1.&#x521B;&#x5EFA;&#x4E00;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x56FE;&#x7247;(&#x9A8C;&#x8BC1;&#x7801;&#x56FE;&#x7247;&#x5BF9;&#x8C61;)</span></span><br><span class="line">        BufferedImage image = <span class="keyword">new</span> BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.&#x7F8E;&#x5316;&#x56FE;&#x7247;</span></span><br><span class="line">        <span class="comment">//2.1 &#x586B;&#x5145;&#x80CC;&#x666F;&#x8272;</span></span><br><span class="line">        Graphics g = image.getGraphics();<span class="comment">//&#x753B;&#x7B14;&#x5BF9;&#x8C61;</span></span><br><span class="line">        g.setColor(Color.PINK);<span class="comment">//&#x8BBE;&#x7F6E;&#x753B;&#x7B14;&#x989C;&#x8272;</span></span><br><span class="line">        g.fillRect(<span class="number">0</span>,<span class="number">0</span>,width,height);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.2&#x753B;&#x8FB9;&#x6846;</span></span><br><span class="line">        g.setColor(Color.BLUE);</span><br><span class="line">        g.drawRect(<span class="number">0</span>,<span class="number">0</span>,width - <span class="number">1</span>,height - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        String str = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789&quot;</span>;</span><br><span class="line">        <span class="comment">//&#x751F;&#x6210;&#x968F;&#x673A;&#x89D2;&#x6807;</span></span><br><span class="line">        Random ran = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">4</span>; i++) {</span><br><span class="line">            <span class="keyword">int</span> index = ran.nextInt(str.length());</span><br><span class="line">            <span class="comment">//&#x83B7;&#x53D6;&#x5B57;&#x7B26;</span></span><br><span class="line">            <span class="keyword">char</span> ch = str.charAt(index);<span class="comment">//&#x968F;&#x673A;&#x5B57;&#x7B26;</span></span><br><span class="line">            <span class="comment">//2.3&#x5199;&#x9A8C;&#x8BC1;&#x7801;</span></span><br><span class="line">            g.drawString(ch+<span class="string">&quot;&quot;</span>,width/<span class="number">5</span>*i,height/<span class="number">2</span>);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//2.4&#x753B;&#x5E72;&#x6270;&#x7EBF;</span></span><br><span class="line">        g.setColor(Color.GREEN);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//&#x968F;&#x673A;&#x751F;&#x6210;&#x5750;&#x6807;&#x70B9;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) {</span><br><span class="line">            <span class="keyword">int</span> x1 = ran.nextInt(width);</span><br><span class="line">            <span class="keyword">int</span> x2 = ran.nextInt(width);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> y1 = ran.nextInt(height);</span><br><span class="line">            <span class="keyword">int</span> y2 = ran.nextInt(height);</span><br><span class="line">            g.drawLine(x1,y1,x2,y2);</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//3.&#x5C06;&#x56FE;&#x7247;&#x8F93;&#x51FA;&#x5230;&#x9875;&#x9762;&#x5C55;&#x793A;</span></span><br><span class="line">        ImageIO.write(image,<span class="string">&quot;jpg&quot;</span>,response.getOutputStream());</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>{</span><br><span class="line">        <span class="keyword">this</span>.doPost(request,response);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/06/xml/" rel="next" title="xml">
+                <i class="fa fa-chevron-left"></i> xml
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/07/Cookie-Session/" rel="prev" title="Cookie&Session">
+                Cookie&Session <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DayByDay">
+            
+              <p class="site-author-name" itemprop="name">DayByDay</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Web"><span class="nav-number">1.</span> <span class="nav-text">1. Web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-架构"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-资源分类"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 资源分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Tomcat"><span class="nav-number">2.</span> <span class="nav-text">2. Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-安装"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-启动"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-访问"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-修改端口号"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 修改端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-关闭"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-项目部署"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 项目部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-JAVA-动态项目"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 JAVA 动态项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Servlet-server-applet"><span class="nav-number">3.</span> <span class="nav-text">3. Servlet(server applet)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-概念"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-xml-配置方式"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 xml 配置方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行原理"><span class="nav-number">3.2.1.</span> <span class="nav-text">执行原理:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Servlet接口"><span class="nav-number">3.2.2.</span> <span class="nav-text">Servlet接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-注解方式"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 注解方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Servlet-实现类"><span class="nav-number">4.</span> <span class="nav-text">4. Servlet 实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-HttpServlet"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  HttpServlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-GenericServlet"><span class="nav-number">4.2.</span> <span class="nav-text">4.2  GenericServlet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Request"><span class="nav-number">5.</span> <span class="nav-text">5. Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-继承体系"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 继承体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-获取请求消息数据"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 获取请求消息数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-获取请求头数据"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 获取请求头数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-获取所有请求体数据"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 获取所有请求体数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-获取请求参数"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 获取请求参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-中文乱码问题"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 中文乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-请求转发"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 请求转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">5.7.1.</span> <span class="nav-text">使用:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求转发的特点"><span class="nav-number">5.7.2.</span> <span class="nav-text">请求转发的特点:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#共享数据"><span class="nav-number">5.7.3.</span> <span class="nav-text">共享数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户登录Demo"><span class="nav-number">5.8.</span> <span class="nav-text">用户登录Demo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Response"><span class="nav-number">6.</span> <span class="nav-text">6. Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-响应行"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 响应行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-响应头"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-响应体"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 响应体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-重定向"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 重定向</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-ServletContext对象"><span class="nav-number">7.</span> <span class="nav-text">7. ServletContext对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-概念"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-获取"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-功能"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-生成验证码Demo"><span class="nav-number">8.</span> <span class="nav-text">8. 生成验证码Demo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DayByDay</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
