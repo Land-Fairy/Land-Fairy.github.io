@@ -10,7 +10,31 @@ category: JAVA
 
 <!-- more-->
 
-# SpringBoot
+# 一. SpringBoot 2.0
+
+## 1. 特性
+
+![image-20191228111226386](SpringBoot/image-20191228111226386.png)
+
+## 2. 组件自动装配
+
+```
+1. 激活: @EnableAutoConfiguration
+2. 配置: /META-INFO/Spring.factories
+3. 实现: XXXAutoConfiguration
+```
+
+## 3. Web应用
+
+###  1. 传统Servlet应用
+
+```
+
+```
+
+
+
+
 
 ## 一. 入门Helloworld
 
@@ -1514,6 +1538,28 @@ private Collection<EmbeddedServletContainerCustomizer> getCustomizers() {
 
 ### 七.SpringData
 
+![image-20191226170730780](SpringBoot/image-20191226170730780.png)
+
+#### 1. 特点:
+
+SpringData为我们提供统一的API来对数据访问层进行操作，主要是 Spring Data Commons 项目来实现的。
+
+Spring Data Commons 让我们在使用 关系型 或者 非关系型数据库访问技术时，都基于Spring 提供统一的标准（包含了 CRUD，排序，分页等相关操作)
+
+==> Spring Data 想用一套API，简化所有的操作。（开发人员不关系底层细节，直接与 SpringData进行交互)
+
+#### 2. 提供了统一的 Repository 接口
+
+1. 基本的 CRUD 操作
+2. 乐观锁 操作
+3. 分页操作
+
+![image-20191226170520689](SpringBoot/image-20191226170520689.png)
+
+#### 2. 提供了数据访问模板类 XXXXTemplate
+
+比如 MongoTemplate, RedisTemplate
+
 #### 1. JDBC
 
 ##### 1. 导入依赖
@@ -2024,7 +2070,11 @@ mybatis.config-location=classpath:mybatis-config.xml
 
 测试即可使用！！！
 
-### 3. JPS
+### 3. JPA
+
+JPA(Java persistence api)
+
+是SpringData中，针对持久层操作的模块
 
 #### 1. 创建项目
 
@@ -2170,3 +2220,598 @@ public class SpringjpaApplicationTests {
 
 ```
 
+## 八. SpringBoot与缓存
+
+### 1. JSR107规范
+
+![image-20191226171728165](SpringBoot/image-20191226171728165.png)
+
+#### 应用交互流程
+
+![image-20191226171846907](SpringBoot/image-20191226171846907.png)
+
+### 2. Spring缓存抽象
+
+JSR107过于复杂，因此Spring提供了自己的缓存抽象，用于简化开发。
+
+Spring 只是 使用了 Cache 和 CacheManager 两个概念。简化了开发
+
+![image-20191226172208312](SpringBoot/image-20191226172208312.png)
+
+CacheManager与Cache的关系如下所示:
+
+1. CacheManager 对应不同的缓存实现 (concurrentHashMap默认实现， Redis 实现等等)
+2. Cache 为对应缓存的操作(缓存数据，读取数据)
+
+![image-20191228094229187](SpringBoot/image-20191228094229187.png)
+
+### 3. Spring缓存常用概念&注解
+
+![image-20191226172246175](SpringBoot/image-20191226172246175.png)
+
+![image-20191228094858124](SpringBoot/image-20191228094858124.png)
+
+![image-20191227093144563](SpringBoot/image-20191227093144563.png)
+
+### 4. 使用
+
+#### 1. 引入依赖
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+```
+
+#### 2. 开启基于注解的缓存
+
+使用 @EnableCaching 注解
+
+```java
+/**
+ * @EnableCaching 用来开启 Spring 的 注解驱动 缓存管理
+ * 与 XML 中 <cache:*> 标签功能一致
+ */
+@SpringBootApplication
+@EnableCaching
+public class Springboot01CacheApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Springboot01CacheApplication.class, args);
+	}
+}
+```
+
+流程:
+
+1. CacheAutoConfigruation 选择导入
+
+```
+@Import(CacheConfigurationImportSelector.class)
+public class CacheAutoConfiguration {
+}
+```
+
+2. CacheConfigurationImportSelector 选择应该导入哪些 CacheConfiguration
+
+![image-20191228102840125](SpringBoot/image-20191228102840125.png)
+
+3. 按照顺序，遍历每一个 CacheConfiguration,直到找到合适，进行创建 CacheManager
+
+   默认SimpleCacheConfiguration会匹配，会在 bean中新增一个  ConcurrentMapCacheManager
+
+```java
+@Configuration
+@ConditionalOnMissingBean(CacheManager.class)
+@Conditional(CacheCondition.class)
+class SimpleCacheConfiguration {
+
+	private final CacheProperties cacheProperties;
+
+	private final CacheManagerCustomizers customizerInvoker;
+
+	SimpleCacheConfiguration(CacheProperties cacheProperties,
+			CacheManagerCustomizers customizerInvoker) {
+		this.cacheProperties = cacheProperties;
+		this.customizerInvoker = customizerInvoker;
+	}
+
+	@Bean
+	public ConcurrentMapCacheManager cacheManager() {
+		ConcurrentMapCacheManager cacheManager = new ConcurrentMapCacheManager();
+		List<String> cacheNames = this.cacheProperties.getCacheNames();
+		if (!cacheNames.isEmpty()) {
+			cacheManager.setCacheNames(cacheNames);
+		}
+		return this.customizerInvoker.customize(cacheManager);
+	}
+
+}
+```
+
+4. 可以在配置文件中 配置, 开启debug信息
+
+```properties
+debug=true
+```
+
+查看日志，搜索 CacheConfiguration ==>  SimpleCacheConfiguration 匹配
+
+```
+SimpleCacheConfiguration matched:
+      - Cache org.springframework.boot.autoconfigure.cache.SimpleCacheConfiguration automatic cache type (CacheCondition)
+```
+
+
+
+#### 2. 缓存注解使用
+
+##### @Cacheable
+
+```
+将方法的运行结果进行缓存，以后再要相同的数据，直接从缓存中进行获取，不需要在调用方法
+一个 CacheManager管理多个Cache组件。
+Cache组件进行真正的 CRUD操作，每个缓存组件都已自己唯一的名字:
+	cacheNames/values: 指定缓存组件的名称，是数组的方式，可以指定多个缓存名字
+	key: 缓存数据使用的key，默认是 使用方法参数的值，可以使用 spel表达式
+		比如: #id =>参数id的值
+	keyGenerator: key的生成器，可以自己指定key的生成器 （与key进行二选一使用)
+	cacheManager: 指定缓存管理器（即从哪个缓存管理器中取出 cache组件)，与cacheResolver进行二选一
+	condition: 指定符合条件的条件下，才进行缓存操作
+	sync: 缓存是否使用异步模式
+	unless: 当unless指定条件为true，返回值不进行缓存, 可以在获取到结果之后，进行判断 （与condition相反)
+```
+
+
+
+```java
+@Cacheable(value = {"emp"}/*,keyGenerator = "myKeyGenerator",condition = "#a0>1",unless = "#a0==2"*/)
+public Employee getEmp(Integer id){
+	System.out.println("查询"+id+"号员工");
+	Employee emp = employeeMapper.getEmpById(id);
+	return emp;
+}
+```
+
+工作原理:
+
+```
+1. 缓存的自动配置类 (CacheAutoConfiguration)
+2. 查看 CacheConfigurationImportSelector
+3. 缓存的配置类
+```
+
+![image-20191227094130992](SpringBoot/image-20191227094130992.png)
+
+```
+4. 上述有那么多的 缓存配置类，哪个缓存配置会生效?
+	1> 在 application.properties 中，添加 debug=true 配置
+	2> 程序启动后，查看日志
+```
+
+![image-20191227094308791](SpringBoot/image-20191227094308791.png)
+
+```
+	3> 通过搜索 CacheConfiguration 日志，发现 SimpleCacheConfiguration 配置类生效了
+	4> 查看 SimpleCacheConfiguration类，发现其在 容器中添加了一个 concurrentMapCacheManager
+5. 配置类生效之后，就会在 容器中添加一个 CacheManager
+```
+
+运行流程(@Cacheable): 代码调试
+
+```
+1. 方法运行之前，首先 按照 cacheNames， 查找Cache 组件。对于第一次，如果没有缓存组件，先自动创建一个
+2. 去Cache 组件中查找 key 指定的内容
+	1> key 是按照某种策略进行生成的，默认是 keyGenerator 使用 SimpleKeyGenerator进行生成
+3. 如果没有查询到缓存，就调用目标方法进行执行
+4. 将目标方法返回的结果，放进缓存中
+```
+
+问题: 
+
+```
+1. 在哪个 CacheManger 进行查询 Cache组件
+2. Cache 在方法前，方法后执行怎么实现的，aop吗
+```
+
+##### 自定义keyGenerator
+
+1. 在 容器中 添加一个 自定义的 keyGenerator
+
+```java
+@Configuration
+public class MyCacheConfig {
+
+    @Bean("myKeyGenerator")
+    public KeyGenerator keyGenerator(){
+        return new KeyGenerator(){
+
+            @Override
+            public Object generate(Object target, Method method, Object... params) {
+                return method.getName()+"["+ Arrays.asList(params).toString()+"]";
+            }
+        };
+    }
+}
+```
+
+
+
+2. 指定 keyGenerator 为 bean id
+
+```java
+@Cacheable(value = {"emp"},keyGenerator = "myKeyGenerator")
+    public Employee getEmp(Integer id){
+        System.out.println("查询"+id+"号员工");
+        Employee emp = employeeMapper.getEmpById(id);
+        return emp;
+    }
+```
+
+##### @CachePut
+
+```
+既调用方法，又更新缓存数据
+ => 用于 修改了 数据库的某个数据，同时将缓存进行更新
+```
+
+运行时机:
+
+```
+1. 执行目标方法
+2. 将目标方法的结果进行缓存
+```
+
+```java
+/**
+     * @CachePut：既调用方法，又更新缓存数据；同步更新缓存
+     * 修改了数据库的某个数据，同时更新缓存；
+     * 运行时机：
+     *  1、先调用目标方法
+     *  2、将目标方法的结果缓存起来
+     *
+     * 测试步骤：
+     *  1、查询1号员工；查到的结果会放在缓存中；
+     *          key：1  value：lastName：张三
+     *  2、以后查询还是之前的结果
+     *  3、更新1号员工；【lastName:zhangsan；gender:0】
+     *          将方法的返回值也放进缓存了；
+     *          key：传入的employee对象  值：返回的employee对象；
+     *  4、查询1号员工？
+     *      应该是更新后的员工；
+     *          key = "#employee.id":使用传入的参数的员工id；
+     *          key = "#result.id"：使用返回后的id
+     *             @Cacheable的key是不能用#result
+     *      为什么是没更新前的？【1号员工没有在缓存中更新】
+     *
+     */
+    @CachePut(/*value = "emp",*/key = "#result.id")
+    public Employee updateEmp(Employee employee){
+        System.out.println("updateEmp:"+employee);
+        employeeMapper.updateEmp(employee);
+        return employee;
+    }
+```
+
+##### @CacheEvict
+
+```
+删除数据之后，同时将缓存中的数据删除
+	allEntries: 是否删除这个Cache组件中的所有数据
+	beforeInvocation: 缓存的清除，是否在方法执行之前进行执行。（默认是在方法执行之后进行执行)
+		==> 作用，如果 方法中有 异常，beforeInvocation=false时，缓存就不会被清楚
+					如果 beforeInvocation=true，不管是否有异常，缓存都会被清除
+```
+
+```java
+/**
+     * @CacheEvict：缓存清除
+     *  key：指定要清除的数据
+     *  allEntries = true：指定清除这个缓存中所有的数据
+     *  beforeInvocation = false：缓存的清除是否在方法之前执行
+     *      默认代表缓存清除操作是在方法执行之后执行;如果出现异常缓存就不会清除
+     *
+     *  beforeInvocation = true：
+     *      代表清除缓存操作是在方法运行之前执行，无论方法是否出现异常，缓存都清除
+     *
+     *
+     */
+    @CacheEvict(value="emp",beforeInvocation = true/*key = "#id",*/)
+    public void deleteEmp(Integer id){
+        System.out.println("deleteEmp:"+id);
+        //employeeMapper.deleteEmpById(id);
+        int i = 10/0;
+    }
+```
+
+
+
+##### @Cacheing
+
+```
+该注解是 Cacheable, CachePut, CacheEvict 3个注解的组合注解
+用于 组合指定 复杂的规则
+```
+
+```java
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@Documented
+public @interface Caching {
+
+	Cacheable[] cacheable() default {};
+
+	CachePut[] put() default {};
+
+	CacheEvict[] evict() default {};
+
+}
+```
+
+```java
+ @Caching(
+         cacheable = {
+             @Cacheable(/*value="emp",*/key = "#lastName")
+         },
+         put = {
+             @CachePut(/*value="emp",*/key = "#result.id"),
+             @CachePut(/*value="emp",*/key = "#result.email")
+         }
+    )
+    public Employee getEmpByLastName(String lastName){
+        return employeeMapper.getEmpByLastName(lastName);
+    }
+```
+
+##### @CacheConfig
+
+```
+标注在类上，用来指定当前类下所有方法 公用的 cacheName, keyGenerator 配置
+```
+
+```java
+@CacheConfig(cacheNames="emp"/*,cacheManager = "employeeCacheManager"*/) //抽取缓存的公共配置
+@Service
+public class EmployeeService {
+}
+```
+
+### 4. 集成Redis缓存 
+
+默认使用的是 ConcurrentMapCacheManager,
+
+1. 在导入了 redis 的starter 之后，容器中就会创建 RedisCacheManager
+2. 注意: 缓存中配置类是有顺序的，Redis的配置类 在 Simple 之前，因此 如果Redis 匹配上了，那么容器中就会有 CacheManager, Simple 就不会再匹配
+3. RedisCacheManager 会创建 RedisCache 来进行缓存操作
+
+
+
+![image-20191227142638983](SpringBoot/image-20191227142638983.png)
+
+##### 1. 引入依赖
+
+```
+spring-boot-starter-data-redis
+```
+
+引入依赖之后，在 RedisAutoConfiguration中，自动在容器中加入了 redisTemplate 和 stringRedisTemplate
+
+其中
+
+```
+stringRedisTemplate: 用来简化操作字符串的（key，value 都是 string)
+redisTemplate: key和value都是 Object
+```
+
+##### 2. 修改默认序列化规则
+
+默认时，使用 jdk 序列化机制，将序列化后的数据保存到redis中。但是此种方式，序列化出来的数据对用户不易懂。因此，需要修改redisTemplate，使用json序列化方式
+
+==> 自己创建一个 redisTemplate 和 stringRedisTemplate
+
+```java
+@Configuration
+public class MyRedisConfig {
+
+    @Bean
+    public RedisTemplate<Object, Employee> empRedisTemplate(
+            RedisConnectionFactory redisConnectionFactory)
+            throws UnknownHostException {
+        RedisTemplate<Object, Employee> template = new RedisTemplate<Object, Employee>();
+        template.setConnectionFactory(redisConnectionFactory);
+        Jackson2JsonRedisSerializer<Employee> ser = new Jackson2JsonRedisSerializer<Employee>(Employee.class);
+        template.setDefaultSerializer(ser);
+        return template;
+    }
+    @Bean
+    public RedisTemplate<Object, Department> deptRedisTemplate(
+            RedisConnectionFactory redisConnectionFactory)
+            throws UnknownHostException {
+        RedisTemplate<Object, Department> template = new RedisTemplate<Object, Department>();
+        template.setConnectionFactory(redisConnectionFactory);
+        Jackson2JsonRedisSerializer<Department> ser = new Jackson2JsonRedisSerializer<Department>(Department.class);
+        template.setDefaultSerializer(ser);
+        return template;
+    }
+
+
+
+    //CacheManagerCustomizers可以来定制缓存的一些规则
+    @Primary  //将某个缓存管理器作为默认的
+    @Bean
+    public RedisCacheManager employeeCacheManager(RedisTemplate<Object, Employee> empRedisTemplate){
+        RedisCacheManager cacheManager = new RedisCacheManager(empRedisTemplate);
+        //key多了一个前缀
+
+        //使用前缀，默认会将CacheName作为key的前缀
+        cacheManager.setUsePrefix(true);
+
+        return cacheManager;
+    }
+
+    @Bean
+    public RedisCacheManager deptCacheManager(RedisTemplate<Object, Department> deptRedisTemplate){
+        RedisCacheManager cacheManager = new RedisCacheManager(deptRedisTemplate);
+        //key多了一个前缀
+
+        //使用前缀，默认会将CacheName作为key的前缀
+        cacheManager.setUsePrefix(true);
+
+        return cacheManager;
+    }
+
+
+}
+
+```
+
+
+
+## 九. SpringBoot 与消息
+
+对于大多数的应用，都可以通过消息服务中间件的方式，来提升系统的异步通信，扩展解耦的能力
+
+两个重要的概念:
+
+	- 消息代理 (message broker)
+	- 目的地 (destination)
+
+当消息发送者发送消息之后，就由 消息代理进行接管， 消息代理保证将消息传递到指定的目的地
+
+消息队列有两种形式的目的地
+
+- 队列(queue): 点对点通信的方式
+- 主题(topic): 发布/订阅方式的通信
+
+JMS(Java Message Service): JAVA消息服务
+
+​	基于JVM消息代理的规范。ActiveMQ 是 JMS的实现
+
+AMQP(Advanced Message Queuing Protocol)
+
+​	高级消息队列协议，也是一个消息代理的规范，兼容JMS
+
+​	RabbitMQ 是 AMQP的实现
+
+JMS 与 AMQP对比
+
+![image-20191227152441143](SpringBoot/image-20191227152441143.png)
+
+Spring的支持
+
+![image-20191227152538291](SpringBoot/image-20191227152538291.png)
+
+### 1. amqp
+
+#### 1. 引入依赖
+
+```
+spring-boot-starter-amqp
+```
+
+自动配置类(RabbitAutoConfiguration)
+
+```
+1. 连接工厂 ConnectionFactory
+2. RabbitProperties 封装了 RabbitMQ的配置
+3. RabbitTemplate: 给 RabbitMQ进行发送/接收消息
+4. AmqpAdmin: RabitMQ系统管理功能组件
+```
+
+#### 2. 简单使用
+
+![image-20191227153438980](SpringBoot/image-20191227153438980.png)
+
+问题：
+
+​	此种方式，消息的序列化使用的是 java自带序列化方式，如何使用 json的序列化方式呢?
+
+ ```
+RabbitTemplate 类中，MessageConverter 默认使用的是 SimpleMessageConverter
+==> 自定义一个 MessageConverter ,放入到 容器中,
+ ```
+
+![image-20191227153708541](SpringBoot/image-20191227153708541.png)
+
+#### 3. 订阅发布方式
+
+##### 1. 开启基于注解的 Rabbitmq
+
+![image-20191227163340843](SpringBoot/image-20191227163340843.png)
+
+##### 2. 消息监听
+
+![image-20191227163620753](SpringBoot/image-20191227163620753.png)
+
+#### 4. 管理队列，exchange等
+
+直接注入 AmqpAdmin， 然后调用其方法即可
+
+## 十. SpringBoot 与 任务
+
+### 1. 异步任务
+
+1. 开启异步注解功能
+
+![image-20191227164939160](SpringBoot/image-20191227164939160.png)
+
+2. 在需要异步处理的方法上，添加 @Async 注解
+
+![image-20191227165047209](SpringBoot/image-20191227165047209.png)
+
+### 2. 定时任务
+
+Cron表达式
+
+```
+1> 表达式总共6位
+	秒,分,时,每月的多少号,月,周几
+2> 每位之间，使用 空格 进行分割
+	0 * * * * MON-FRI => 周一到周五的 每一分钟执行一次
+	0 0/5 14,18 * * ?  => 每天 14点和18点整，每隔5分钟执行一次
+	0 15 10 ? * 1-6    => 每周的 周一至周六 10:15执行一次
+```
+
+
+
+![image-20191227165122904](SpringBoot/image-20191227165122904.png)
+
+在需要定时执行的任务上，使用 @Scheduled 注解，并添加 Cron表达式（注意需要@EnableScheduling)
+
+![image-20191227170020209](SpringBoot/image-20191227170020209.png)
+
+### 3. 邮件任务
+
+1. 引入依赖
+
+```
+
+```
+
+2. 邮件自动配置
+
+```
+MailSendAutoConfiguration
+```
+
+## 十一. SpringBoot 与安全
+
+# Spring 注解驱动开发
+
+## 一. 容器相关
+
+### 1. @Bean
+
+使用 @Configuration + @Bean 注解，替换原来的 xml + <bean> 方式
+
+![image-20191227172410629](SpringBoot/image-20191227172410629.png)
+
+### 2. @ComponentScan
+
+替代原来 xml 中 的 <context:component-scan >
+
+==》 在配置类上，使用  @ComponentScan 注解
+
+​	==》 为什么用在这个配置类上 ？ 由于 是使用该配置类，获取容器的 （该配置类就相当于原来的主配置文件,所以，在这个类上使用注解，肯定能被发现)
