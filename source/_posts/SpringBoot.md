@@ -1536,17 +1536,19 @@ private Collection<EmbeddedServletContainerCustomizer> getCustomizers() {
 
 ​	1. 使用外面按照的Tomcat，以war包的方式打包
 
-### 七.SpringData
+## 七.SpringData
+
+### 1. 概念&特点
 
 ![image-20191226170730780](SpringBoot/image-20191226170730780.png)
 
-#### 1. 特点:
+#### 1. 概念
 
-SpringData为我们提供统一的API来对数据访问层进行操作，主要是 Spring Data Commons 项目来实现的。
+​	SpringData为我们提供统一的API来对数据访问层进行操作，主要是 Spring Data Commons 项目来实现的。
 
-Spring Data Commons 让我们在使用 关系型 或者 非关系型数据库访问技术时，都基于Spring 提供统一的标准（包含了 CRUD，排序，分页等相关操作)
+​	Spring Data Commons 让我们在使用 关系型 或者 非关系型数据库访问技术时，都基于Spring 提供统一的标准（包含了 CRUD，排序，分页等相关操作)	
 
-==> Spring Data 想用一套API，简化所有的操作。（开发人员不关系底层细节，直接与 SpringData进行交互)
+>  Spring Data 想用一套API，简化所有的操作。（开发人员不关系底层细节，直接与 SpringData进行交互)
 
 #### 2. 提供了统一的 Repository 接口
 
@@ -1556,11 +1558,11 @@ Spring Data Commons 让我们在使用 关系型 或者 非关系型数据库访
 
 ![image-20191226170520689](SpringBoot/image-20191226170520689.png)
 
-#### 2. 提供了数据访问模板类 XXXXTemplate
+#### 3. 提供了数据访问模板类 XXXXTemplate
 
 比如 MongoTemplate, RedisTemplate
 
-#### 1. JDBC
+### 2. JDBC
 
 ##### 1. 导入依赖
 
@@ -1708,9 +1710,9 @@ public void initSchema() {
 
 ![](SpringBoot/20191005123927.png)
 
-##### 5. 整合 Druid 数据源
+### 3. 整合 Druid 数据源
 
-###### 1. 导入Druid 依赖
+#### 1. 导入Druid 依赖
 
 ```xml
 <dependency>
@@ -1720,14 +1722,14 @@ public void initSchema() {
 </dependency>
 ```
 
-###### 2. 修改配置文件，使用 Druid 数据源
+#### 2. 修改配置文件，使用 Druid 数据源
 
 ```properties
 # 表示使用 Druid 类型的数据源
 spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
 ```
 
-###### 3. 测试数据源是否正确
+#### 3. 测试数据源是否正确
 
 ```java
 @RunWith(SpringRunner.class)
@@ -1751,7 +1753,7 @@ public class SpringbootApplicationTests {
  */
 ```
 
-###### 4. 自定义 Druid属性配置
+#### 4. 自定义 Druid属性配置
 
 ![](SpringBoot/20191005125453.png)
 
@@ -1792,7 +1794,7 @@ public class DruidConfig {
 
 ![](SpringBoot/20191005143413.png)
 
-##### 6. 添加Druid 监控配置
+#### 6. 添加Druid 监控配置
 
 Druid 监控主要是要添加一个 Servlet 和 Filter
 
@@ -1839,9 +1841,9 @@ public class DruidConfig {
 
 ![](SpringBoot/20191005145159.png)
 
-#### 2. 整合 Mybatis
+### 4. 整合 Mybatis
 
-##### 1. 创建项目
+#### 1. 创建项目
 
 使用Spring initilize 创建项目，选择 Spirng Web + Mysql API + JDBC API + Mybatis Framework 这些组件
 
@@ -1919,7 +1921,7 @@ public class DruidConfig {
 
 注意：需要开启 maven 的 auto import 功能，否则即使 已经 加入了 依赖，但是没有自动引入的话，一直未找到相关的类，无提示
 
-##### 2. 配置 Druid DataSource
+#### 2. 配置 Druid DataSource
 
 - 添加配置
 
@@ -1950,7 +1952,7 @@ public class DataSourceConfig {
 }
 ```
 
-##### 3. 创建 mapper
+#### 3. 创建 mapper
 
 ```java
 /*
@@ -1974,7 +1976,7 @@ public interface UserMapper {
 }
 ```
 
-##### 4. 使用
+#### 4. 使用
 
 ```java
 package com.day.springbootmybatis;
@@ -2007,7 +2009,7 @@ public class SpringbootmybatisApplicationTests {
 
 ```
 
-##### 5. 实现 下划线与 驼峰命名映射
+#### 5. 实现 下划线与 驼峰命名映射
 
 ```java
 package com.day.springbootmybatis.config;
@@ -2033,7 +2035,7 @@ public class MybatisConfig {
 
 ```
 
-##### 6. 使用 配置文件方式
+#### 6. 使用 配置文件方式
 
 - 配置全局配置文件
 
@@ -2070,19 +2072,19 @@ mybatis.config-location=classpath:mybatis-config.xml
 
 测试即可使用！！！
 
-### 3. JPA
+### 5. JPA
 
-JPA(Java persistence api)
+> JPA(Java persistence api) 是SpringData中，针对持久层操作的模块
 
-是SpringData中，针对持久层操作的模块
+#### 1. 入门使用
 
-#### 1. 创建项目
+##### 1. 创建项目
 
 选用  spring web + spring data jpa + jdbc api + mysql api
 
 导入 Druid 依赖
 
-#### 2. 编写配置文件
+##### 2. 编写配置文件
 
 ```yaml
 spring:
@@ -2100,7 +2102,7 @@ spring:
     show-sql: true
 ```
 
-#### 3. 编写实体类
+##### 3. 编写实体类
 
 ```java
 package com.day.springjpa.entity;
@@ -2165,7 +2167,7 @@ public class User {
 
 ```
 
-#### 4. 编写 Repository
+##### 4. 编写 Repository
 
 ```java
 package com.day.springjpa.repository;
@@ -2184,7 +2186,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 ```
 
-#### 5. 测试
+##### 5. 测试
 
 ```java
 package com.day.springjpa;
@@ -2219,6 +2221,168 @@ public class SpringjpaApplicationTests {
 }
 
 ```
+
+#### 2. 开发步骤
+
+使用 Spring Data JpA 进行持久层的开发，大概需要下面几步
+
+- 声明持久层的接口，该接口继承自 Repository 或者 Repository的子接口
+- 在接口中声明需要的方法 (按照特定的策略进行声明)
+- 在 Spring 配置文件中配置 SpringData, 让 Spring 为声明的接口创建代理对象
+
+```
+问: 使用jpa之后，只是什么了接口，继承了 Repository或者 其子接口，为何就能够使用呢?
+答：配置之后，Spring 扫描 指定的包以及子目录，为继承 Repository 或者其 子接口的接口创建 代理对象
+```
+
+#### 3. Repository接口
+
+- 是 Spring Data 中的一个核心的接口
+
+- 该接口不提供任何的方法，
+
+  ```
+  问: 既然不提供任何的方法，那么该接口的作用是什么呢?
+  答: 继承了 Repository 接口之后，Spring 扫描的时候，才会找到此接口，为其生成代理对象
+  ```
+
+- Spring Data 允许我们提供自定义的方法，但是方法要遵从策略，才能提供实现类
+
+- 如果不想要继承 Repository接口，还可以在接口上使用 @RepositoryDefinition注解
+
+  ```
+  1. @RepositoryDefinition注解 的功能 与继承 Repository 的功能是一样的
+  2. 其中 domainClass=T  idClass=主键类型
+  ```
+
+子接口:
+
+```
+1. CrudRepository
+	继承自 Repository，实现了基本的 CRUD 方法
+2. PagingAndSortingRepository
+	继承自 CrudRepository, 实现了一组 分页 + 排序的方法
+3. JpaRepository
+	继承自 PagingAndSortingRepository, 实现了一组 jpa 规范的方法
+```
+
+
+
+##### 1. CrudRepository接口
+
+​	CrudRepository接口提供了常用的 方法
+
+![image-20191231110744412](java8/image-20191231110744412.png)
+
+##### 2. PagingAndSortingRepository接口
+
+​	在常用的方法基础之上，提供了 分页 & 排序 的功能
+
+![image-20191231110833126](java8/image-20191231110833126.png)
+
+```
+ 看到 findAll(pageable) 这种方法使用的思路:
+ 1. 根据pageable参数 => 联想其类是 Pageable => 创建该类对象
+ 2. 由于 Pageable 是接口，因此，查看其实现类，new 实现类来创建真正的对象 (左侧写接口，右侧写实现)
+```
+
+##### 3. JpaRepository接口 
+
+![image-20191231113844851](java8/image-20191231113844851.png)
+
+#### 4. 查询关键字
+
+##### 1. 简单条件查询
+
+![image-20191231142823748](java8/image-20191231142823748.png)
+
+##### 2. 查询方法解析流程
+
+![image-20191231143115006](java8/image-20191231143115006.png)
+
+
+
+##### 3. 自定义查询
+
+简单查询虽然好用，但是同样会带来一个问题, 如果查询时，使用的方法特别多，那么拼接出来的方法名称就会特别的长，有没有更加简单的方法呢?
+
+答: 使用自定义的方法，在方法上使用 @Query 注解，博鳌是使用自定义的sql方法。其中 nativeQuery 标识使用 当前原sql进行查询
+
+![image-20191231145854792](java8/image-20191231145854792.png)
+
+![image-20191231150132487](java8/image-20191231150132487.png)
+
+##### 4. 更新操作
+
+问: 查看 Repository等接口提供的接口发现，并没有 update方法，那么如何实现 update 操作呢?
+
+```
+方式一:  使用 save方法，在save的时候，设置上 id 字段，就会更新。
+	注意点: 在使用 save 方法时，必须写上所有字段，不然没写的字段会被设置成 null。==> 如果想要使用 save 进行update 操作，那么首先需要 findOne， 然后更新字段，在save
+
+方式二: 使用 @Query 的方式，自定义 UPDATE 语句，进行执行
+	注意点:
+		1. 由于 使用了 UPDATE 语句，则需要 @Modifying 注解支持
+		2. 在使用 UPDATE 语句时，需要 在调用的地方添加事务，没有事务的话，不能进行正常的执行
+		3. 方法的返回值是 int， 标识更新语句所影响的行数
+```
+
+- Dao 层
+
+```java
+//Dao层，原生SQL实现更新方法接口
+@Query(value = "update Studnet set name=?1 where id=?2 ", nativeQuery = true)  
+@Modifying  
+public void updateOne(String name,int id); 
+```
+
+- Service层
+
+事务的管理都要在 Service 层
+
+```java
+//service层，在这个方法中调用上面的接口
+@Transactional
+public String updateOne(@RequestParam("name") String name, @RequestParam("id") Integer id) {
+        stuRepository.updateOne(name,id);
+        return "更新成功";
+    }
+```
+
+#### 5. 自定义方法
+
+根据上面知道，PersonRepository 在继承了 Repository 接口之后，所添加的自定义方法需要满足策略，否则不能添加默认实现。那么，如果既想要 继承Repository，又想要 能够添加自定义的方法，如何实现呢?
+
+```
+1. 自定义一个 PersonDao 接口，该接口中 添加 自定义的方法
+2. 想要使用 Repository 的默认实现，肯定需要继承 Repository接口，又要自定义的方法，那么也要继承 PersonDao接口
+3. PersonDao接口 的实现在哪呢？
+	约定: 会去  xxxRepositoryImpl 中，去查找 自定义方法的接口实现
+		==> 定义一个 PersonRepositoryImpl 实现类，继承自 PersonDao 接口，并对 自定义的方法进行实现
+```
+
+
+
+![image-20191231151155359](java8/image-20191231151155359.png)
+
+步骤:
+
+```
+1. 创建一个 PersonRepository, 继承自 JpaRepository 接口
+	JPA 提供默认的方法
+2. 创建一个 PersonDao 接口
+	该接口中定义 用户自定义的查询方法
+3. 实现 PersonDao 接口，创建一个 PersonRepositoryImpl 对象。并在实现类中 实现 PersonDao的接口
+4. 修改 PersonRepository， 让其也继承自 PersonDao 接口
+
+==> 在 Service 中，就可以使用 PersonRepository 对象调用 PersonDao中的接口方法，并且，在该方法会调用 PersonRepositoryImpl中的实现方法
+```
+
+
+
+![image-20191231151843970](java8/image-20191231151843970.png)
+
+![image-20191231151736977](java8/image-20191231151736977.png)
 
 ## 八. SpringBoot与缓存
 
