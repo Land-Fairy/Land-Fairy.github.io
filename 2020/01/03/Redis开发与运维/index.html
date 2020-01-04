@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JAVA,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Redis &amp;#x5F00;&amp;#x53D1;&amp;#x4E0E;&amp;#x8FD0;&amp;#x7EF4;&amp;#x4E66;&amp;#x7C4D;">
+<meta name="keywords" content="JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis开发与运维">
+<meta property="og:url" content="http://yoursite.com/2020/01/03/Redis开发与运维/index.html">
+<meta property="og:site_name" content="DayByDayの小屋">
+<meta property="og:description" content="Redis &amp;#x5F00;&amp;#x53D1;&amp;#x4E0E;&amp;#x8FD0;&amp;#x7EF4;&amp;#x4E66;&amp;#x7C4D;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134109542.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134135673.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134324668.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134417325.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134458158.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103154428622.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103154448554.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103160725301.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103114449010.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103114503321.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103131813322.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103150750790.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103154821592.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103171327074.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103172328497.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103172854212.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103172931406.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103174110457.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103180438871.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200104094842656.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200104114915788.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200104115056763.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200104132548176.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200104150028872.png">
+<meta property="og:updated_time" content="2020-01-04T07:04:24.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis开发与运维">
+<meta name="twitter:description" content="Redis &amp;#x5F00;&amp;#x53D1;&amp;#x4E0E;&amp;#x8FD0;&amp;#x7EF4;&amp;#x4E66;&amp;#x7C4D;">
+<meta name="twitter:image" content="http://yoursite.com/2020/01/03/Redis开发与运维/image-20200103134109542.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/03/Redis开发与运维/">
+
+
+
+
+
+  <title>Redis开发与运维 | DayByDayの小屋</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DayByDayの小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">编程之路</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/Redis开发与运维/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DayByDay">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DayByDayの小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis开发与运维</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-03T10:56:44+08:00">
+                2020-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Redis &#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;&#x4E66;&#x7C4D;</p>
+<a id="more"></a>
+
+<h2 id="&#x4E00;-&#x4F7F;&#x7528;&#x573A;&#x666F;"><a href="#&#x4E00;-&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x4E00;. &#x4F7F;&#x7528;&#x573A;&#x666F;"></a>&#x4E00;. &#x4F7F;&#x7528;&#x573A;&#x666F;</h2><h3 id="1-&#x7F13;&#x5B58;"><a href="#1-&#x7F13;&#x5B58;" class="headerlink" title="1. &#x7F13;&#x5B58;"></a>1. &#x7F13;&#x5B58;</h3><p>&#x52A0;&#x5FEB;&#x6570;&#x636E;&#x7684;&#x8BBF;&#x95EE;&#x901F;&#x5EA6;&#xFF0C;&#x964D;&#x4F4E;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x538B;&#x529B;</p>
+<ul>
+<li>&#x63D0;&#x4F9B;&#x4E86; &#x952E;&#x503C;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</li>
+<li>&#x63D0;&#x4F9B;&#x4E86; &#x7075;&#x6D3B;&#x63A7;&#x5236;&#x6700;&#x5927;&#x5185;&#x5B58;</li>
+<li>&#x63D0;&#x4F9B;&#x4E86; &#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x4E4B;&#x540E;&#x7684;&#x6DD8;&#x6C70;&#x7B56;&#x7565;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103134109542.png" alt="image-20200103134109542"></p>
+<p>&#x5408;&#x7406;&#x7684;&#x8BBE;&#x7F6E;&#x952E;&#x540D;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x63A8;&#x8350;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x4F7F;&#x7528; &quot;&#x4E1A;&#x52A1;&#x540D;: &#x5BF9;&#x8C61;&#x540D;: id: [&#x5C5E;&#x6027;]&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4F2A;&#x4EE3;&#x7801;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103134135673.png" alt="image-20200103134135673"></p>
+<h3 id="2-&#x6392;&#x884C;&#x699C;&#x7CFB;&#x7EDF;"><a href="#2-&#x6392;&#x884C;&#x699C;&#x7CFB;&#x7EDF;" class="headerlink" title="2. &#x6392;&#x884C;&#x699C;&#x7CFB;&#x7EDF;"></a>2. &#x6392;&#x884C;&#x699C;&#x7CFB;&#x7EDF;</h3><p>&#x6BD4;&#x5982;&#x8BB0;&#x5F55;&#x7528;&#x6237;&#x89C6;&#x9891;&#x70B9;&#x8D5E;&#x6392;&#x884C;&#x699C;</p>
+<ul>
+<li><p>&#x6DFB;&#x52A0;&#x7528;&#x6237;&#x70B9;&#x8D5E;&#x6570;</p>
+<p>&#x5047;&#x5B9A; &#x7528;&#x6237; mike &#x83B7;&#x53D6; 3&#x4E2A;&#x8D5E;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zadd user:ranking:2016_03_16 mike 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x589E;&#x52A0;&#x70B9;&#x8D5E;&#x6570;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zincrby user:ranking:2016_03_16 mike 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x83B7;&#x53D6;&#x70B9;&#x8D5E;&#x6570;&#x505A;&#x591A;&#x7684;10&#x4E2A;&#x7528;&#x6237;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrevrangebyrank user:ranking:2016_03_16 0 9</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x5C55;&#x793A;&#x7528;&#x6237;&#x5206;&#x6570; &#x548C; &#x6392;&#x540D;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zscore user:ranking:2016_03_16 mike</span><br><span class="line">zrank user:ranking:2016_03_16 mike</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-&#x8BA1;&#x6570;&#x5668;&#x5E94;&#x7528;"><a href="#3-&#x8BA1;&#x6570;&#x5668;&#x5E94;&#x7528;" class="headerlink" title="3. &#x8BA1;&#x6570;&#x5668;&#x5E94;&#x7528;"></a>3. &#x8BA1;&#x6570;&#x5668;&#x5E94;&#x7528;</h3><p>Redis &#x5929;&#x7136;&#x652F;&#x6301;&#x8BA1;&#x6570;&#x529F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x8BA1;&#x6570;&#x529F;&#x80FD;&#x6027;&#x80FD;&#x975E;&#x5E38;&#x597D;</p>
+<ul>
+<li>&#x4F2A;&#x4EE3;&#x7801;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103134324668.png" alt="image-20200103134324668"></p>
+<h3 id="4-&#x793E;&#x4EA4;&#x7F51;&#x7EDC;"><a href="#4-&#x793E;&#x4EA4;&#x7F51;&#x7EDC;" class="headerlink" title="4. &#x793E;&#x4EA4;&#x7F51;&#x7EDC;"></a>4. &#x793E;&#x4EA4;&#x7F51;&#x7EDC;</h3><h3 id="5-&#x6D88;&#x606F;&#x961F;&#x5217;&#x7CFB;&#x7EDF;"><a href="#5-&#x6D88;&#x606F;&#x961F;&#x5217;&#x7CFB;&#x7EDF;" class="headerlink" title="5. &#x6D88;&#x606F;&#x961F;&#x5217;&#x7CFB;&#x7EDF;"></a>5. &#x6D88;&#x606F;&#x961F;&#x5217;&#x7CFB;&#x7EDF;</h3><p>Redis &#x63D0;&#x4F9B;&#x4E86; &#x53D1;&#x5E03;&#x8BA2;&#x9605; &#x548C; &#x963B;&#x585E;&#x961F;&#x5217;&#x7684;&#x529F;&#x80FD;&#x3002;&#x867D;&#x7136;&#x4E0E; &#x4E13;&#x4E1A;&#x7684;&#x6D88;&#x606F;&#x961F;&#x5217;&#x6BD4;&#x8FD8;&#x4E0D;&#x591F;&#x5F3A;&#x5927;&#xFF0C;&#x5927;&#x4E8B;&#x5BF9;&#x4E00;&#x822C;&#x7684;&#x6D88;&#x606F;&#x961F;&#x5217;&#x57FA;&#x672C;&#x53EF;&#x4EE5;&#x6EE1;&#x8DB3;</p>
+<h3 id="6-&#x5171;&#x4EAB;session"><a href="#6-&#x5171;&#x4EAB;session" class="headerlink" title="6. &#x5171;&#x4EAB;session"></a>6. &#x5171;&#x4EAB;session</h3><p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103134417325.png" alt="image-20200103134417325"></p>
+<h3 id="7-&#x9650;&#x901F;"><a href="#7-&#x9650;&#x901F;" class="headerlink" title="7. &#x9650;&#x901F;"></a>7. &#x9650;&#x901F;</h3><p>&#x5047;&#x5B9A;&#x9650;&#x5236;&#x7528;&#x6237;&#x6BCF;&#x5206;&#x949F;&#x83B7;&#x53D6;&#x9A8C;&#x8BC1;&#x7801;&#x7684;&#x9891;&#x7387;&#x4E0D;&#x80FD;&#x8D85;&#x8FC7; 5&#x6B21;</p>
+<ul>
+<li>&#x4F2A;&#x4EE3;&#x7801;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103134458158.png" alt="image-20200103134458158"></p>
+<h3 id="8-&#x4FDD;&#x5B58;&#x6570;&#x636E;"><a href="#8-&#x4FDD;&#x5B58;&#x6570;&#x636E;" class="headerlink" title="8. &#x4FDD;&#x5B58;&#x6570;&#x636E;"></a>8. &#x4FDD;&#x5B58;&#x6570;&#x636E;</h3><ul>
+<li>&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x8868;&#x8BB0;&#x5F55;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103154428622.png" alt="image-20200103154428622"></p>
+<ul>
+<li>&#x4F7F;&#x7528;&#x54C8;&#x5E0C;&#x7C7B;&#x578B;&#x5B58;&#x50A8;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103154448554.png" alt="image-20200103154448554"></p>
+<h3 id="9-&#x6D88;&#x606F;&#x961F;&#x5217;"><a href="#9-&#x6D88;&#x606F;&#x961F;&#x5217;" class="headerlink" title="9. &#x6D88;&#x606F;&#x961F;&#x5217;"></a>9. &#x6D88;&#x606F;&#x961F;&#x5217;</h3><p>Redis &#x7684; lpush + brpop &#x53EF;&#x4EE5;&#x5B9E;&#x73B0; &#x963B;&#x585E;&#x961F;&#x5217;</p>
+<ul>
+<li>&#x751F;&#x4EA7;&#x8005;&#x4F7F;&#x7528; lpush &#x4ECE;&#x5217;&#x8868;&#x5DE6;&#x4FA7;&#x63D2;&#x5165;&#x5143;&#x7D20;</li>
+<li>&#x591A;&#x4E2A;&#x6D88;&#x8D39;&#x4E4B; &#x4F7F;&#x7528; brpop &#x963B;&#x585E;&#x5F0F;&#x7684; &#x201D;&#x62A2;&#x201C; &#x5C3E;&#x90E8;&#x7684;&#x5143;&#x7D20;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103160725301.png" alt="image-20200103160725301"></p>
+<p>&#x5217;&#x8868;&#x5176;&#x4ED6;&#x573A;&#x666F;</p>
+<ul>
+<li><p>&#x6808;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush + lpop = Stack</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x961F;&#x5217;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush + rpop = Queue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6709;&#x9650;&#x96C6;&#x5408;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush + ltrim = Capped Collection</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="10-&#x6587;&#x7AE0;&#x5217;&#x8868;"><a href="#10-&#x6587;&#x7AE0;&#x5217;&#x8868;" class="headerlink" title="10.&#x6587;&#x7AE0;&#x5217;&#x8868;"></a>10.&#x6587;&#x7AE0;&#x5217;&#x8868;</h3><p>&#x5BF9;&#x4E8E;&#x7528;&#x6237;&#x6587;&#x7AE0;&#x5217;&#x8868; &#xFF08;&#x7531;&#x4E8E;&#x6587;&#x7AE0;&#x6709;&#x5E8F;&#xFF0C;&#x4E14;&#x4F1A;&#x7528;&#x5230;&#x5206;&#x9875;), &#x53EF;&#x4EE5;&#x8003;&#x8651;&#x4F7F;&#x7528; &#x5217;&#x8868;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x7D22;&#x5F15;&#x8303;&#x56F4;&#x6765;&#x8FDB;&#x884C;&#x5143;&#x7D20;&#x7684;&#x83B7;&#x53D6;</p>
+<ul>
+<li>&#x54C8;&#x5E0C;&#x5B58;&#x50A8;&#x6BCF;&#x7BC7;&#x6587;&#x7AE0;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hmset article:1 prop1 v1 prop2 v2 ...</span><br><span class="line">...</span><br><span class="line">hmset article:k prop1 vk prop2 vk ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x6587;&#x7AE0;&#x5217;&#x8868;&#xFF0C;&#x4F7F;&#x7528; list</p>
+<p>&#x5217;&#x8868;&#x4E2D;&#x4FDD;&#x5B58;&#x7684;&#x662F; &#x54C8;&#x5E0C;&#x5B58;&#x50A8;&#x7684;key</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush user:1:articles article:1 article:2 article&#xFF1A;3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#x5206;&#x9875;&#x83B7;&#x53D6;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x83B7;&#x53D6; id=1&#x7528;&#x6237;&#x524D;10&#x7BC7;&#x6587;&#x7AE0;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// &#x83B7;&#x53D6; &#x6587;&#x7AE0; key</span><br><span class="line">articles = lrange user:1:articles 0 9</span><br><span class="line">// &#x83B7;&#x53D6;&#x6587;&#x7AE0;&#x5177;&#x4F53;&#x4FE1;&#x606F;</span><br><span class="line">for article in articles:</span><br><span class="line">	hegetall article</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-&#x7528;&#x6237;&#x6807;&#x7B7E;"><a href="#11-&#x7528;&#x6237;&#x6807;&#x7B7E;" class="headerlink" title="11. &#x7528;&#x6237;&#x6807;&#x7B7E;"></a>11. &#x7528;&#x6237;&#x6807;&#x7B7E;</h3><p>&#x7F51;&#x7AD9;&#x5BF9;&#x4E0D;&#x540C;&#x559C;&#x597D;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x6807;&#x7B7E;</p>
+<ul>
+<li>&#x6DFB;&#x52A0;&#x6807;&#x7B7E;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sadd user:1:tags tag1 tag2 tag3</span><br><span class="line">sadd user:2:tags tag2 tag3 tag5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4F7F;&#x7528; sinter &#xFF0C;&#x8BA1;&#x7B97;&#x7528;&#x6237;&#x5171;&#x540C;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x6807;&#x7B7E;</li>
+</ul>
+<p>&#x96C6;&#x5408;&#x7C7B;&#x578B;&#x7684;&#x7528;&#x5904;:</p>
+<ul>
+<li><p>&#x6807;&#x7B7E;</p>
+</li>
+<li><p>&#x751F;&#x6210;&#x968F;&#x673A;&#x6570;&#xFF08;&#x6BD4;&#x5982;&#x62BD;&#x5956;)</p>
+<p>spop srandmember</p>
+</li>
+<li><p>&#x793E;&#x4EA4;&#x9700;&#x6C42;</p>
+<p>sadd + sinter</p>
+</li>
+</ul>
+<h3 id="&#x4E0D;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;"><a href="#&#x4E0D;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;" class="headerlink" title="&#x4E0D;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;"></a>&#x4E0D;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;</h3><ul>
+<li>&#x7531;&#x4E8E;Redis &#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x4E0D;&#x9002;&#x5408; &#x5927;&#x89C4;&#x6A21;&#x7684;&#x6570;&#x636E;</li>
+<li>&#x51B7;&#x6570;&#x636E;(&#x8BBF;&#x95EE;&#x8F83;&#x5C11;)&#x7684;&#x6570;&#x636E;&#x4E0D;&#x9002;&#x5408;&#x653E;&#x5728; Redis &#x4E2D;</li>
+</ul>
+<h2 id="&#x4E8C;-API&#x7684;&#x4F7F;&#x7528;"><a href="#&#x4E8C;-API&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="&#x4E8C;. API&#x7684;&#x4F7F;&#x7528;"></a>&#x4E8C;. API&#x7684;&#x4F7F;&#x7528;</h2><h3 id="1-&#x5168;&#x5C40;&#x547D;&#x4EE4;"><a href="#1-&#x5168;&#x5C40;&#x547D;&#x4EE4;" class="headerlink" title="1. &#x5168;&#x5C40;&#x547D;&#x4EE4;"></a>1. &#x5168;&#x5C40;&#x547D;&#x4EE4;</h3><h4 id="1-&#x67E5;&#x770B;&#x6240;&#x6709;&#x952E;"><a href="#1-&#x67E5;&#x770B;&#x6240;&#x6709;&#x952E;" class="headerlink" title="1. &#x67E5;&#x770B;&#x6240;&#x6709;&#x952E;"></a>1. &#x67E5;&#x770B;&#x6240;&#x6709;&#x952E;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keys *</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x67E5;&#x770B;&#x952E;&#x603B;&#x6570;"><a href="#2-&#x67E5;&#x770B;&#x952E;&#x603B;&#x6570;" class="headerlink" title="2. &#x67E5;&#x770B;&#x952E;&#x603B;&#x6570;"></a>2. &#x67E5;&#x770B;&#x952E;&#x603B;&#x6570;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbsize</span><br></pre></td></tr></table></figure>
+
+<h5 id="&#x6CE8;&#x610F;"><a href="#&#x6CE8;&#x610F;" class="headerlink" title="&#x6CE8;&#x610F;:"></a>&#x6CE8;&#x610F;:</h5><p>dbsize &#x5728;&#x8BA1;&#x7B97;&#x952E;&#x603B;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x662F;&#x76F4;&#x63A5;&#x83B7;&#x53D6;Redis&#x5185;&#x7F6E;&#x7684;&#x952E;&#x603B;&#x6570;&#x53D8;&#x91CF;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x904D;&#x5386;&#x6240;&#x6709;&#x952E; =&#x300B; &#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(1)</p>
+<h4 id="3-&#x68C0;&#x67E5;&#x952E;&#x662F;&#x5426;&#x5B58;&#x5728;"><a href="#3-&#x68C0;&#x67E5;&#x952E;&#x662F;&#x5426;&#x5B58;&#x5728;" class="headerlink" title="3. &#x68C0;&#x67E5;&#x952E;&#x662F;&#x5426;&#x5B58;&#x5728;"></a>3. &#x68C0;&#x67E5;&#x952E;&#x662F;&#x5426;&#x5B58;&#x5728;</h4><p>&#x5B58;&#x5728;&#x8FD4;&#x56DE; 1&#xFF0C; &#x4E0D;&#x5B58;&#x5728;&#x8FD4;&#x56DE; 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exists key</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x5220;&#x9664;&#x952E;"><a href="#4-&#x5220;&#x9664;&#x952E;" class="headerlink" title="4. &#x5220;&#x9664;&#x952E;"></a>4. &#x5220;&#x9664;&#x952E;</h4><ol>
+<li>&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5220;&#x9664;&#x591A;&#x4E2A;</li>
+<li>&#x8FD4;&#x56DE;&#x503C;&#x4E3A;&#x6210;&#x529F;&#x5220;&#x9664;&#x952E;&#x7684;&#x4E2A;&#x6570;</li>
+<li>&#x5982;&#x679C;&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x952E;&#xFF0C;&#x8FD4;&#x56DE; 0</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-&#x952E;&#x8FC7;&#x671F;"><a href="#5-&#x952E;&#x8FC7;&#x671F;" class="headerlink" title="5. &#x952E;&#x8FC7;&#x671F;"></a>5. &#x952E;&#x8FC7;&#x671F;</h4><p>&#x5BF9;&#x952E;&#x6DFB;&#x52A0;&#x8FC7;&#x671F;&#x65F6;&#x95F4;&#x3002;&#x5728;&#x8D85;&#x8FC7;&#x8FC7;&#x671F;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x81EA;&#x52A8;&#x5220;&#x9664;&#x952E;&#x3002; &#x5355;&#x4F4D;&#x662F;&#x79D2;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expire key seconds</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-&#x67E5;&#x770B;&#x952E;&#x7684;&#x5269;&#x4F59;&#x8FC7;&#x671F;&#x65F6;&#x95F4;"><a href="#6-&#x67E5;&#x770B;&#x952E;&#x7684;&#x5269;&#x4F59;&#x8FC7;&#x671F;&#x65F6;&#x95F4;" class="headerlink" title="6. &#x67E5;&#x770B;&#x952E;&#x7684;&#x5269;&#x4F59;&#x8FC7;&#x671F;&#x65F6;&#x95F4;"></a>6. &#x67E5;&#x770B;&#x952E;&#x7684;&#x5269;&#x4F59;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</h4><p>&#x8FD4;&#x56DE;&#x503C;:</p>
+<ul>
+<li>&#x5927;&#x4E8E;&#x7B49;&#x4E8E;0&#x7684;&#x6574;&#x6570; =&gt; &#x952E;&#x5269;&#x4F59;&#x7684;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</li>
+<li>-1  =&gt; &#x952E;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</li>
+<li>-2 =&gt; &#x952E;&#x4E0D;&#x5B58;&#x5728;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ttl key</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-&#x952E;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x578B;"><a href="#7-&#x952E;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x578B;" class="headerlink" title="7. &#x952E;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x578B;"></a>7. &#x952E;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x578B;</h4><p>&#x8FD4;&#x56DE;&#x503C;:</p>
+<ul>
+<li>&#x5BF9;&#x5E94;&#x6570;&#x636E;&#x7C7B;&#x578B;</li>
+<li>none  =&gt; &#x952E;&#x4E0D;&#x5B58;&#x5728;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type key</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-&#x6570;&#x636E;&#x7ED3;&#x6784;"><a href="#2-&#x6570;&#x636E;&#x7ED3;&#x6784;" class="headerlink" title="2. &#x6570;&#x636E;&#x7ED3;&#x6784;"></a>2. &#x6570;&#x636E;&#x7ED3;&#x6784;</h3><p>type &#x547D;&#x4EE4;&#x8FD4;&#x56DE;&#x7684;&#x662F; &#x5F53;&#x524D;&#x952E;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7C7B;&#x578B; &#xFF08;&#x5BF9;&#x5916;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;):</p>
+<ul>
+<li>string (&#x5B57;&#x7B26;&#x4E32;)</li>
+<li>Hash (&#x54C8;&#x5E0C;)</li>
+<li>list (&#x5217;&#x8868;)</li>
+<li>set &#xFF08;&#x96C6;&#x5408;)</li>
+<li>zset (&#x6709;&#x5E8F;&#x96C6;&#x5408;)</li>
+</ul>
+<p>&#x6BCF;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x5E95;&#x5C42;&#x7684;&#x5185;&#x90E8;&#x7F16;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x591A;&#x79CD;&#x5B9E;&#x73B0;&#xFF01;</p>
+<h4 id="1-Redis-&#x6570;&#x636E;&#x7ED3;&#x6784;"><a href="#1-Redis-&#x6570;&#x636E;&#x7ED3;&#x6784;" class="headerlink" title="1. Redis &#x6570;&#x636E;&#x7ED3;&#x6784;"></a>1. Redis &#x6570;&#x636E;&#x7ED3;&#x6784;</h4><p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103114449010.png" alt="image-20200103114449010"></p>
+<p>Redis &#x63D0;&#x4F9B;&#x5185;&#x90E8;&#x7F16;&#x7801;&#x4E0E;&#x5916;&#x90E8;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684;&#x597D;&#x5904;:</p>
+<ul>
+<li>&#x6539;&#x8FDB;&#x5185;&#x90E8;&#x7F16;&#x7801;&#xFF0C;&#x5BF9;&#x5916;&#x90E8;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6CA1;&#x6709;&#x5F71;&#x54CD;</li>
+<li>&#x591A;&#x79CD;&#x5185;&#x90E8;&#x7F16;&#x7801;&#x53EF;&#x4EE5;&#x9002;&#x7528;&#x4E8E;&#x591A;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x573A;&#x666F;&#x3002;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x5BF9;&#x5E94;&#x573A;&#x666F;&#x81EA;&#x52A8;&#x5207;&#x6362;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103114503321.png" alt="image-20200103114503321"></p>
+<h3 id="3-&#x67B6;&#x6784;"><a href="#3-&#x67B6;&#x6784;" class="headerlink" title="3. &#x67B6;&#x6784;"></a>3. &#x67B6;&#x6784;</h3><p>Redis &#x4F7F;&#x7528; &#x5355;&#x7EBF;&#x7A0B;&#x67B6;&#x6784; + I/O &#x591A;&#x8DEF;&#x590D;&#x7528;&#x6A21;&#x578B; &#x6765;&#x5B9E;&#x73B0;&#x9AD8;&#x6027;&#x80FD;&#x7684;&#x5185;&#x5B58;&#x6570;&#x636E;&#x5E93;&#x670D;&#x52A1;</p>
+<p>Redis &#x6BCF;&#x6B21;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;&#xFF0C;&#x90FD;&#x4F1A;&#x7ECF;&#x5386; &#x53D1;&#x9001;&#x547D;&#x4EE4;&#xFF0C;&#x6267;&#x884C;&#x547D;&#x4EE4;&#xFF0C;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;3&#x4E2A;&#x6B65;&#x9AA4;</p>
+<p>&#x5176;&#x4E2D;:</p>
+<pre><code>1. &#x7531;&#x4E8E;Redis&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#x5904;&#x7406;&#x547D;&#x4EE4;&#xFF0C;&#x6240;&#x4EE5;&#x547D;&#x4EE4;&#x5230;&#x8FBE;Redis &#x670D;&#x52A1;&#x7AEF;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x4F1A;&#x88AB;&#x7ACB;&#x5373;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x8FDB;&#x5165;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#xFF0C;&#x7136;&#x540E;&#x88AB;&#x9010;&#x4E2A;&#x6267;&#x884C; ==&gt; &#x4E0D;&#x4F1A;&#x6709;&#x4E24;&#x6761;&#x547D;&#x4EE4;&#x540C;&#x65F6;&#x6267;&#x884C;</code></pre><h4 id="&#x4E3A;&#x4EC0;&#x4E48;&#x5355;&#x7EBF;&#x7A0B;&#x901F;&#x5EA6;&#x8FD8;&#x8FD9;&#x4E48;&#x5FEB;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x5355;&#x7EBF;&#x7A0B;&#x901F;&#x5EA6;&#x8FD8;&#x8FD9;&#x4E48;&#x5FEB;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x5355;&#x7EBF;&#x7A0B;&#x901F;&#x5EA6;&#x8FD8;&#x8FD9;&#x4E48;&#x5FEB;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x5355;&#x7EBF;&#x7A0B;&#x901F;&#x5EA6;&#x8FD8;&#x8FD9;&#x4E48;&#x5FEB;</h4><ul>
+<li><p>&#x7EAF;&#x5185;&#x5B58;&#x8BBF;&#x95EE;</p>
+<p>Redis &#x5C06;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x90FD;&#x653E;&#x5728;&#x4E86;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x5185;&#x5B58;&#x7684;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5927;&#x7EA6;&#x4E3A; 100&#x7EB3;&#x79D2; ==&gt; Redis &#x53EF;&#x4EE5;&#x6BCF;&#x79D2;&#x4E07;&#x7EA7;&#x522B;&#x8BBF;&#x95EE;&#x7684;&#x91CD;&#x8981;&#x57FA;&#x7840;</p>
+</li>
+<li><p>&#x975E;&#x963B;&#x585E;I/O </p>
+<p>Redis &#x4F7F;&#x7528; epoll &#x4F5C;&#x4E3A; I/o&#x68AD;&#x8DEF;&#x590D;&#x7528;&#x6280;&#x672F;&#x7684;&#x5B9E;&#x73B0;</p>
+<p>&#x52A0;&#x4E0A; Redis&#x81EA;&#x8EAB;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x6A21;&#x578B;&#xFF0C;&#x5C06; epoll&#x4E2D; &#x94FE;&#x63A5;&#xFF0C;&#x8BFB;&#x5199;&#xFF0C;&#x5173;&#x95ED;&#x90FD;&#x8F6C;&#x4E3A; &#x65F6;&#x95F4;&#xFF0C;&#x56E0;&#x6B64;&#x4E0D;&#x7528;&#x518D; &#x7F51;&#x7EDC;i/o&#x4E0A;&#x6D6A;&#x8D39;&#x8FC7;&#x591A;&#x7684;&#x65F6;&#x95F4;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103131813322.png" alt="image-20200103131813322"></p>
+</li>
+<li><p>&#x5355;&#x7EBF;&#x7A0B;&#x907F;&#x514D;&#x4E86;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x4E0E;&#x7ADE;&#x6001;&#x4EA7;&#x751F;&#x7684;&#x6D88;&#x8017;</p>
+<p>&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x597D;&#x5904;</p>
+<ul>
+<li>&#x7B80;&#x5316;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x548C;&#x7B97;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;</li>
+<li>&#x907F;&#x514D;&#x4E86;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x548C;&#x7ADE;&#x6001; &#x4EA7;&#x751F;&#x7684;&#x6D88;&#x8017;&#xFF08;&#x9501;&#x548C;&#x7EBF;&#x7A0B;&#x5207;&#x6362;&#x901A;&#x5E38;&#x90FD;&#x662F;&#x6027;&#x80FD;&#x6740;&#x624B;)</li>
+</ul>
+<p>&#x6CE8;&#x610F;&#x70B9;:</p>
+<p>&#x200B;    &#x5355;&#x7EBF;&#x7A0B;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x662F;&#x6709;&#x8981;&#x6C42;&#x7684;&#x3002;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#xFF0C;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;&#x5176;&#x4ED6;&#x547D;&#x4EE4;&#x7684;&#x963B;&#x585E; =&#x300B; Redis &#x662F;&#x9762;&#x5411;&#x5FEB;&#x901F;&#x6267;&#x884C;&#x573A;&#x666F;&#x7684;&#x6570;&#x636E;&#x5E93;</p>
+</li>
+</ul>
+<h3 id="4-&#x5B57;&#x7B26;&#x4E32;"><a href="#4-&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="4. &#x5B57;&#x7B26;&#x4E32;"></a>4. &#x5B57;&#x7B26;&#x4E32;</h3><p>&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x53EF;&#x4EE5;&#x4E3A;</p>
+<ul>
+<li><p>&#x7B80;&#x5355;&#x5B57;&#x7B26;&#x4E32;</p>
+</li>
+<li><p>&#x590D;&#x6742;&#x5B57;&#x7B26;&#x4E32;&#xFF08;JSON, XML&#x7B49;)</p>
+</li>
+<li><p>&#x6570;&#x5B57; (&#x6574;&#x6570;&#xFF0C;&#x6D6E;&#x70B9;&#x6570;)</p>
+</li>
+<li><p>&#x4E8C;&#x8FDB;&#x5236; (&#x56FE;&#x7247;&#xFF0C;&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;)</p>
+<p>&#x6B64;&#x7C7B;&#x578B;&#x503C;&#x6700;&#x5927;&#x4E0D;&#x80FD;&#x8D85;&#x8FC7; 521MB</p>
+</li>
+</ul>
+<h4 id="1-&#x8BBE;&#x7F6E;&#x503C;&#xFF08;set-setnx-setxx-mset"><a href="#1-&#x8BBE;&#x7F6E;&#x503C;&#xFF08;set-setnx-setxx-mset" class="headerlink" title="1. &#x8BBE;&#x7F6E;&#x503C;&#xFF08;set, setnx, setxx, mset)"></a>1. &#x8BBE;&#x7F6E;&#x503C;&#xFF08;set, setnx, setxx, mset)</h4><p>&#x5206;&#x5E03;&#x5F0F;&#x9501;: setnx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *	&#x8FD4;&#x56DE; OK &#x6807;&#x8BC6;&#x8BBE;&#x7F6E;&#x6210;&#x529F;</span><br><span class="line"> *  ex seconds: &#x4E3A;&#x952E;&#x8BBE;&#x7F6E; &#x8FC7;&#x671F;&#x65F6;&#x95F4; &#xFF08;&#x79D2;&#x4E3A;&#x5355;&#x4F4D;)</span><br><span class="line"> *  px milliseconds: &#x4E3A;&#x952E;&#x8BBE;&#x7F6E; &#x6BEB;&#x79D2;&#x8FC7;&#x671F;&#x65F6;&#x95F4; (&#x6BEB;&#x79D2;&#x4E3A;&#x5355;&#x4F4D;)</span><br><span class="line"> *  nx: &#x952E;&#x5FC5;&#x987B;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x624D;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6210;&#x529F; (&#x7528;&#x4E8E;&#x6DFB;&#x52A0;)  ==&gt; setnx</span><br><span class="line"> *  xx: &#x952E;&#x5FC5;&#x987B;&#x5B58;&#x5728;&#xFF0C;&#x624D;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6210;&#x529F; &#xFF08;&#x7528;&#x4E8E;&#x66F4;&#x65B0;)   ==&gt; setxx</span><br><span class="line"> */</span><br><span class="line">set key value [ex seconds] [px milliseconds] [mx|xx]</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> *	&#x6279;&#x91CF;&#x8BBE;&#x7F6E;&#x503C;</span><br><span class="line"> */</span><br><span class="line">mset key value [key value ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x83B7;&#x53D6;&#x503C;-get-mget"><a href="#2-&#x83B7;&#x53D6;&#x503C;-get-mget" class="headerlink" title="2. &#x83B7;&#x53D6;&#x503C; (get, mget)"></a>2. &#x83B7;&#x53D6;&#x503C; (get, mget)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * &#x5982;&#x679C;&#x952E;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x8FD4;&#x56DE; nil</span><br><span class="line"> */</span><br><span class="line">get key</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * &#x6279;&#x91CF;&#x83B7;&#x53D6;&#x503C;</span><br><span class="line"> * &#x8FD4;&#x56DE;&#x7684;&#x503C;&#xFF0C;&#x6309;&#x7167; key&#x7684;&#x987A;&#x5E8F;&#xFF0C;&#x5982;&#x679C;key&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x8BE5;&#x5904;&#x7684;&#x503C;&#x4E3A; nil</span><br><span class="line"> */</span><br><span class="line"> mget key [key ...]</span><br></pre></td></tr></table></figure>
+
+<p>&#x6279;&#x91CF;&#x64CD;&#x4F5C;&#x547D;&#x4EE4;&#x7684;&#x597D;&#x5904;:</p>
+<p>&#x200B;    &#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x63D0;&#x9AD8;&#x5F00;&#x53D1;&#x6548;&#x7387;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n&#x6B21;get&#x65F6;&#x95F4; = n&#x6B21;&#x7F51;&#x7EDC;&#x65F6;&#x95F4; + n&#x6B21;&#x547D;&#x4EE4;&#x65F6;&#x95F4;</span><br><span class="line">mget&#x65F6;&#x95F4; = 1&#x6B21;&#x7F51;&#x7EDC;&#x65F6;&#x95F4; + n&#x6B21;&#x547D;&#x4EE4;&#x65F6;&#x95F4;</span><br></pre></td></tr></table></figure>
+
+<p>&#x6CE8;&#x610F;:</p>
+<p>&#x200B;    &#x6BCF;&#x6B21;&#x6279;&#x91CF;&#x64CD;&#x4F5C;&#x53D1;&#x9001;&#x7684;&#x547D;&#x4EE4;&#x6570;&#x4E0D;&#x662F;&#x65E0;&#x9650;&#x5236;&#x7684;&#xFF0C;&#x6570;&#x91CF;&#x8FC7;&#x591A;&#x53EF;&#x80FD;&#x9020;&#x6210;Redis&#x963B;&#x585E;&#x6216;&#x8005;&#x7F51;&#x7EDC;&#x62E5;&#x585E;</p>
+<h4 id="3-&#x8BA1;&#x6570;"><a href="#3-&#x8BA1;&#x6570;" class="headerlink" title="3. &#x8BA1;&#x6570;"></a>3. &#x8BA1;&#x6570;</h4><ul>
+<li>incr (&#x81EA;&#x589E;)</li>
+<li>decr (&#x81EA;&#x51CF;)</li>
+<li>Incrby (&#x81EA;&#x589E;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x5B57;)</li>
+<li>decrby (&#x81EA;&#x51CF;&#x6307;&#x5B9A;&#x6570;&#x5B57;)</li>
+<li>incrbyfloat (&#x81EA;&#x589E;&#x6D6E;&#x70B9;&#x6570;)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * &#x5BF9;&#x503C;&#x505A;&#x81EA;&#x589E;&#x64CD;&#x4F5C;</span><br><span class="line"> * &#x8FD4;&#x56DE;&#x503C;:</span><br><span class="line"> 			&#x8FD4;&#x56DE;&#x9519;&#x8BEF;: &#x7531;&#x4E8E;&#x503C;&#x4E0D;&#x662F;&#x6574;&#x6570;</span><br><span class="line"> 			&#x8FD4;&#x56DE;&#x81EA;&#x589E;&#x540E;&#x7684;&#x7ED3;&#x679C;: &#x503C;&#x662F;&#x6574;&#x6570;</span><br><span class="line"> 			&#x6309;&#x7167;0&#x81EA;&#x589E;&#xFF0C;&#x8FD4;&#x56DE;1&#xFF1A;&#x952E;&#x4E0D;&#x5B58;&#x5728;</span><br><span class="line"> */</span><br><span class="line"> incr key</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x8BBE;&#x7F6E;&#x5E76;&#x8FD4;&#x56DE;&#x539F;&#x503C;"><a href="#4-&#x8BBE;&#x7F6E;&#x5E76;&#x8FD4;&#x56DE;&#x539F;&#x503C;" class="headerlink" title="4. &#x8BBE;&#x7F6E;&#x5E76;&#x8FD4;&#x56DE;&#x539F;&#x503C;"></a>4. &#x8BBE;&#x7F6E;&#x5E76;&#x8FD4;&#x56DE;&#x539F;&#x503C;</h4><p>&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x503C;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x539F;&#x6765;&#x7684;&#x65E7;&#x503C;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getset key value</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-&#x54C8;&#x5E0C;"><a href="#5-&#x54C8;&#x5E0C;" class="headerlink" title="5. &#x54C8;&#x5E0C;"></a>5. &#x54C8;&#x5E0C;</h3><p>&#x54C8;&#x5E0C;&#x7C7B;&#x578B;&#xFF0C;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x8BED;&#x8A00;&#x4E2D;&#x53EF;&#x80FD;&#x662F; &#x54C8;&#x5E0C;&#xFF0C;&#x5B57;&#x5178;&#xFF0C;&#x5173;&#x8054;&#x6570;&#x7EC4;&#x7B49;&#x7B49;&#x3002;</p>
+<ul>
+<li>&#x5B57;&#x7B26;&#x4E32;&#x4E0E;&#x54C8;&#x5E0C;&#x7684;&#x5BF9;&#x6BD4;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103150750790.png" alt="image-20200103150750790"></p>
+<h4 id="1-&#x8BBE;&#x7F6E;&#x503C;"><a href="#1-&#x8BBE;&#x7F6E;&#x503C;" class="headerlink" title="1. &#x8BBE;&#x7F6E;&#x503C;"></a>1. &#x8BBE;&#x7F6E;&#x503C;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * &#x8FD4;&#x56DE;&#x503C;:</span><br><span class="line"> 		1 =&#x300B; &#x6210;&#x529F;</span><br><span class="line"> 		0 =&#x300B; &#x5931;&#x8D25;</span><br><span class="line"> */</span><br><span class="line">hset key field value</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> *	hsetnx &#x4E0E; setnx &#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x662F;&#x9488;&#x5BF9;&#x7684;&#x5BF9;&#x8C61;&#x662F; field&#xFF0C;&#x800C;&#x975E; key</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x83B7;&#x53D6;&#x503C;"><a href="#2-&#x83B7;&#x53D6;&#x503C;" class="headerlink" title="2. &#x83B7;&#x53D6;&#x503C;"></a>2. &#x83B7;&#x53D6;&#x503C;</h4><p>&#x8FD4;&#x56DE;&#x503C;:</p>
+<ul>
+<li>&#x5BF9;&#x5E94;&#x503C;</li>
+<li>&#x5982;&#x679C;&#x952E;&#x6216;&#x8005;field&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x8FD4;&#x56DE;nil</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hget key field</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-&#x5220;&#x9664;field"><a href="#3-&#x5220;&#x9664;field" class="headerlink" title="3. &#x5220;&#x9664;field"></a>3. &#x5220;&#x9664;field</h4><p>&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4E3A; &#x6210;&#x529F;&#x5220;&#x9664;field&#x7684;&#x4E2A;&#x6570;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdel key field [field ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x8BA1;&#x7B97;field&#x4E2A;&#x6570;"><a href="#4-&#x8BA1;&#x7B97;field&#x4E2A;&#x6570;" class="headerlink" title="4. &#x8BA1;&#x7B97;field&#x4E2A;&#x6570;"></a>4. &#x8BA1;&#x7B97;field&#x4E2A;&#x6570;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hlen key</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-&#x6279;&#x91CF;&#x8BBE;&#x7F6E;&#x6216;&#x83B7;&#x53D6;field-value"><a href="#5-&#x6279;&#x91CF;&#x8BBE;&#x7F6E;&#x6216;&#x83B7;&#x53D6;field-value" class="headerlink" title="5. &#x6279;&#x91CF;&#x8BBE;&#x7F6E;&#x6216;&#x83B7;&#x53D6;field-value"></a>5. &#x6279;&#x91CF;&#x8BBE;&#x7F6E;&#x6216;&#x83B7;&#x53D6;field-value</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hmget key field [field ...]</span><br><span class="line">hmset key field value [field value ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-&#x5224;&#x65AD;-field-&#x662F;&#x5426;&#x5B58;&#x5728;"><a href="#6-&#x5224;&#x65AD;-field-&#x662F;&#x5426;&#x5B58;&#x5728;" class="headerlink" title="6. &#x5224;&#x65AD; field &#x662F;&#x5426;&#x5B58;&#x5728;"></a>6. &#x5224;&#x65AD; field &#x662F;&#x5426;&#x5B58;&#x5728;</h4><p>&#x8FD4;&#x56DE;&#x503C;:</p>
+<ul>
+<li>1  =&gt; &#x5B58;&#x5728;</li>
+<li>0  =&gt; &#x4E0D;&#x5B58;&#x5728;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexists key field</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-&#x83B7;&#x53D6;&#x6240;&#x6709;-field"><a href="#7-&#x83B7;&#x53D6;&#x6240;&#x6709;-field" class="headerlink" title="7. &#x83B7;&#x53D6;&#x6240;&#x6709; field"></a>7. &#x83B7;&#x53D6;&#x6240;&#x6709; field</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hkeys key</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-&#x83B7;&#x53D6;&#x6240;&#x6709;value"><a href="#8-&#x83B7;&#x53D6;&#x6240;&#x6709;value" class="headerlink" title="8. &#x83B7;&#x53D6;&#x6240;&#x6709;value"></a>8. &#x83B7;&#x53D6;&#x6240;&#x6709;value</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hvals key</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;-field-value"><a href="#9-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684;-field-value" class="headerlink" title="9. &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684; field-value"></a>9. &#x83B7;&#x53D6;&#x6240;&#x6709;&#x7684; field-value</h4><p>&#x6CE8;&#x610F;:</p>
+<ul>
+<li>&#x5982;&#x679C; field&#x4E2A;&#x6570;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x963B;&#x585E; Redis</li>
+<li>&#x5982;&#x679C;&#x8FD8;&#x9700;&#x8981;&#x83B7;&#x53D6;&#x90E8;&#x5206;field, &#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F7F;&#x7528; hmget</li>
+<li>&#x5982;&#x679C;&#x4E00;&#x5B9A;&#x8981;&#x83B7;&#x53D6;&#x5168;&#x90E8;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F7F;&#x7528; hscan</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgetall key</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-&#x9012;&#x589E;"><a href="#10-&#x9012;&#x589E;" class="headerlink" title="10. &#x9012;&#x589E;"></a>10. &#x9012;&#x589E;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hincrby key field</span><br><span class="line">hincrbyfloat key field</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-&#x5217;&#x8868;"><a href="#6-&#x5217;&#x8868;" class="headerlink" title="6. &#x5217;&#x8868;"></a>6. &#x5217;&#x8868;</h3><ul>
+<li><p>&#x7528;&#x6765;&#x5B58;&#x50A8;&#x591A;&#x4E2A;&#x6709;&#x5E8F;&#x7684;&#x5B57;&#x7B26;&#x4E32;</p>
+</li>
+<li><p>&#x5217;&#x8868;&#x4E2D;&#x6BCF;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x6210;&#x4E3A; &#x5143;&#x7D20;(element)</p>
+</li>
+<li><p>&#x4E00;&#x4E2A;&#x5217;&#x8868;&#x6700;&#x591A;&#x53EF;&#x4EE5;&#x5B58;&#x50A8; 2^32-1&#x4E2A;&#x5143;&#x7D20;</p>
+</li>
+<li><p>Redis&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x5217;&#x8868;&#x4E24;&#x7AEF;&#x8FDB;&#x884C; &#x63D2;&#x5165;(push) &#x548C; &#x5F39;&#x51FA;(pop) &#x64CD;&#x4F5C;</p>
+</li>
+<li><p>Redis&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x8303;&#x56F4;&#x7684;&#x5143;&#x7D20;&#x5217;&#x8868;&#xFF0C;&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x7684;&#x5143;&#x7D20;&#x7B49;</p>
+</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103154821592.png" alt="image-20200103154821592"></p>
+<p>&#x5217;&#x8868;&#x7C7B;&#x578B;&#x7684;&#x7279;&#x70B9;:</p>
+<pre><code>- &#x6709;&#x5E8F;
+- &#x53EF;&#x4EE5;&#x91CD;&#x590D;</code></pre><h4 id="1-&#x6DFB;&#x52A0;&#x64CD;&#x4F5C;"><a href="#1-&#x6DFB;&#x52A0;&#x64CD;&#x4F5C;" class="headerlink" title="1. &#x6DFB;&#x52A0;&#x64CD;&#x4F5C;"></a>1. &#x6DFB;&#x52A0;&#x64CD;&#x4F5C;</h4><ul>
+<li>&#x4ECE;&#x53F3;&#x8FB9;&#x63D2;&#x5165;&#x5143;&#x7D20;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpush key value [value ...]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4ECE;&#x5DE6;&#x8FB9;&#x63D2;&#x5165;&#x5143;&#x7D20;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpush key value [value ...]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x5411;&#x67D0;&#x4E2A;&#x5143;&#x7D20;&#x524D;&#x6216;&#x8005;&#x540E;&#x63D2;&#x5165;&#x5143;&#x7D20;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linsert key before|after list&#x4E2D;&#x5DF2;&#x6709;&#x503C; value</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x67E5;&#x627E;"><a href="#2-&#x67E5;&#x627E;" class="headerlink" title="2. &#x67E5;&#x627E;"></a>2. &#x67E5;&#x627E;</h4><ul>
+<li>&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x8303;&#x56F4;&#x5185;&#x7684;&#x5143;&#x7D20;&#x5217;&#x8868;<ul>
+<li>&#x7D22;&#x5F15;&#x4E0B;&#x6807;&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x5206;&#x522B;&#x662F; 0 &#x5230; N-1</li>
+<li>&#x7D22;&#x5F15;&#x4E0B;&#x6807;&#x4ECE;&#x53F3;&#x5230;&#x5DE6;&#x5206;&#x522B;&#x662F; -1 &#x5230; -N</li>
+<li>lrange&#x4E2D;&#x7684; end &#x5305;&#x542B;&#x4E86;&#x81EA;&#x8EAB;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrange key start end</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x4E0B;&#x6807;&#x7684;&#x5143;&#x7D20;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lindex key index</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x83B7;&#x53D6;&#x5217;&#x8868;&#x957F;&#x5EA6;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">llen key</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-&#x5220;&#x9664;"><a href="#3-&#x5220;&#x9664;" class="headerlink" title="3. &#x5220;&#x9664;"></a>3. &#x5220;&#x9664;</h4><ul>
+<li>&#x4ECE;&#x5DE6;&#x6D4B;&#x5F39;&#x51FA;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpop key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x4ECE;&#x53F3;&#x4FA7;&#x5F39;&#x51FA;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpop key</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>&#x5220;&#x9664;&#x6307;&#x5B9A;&#x5143;&#x7D20;</p>
+<p>&#x4ECE;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x627E;&#x5230; key &#x4E2D;&#x7B49;&#x4E8E; value&#x7684;&#x5143;&#x7D20;&#x8FDB;&#x884C;&#x5220;&#x9664;&#xFF0C;&#x6839;&#x636E;count&#x5206;&#x4E3A;&#x4E0B;&#x9762;&#x4E09;&#x79CD;&#x60C5;&#x51B5;</p>
+<ul>
+<li>count&gt;0  =&#x300B; &#x4ECE;&#x5DE6;&#x5411;&#x53F3;&#xFF0C;&#x5220;&#x9664;&#x6700;&#x591A; count&#x4E2A;&#x5143;&#x7D20;</li>
+<li>count&lt;0  =&gt;   &#x4ECE;&#x53F3;&#x5411;&#x5DE6;&#xFF0C;&#x5220;&#x9664;&#x6700;&#x591A; count &#x7EDD;&#x5BF9;&#x503C;&#x4E2A;&#x5143;&#x7D20;</li>
+<li>count =0     =&gt; &#x5220;&#x9664;&#x6240;&#x6709;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrem key count value</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x6309;&#x7167;&#x6240;&#x6709;&#x8303;&#x56F4;&#x4FEE;&#x526A;&#x5217;&#x8868;"><a href="#4-&#x6309;&#x7167;&#x6240;&#x6709;&#x8303;&#x56F4;&#x4FEE;&#x526A;&#x5217;&#x8868;" class="headerlink" title="4. &#x6309;&#x7167;&#x6240;&#x6709;&#x8303;&#x56F4;&#x4FEE;&#x526A;&#x5217;&#x8868;"></a>4. &#x6309;&#x7167;&#x6240;&#x6709;&#x8303;&#x56F4;&#x4FEE;&#x526A;&#x5217;&#x8868;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ltrim key start end</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-&#x4FEE;&#x6539;"><a href="#5-&#x4FEE;&#x6539;" class="headerlink" title="5. &#x4FEE;&#x6539;"></a>5. &#x4FEE;&#x6539;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lset key index newValue</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-&#x963B;&#x585E;&#x64CD;&#x4F5C;"><a href="#6-&#x963B;&#x585E;&#x64CD;&#x4F5C;" class="headerlink" title="6. &#x963B;&#x585E;&#x64CD;&#x4F5C;"></a>6. &#x963B;&#x585E;&#x64CD;&#x4F5C;</h4><p>&#x662F; lpop &#x548C; rpop&#x7684;&#x963B;&#x585E;&#x7248;&#x672C;</p>
+<p>timeout:</p>
+<ul>
+<li>&#x5927;&#x4E8E;0  =&gt; &#x7B49;&#x5F85;&#x5BF9;&#x5E94;&#x79D2;&#x6570;</li>
+<li>&#x7B49;&#x4E8E;0  =&gt; &#x4E00;&#x76F4;&#x7B49;&#x5F85;&#x4E0B;&#x53BB;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">blpop key [key ...] timeout</span><br><span class="line">brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
+
+<p>&#x6CE8;&#x610F;:</p>
+<p>&#x200B;    1. &#x5982;&#x679C;&#x662F;&#x591A;&#x4E2A;&#x952E;&#xFF0C;&#x5219;&#x4F1A;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x904D;&#x5386;&#xFF0C;&#x4E00;&#x65E6;&#x6709;&#x4E00;&#x4E2A;&#x952E;&#x53EF;&#x4EE5;&#x5F39;&#x51FA;&#xFF0C;&#x5219;&#x4F1A;&#x7ACB;&#x5373;&#x8FD4;&#x56DE; ==&gt; &#x8FD4;&#x56DE;&#x51FA;&#x503C;&#x7684;&#x5143;&#x7D20;&#x53EF;&#x80FD;&#x4F1A;&#x4E0E; key&#x7684;&#x987A;&#x5E8F;&#x4E0D;&#x4E00;&#x81F4;</p>
+<p>&#x200B;    2. &#x5982;&#x679C;&#x591A;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x5BF9;&#x540C;&#x4E00;&#x4E2A; &#x5217;&#x8868;&#x8FDB;&#x884C; blpop&#x6216;&#x8005; brpop, &#x5982;&#x679C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x4EE5;&#x62A2;&#x5230;&#xFF0C;&#x5176;&#x4ED6;&#x5BA2;&#x6237;&#x7AEF;&#x8FDB;&#x884C;&#x963B;&#x585E;</p>
+<h3 id="7-&#x96C6;&#x5408;"><a href="#7-&#x96C6;&#x5408;" class="headerlink" title="7. &#x96C6;&#x5408;"></a>7. &#x96C6;&#x5408;</h3><p>&#x96C6;&#x5408;(set) &#x4E5F;&#x662F;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x591A;&#x4E2A;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x4E0E;&#x5217;&#x8868;&#x7C7B;&#x578B;&#x7684;&#x4E0D;&#x540C;&#x70B9;:</p>
+<ul>
+<li>&#x96C6;&#x5408;&#x4E2D;&#x4E0D;&#x5141;&#x8BB8;&#x91CD;&#x590D;&#x5143;&#x7D20;</li>
+<li>&#x96C6;&#x5408;&#x4E2D;&#x5143;&#x7D20;&#x65E0;&#x5E8F;</li>
+<li>&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x7D22;&#x5F15;&#x4E0B;&#x6807;&#x83B7;&#x53D6;&#x5143;&#x7D20;</li>
+</ul>
+<p>&#x4E00;&#x4E2A;&#x96C6;&#x5408;&#x6700;&#x591A;&#x5B58;&#x50A8; 2^32-1 &#x4E2A;&#x5143;&#x7D20;</p>
+<p>Redis &#x4E0D;&#x4EC5;&#x4EC5;&#x652F;&#x6301;&#x96C6;&#x5408;&#x5185;&#x90E8;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;&#xFF0C;&#x8FD8;&#x652F;&#x6301;&#x591A;&#x4E2A;&#x96C6;&#x5408; &#x53D6; &#x4EA4;&#x5E76;&#x5DEE; &#x7B49;&#x64CD;&#x4F5C;</p>
+<h4 id="1-&#x6DFB;&#x52A0;&#x5143;&#x7D20;"><a href="#1-&#x6DFB;&#x52A0;&#x5143;&#x7D20;" class="headerlink" title="1. &#x6DFB;&#x52A0;&#x5143;&#x7D20;"></a>1. &#x6DFB;&#x52A0;&#x5143;&#x7D20;</h4><p>&#x8FD4;&#x56DE;&#x6210;&#x529F;&#x6DFB;&#x52A0;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sadd key elment [element ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x5220;&#x9664;&#x5143;&#x7D20;"><a href="#2-&#x5220;&#x9664;&#x5143;&#x7D20;" class="headerlink" title="2. &#x5220;&#x9664;&#x5143;&#x7D20;"></a>2. &#x5220;&#x9664;&#x5143;&#x7D20;</h4><p>&#x8FD4;&#x56DE;j&#x7ED3;&#x679C;&#x4E3A; &#x6210;&#x529F;&#x5220;&#x9664;&#x5143;&#x7D20;&#x4E2A;&#x6570;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">srem key element [element ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-&#x8BA1;&#x7B97;&#x5143;&#x7D20;&#x4E2A;&#x6570;"><a href="#3-&#x8BA1;&#x7B97;&#x5143;&#x7D20;&#x4E2A;&#x6570;" class="headerlink" title="3. &#x8BA1;&#x7B97;&#x5143;&#x7D20;&#x4E2A;&#x6570;"></a>3. &#x8BA1;&#x7B97;&#x5143;&#x7D20;&#x4E2A;&#x6570;</h4><p>&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(1), &#x76F4;&#x63A5;&#x4F7F;&#x7528; Redis&#x5185;&#x90E8;&#x7684;&#x904D;&#x5386;&#xFF0C;&#x800C;&#x975E;&#x904D;&#x5386;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scard key</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x96C6;&#x5408;&#x5185;"><a href="#4-&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x96C6;&#x5408;&#x5185;" class="headerlink" title="4. &#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x96C6;&#x5408;&#x5185;"></a>4. &#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5728;&#x96C6;&#x5408;&#x5185;</h4><p>&#x8FD4;&#x56DE;&#x503C;:</p>
+<p>&#x200B;    0 =&gt; &#x4E0D;&#x5728;</p>
+<p>&#x200B;    1 =&gt; &#x5728;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sismember key element</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-&#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x4E2A;&#x6570;&#x5143;&#x7D20;"><a href="#5-&#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x4E2A;&#x6570;&#x5143;&#x7D20;" class="headerlink" title="5. &#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x4E2A;&#x6570;&#x5143;&#x7D20;"></a>5. &#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x4E2A;&#x6570;&#x5143;&#x7D20;</h4><p>count &#x662F;&#x53EF;&#x9009;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A; 1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">srandmember key [count]</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-&#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x5F39;&#x51FA;&#x5143;&#x7D20;"><a href="#6-&#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x5F39;&#x51FA;&#x5143;&#x7D20;" class="headerlink" title="6. &#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x5F39;&#x51FA;&#x5143;&#x7D20;"></a>6. &#x968F;&#x673A;&#x4ECE;&#x96C6;&#x5408;&#x5F39;&#x51FA;&#x5143;&#x7D20;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spop key</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x5143;&#x7D20;"><a href="#7-&#x83B7;&#x53D6;&#x6240;&#x6709;&#x5143;&#x7D20;" class="headerlink" title="7. &#x83B7;&#x53D6;&#x6240;&#x6709;&#x5143;&#x7D20;"></a>7. &#x83B7;&#x53D6;&#x6240;&#x6709;&#x5143;&#x7D20;</h4><p>&#x5982;&#x679C;&#x5143;&#x7D20;&#x8FC7;&#x591A;&#xFF0C;&#x5B58;&#x5728;&#x963B;&#x585E;&#x53EF;&#x80FD;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smember key</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x4EA4;&#x96C6;"><a href="#8-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x4EA4;&#x96C6;" class="headerlink" title="8. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x4EA4;&#x96C6;"></a>8. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x4EA4;&#x96C6;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinter key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5E76;&#x96C6;"><a href="#9-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5E76;&#x96C6;" class="headerlink" title="9. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5E76;&#x96C6;"></a>9. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5E76;&#x96C6;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sunion key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5DEE;&#x96C6;"><a href="#10-&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5DEE;&#x96C6;" class="headerlink" title="10. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5DEE;&#x96C6;"></a>10. &#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x5DEE;&#x96C6;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdiff key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-&#x7F13;&#x5B58;-&#x96C6;&#x5408;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;"><a href="#11-&#x7F13;&#x5B58;-&#x96C6;&#x5408;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;" class="headerlink" title="11. &#x7F13;&#x5B58; &#x96C6;&#x5408;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;"></a>11. &#x7F13;&#x5B58; &#x96C6;&#x5408;&#x64CD;&#x4F5C;&#x7ED3;&#x679C;</h4><p>&#x5982;&#x679C;&#x5143;&#x7D20;&#x8F83;&#x591A;&#xFF0C;&#x90A3;&#x4E48;&#x96C6;&#x5408;&#x95F4;&#x7684;&#x5143;&#x7D20;&#x53EF;&#x80FD;&#x6BD4;&#x8F83;&#x8017;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x5728;&#x53E6;&#x5916;&#x7684;key&#x4E2D;,&#x4E0B;&#x6B21;&#x76F4;&#x63A5;&#x4F7F;&#x7528;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sinterstore destination key [key ...]</span><br><span class="line">sunionstore destination key [key ...]</span><br><span class="line">sdiffstore destination key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-&#x6709;&#x5E8F;&#x96C6;&#x5408;"><a href="#8-&#x6709;&#x5E8F;&#x96C6;&#x5408;" class="headerlink" title="8. &#x6709;&#x5E8F;&#x96C6;&#x5408;"></a>8. &#x6709;&#x5E8F;&#x96C6;&#x5408;</h3><p>&#x76F8;&#x5BF9;&#x6709;&#x5E8F;&#x96C6;&#x5408;&#x7279;&#x70B9;:</p>
+<ul>
+<li><p>&#x4E0D;&#x80FD;&#x6709;&#x91CD;&#x590D;&#x6210;&#x5458;</p>
+</li>
+<li><p>&#x5143;&#x7D20;&#x53EF;&#x4EE5;&#x6392;&#x5E8F;</p>
+<p>&#x7ED9;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x5206;&#x6570;(score) &#x4F5C;&#x4E3A;&#x6392;&#x5E8F;&#x7684;&#x4F9D;&#x636E;&#xFF08;Score &#x53EF;&#x4EE5;&#x91CD;&#x590D;)</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103171327074.png" alt="image-20200103171327074"></p>
+</li>
+</ul>
+<h4 id="1-&#x6DFB;&#x52A0;&#x6210;&#x5458;"><a href="#1-&#x6DFB;&#x52A0;&#x6210;&#x5458;" class="headerlink" title="1. &#x6DFB;&#x52A0;&#x6210;&#x5458;"></a>1. &#x6DFB;&#x52A0;&#x6210;&#x5458;</h4><p>&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4EE3;&#x8868; &#x6210;&#x529F;&#x6DFB;&#x52A0;&#x6210;&#x5458;&#x7684;&#x4E2A;&#x6570;</p>
+<p>zadd&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(log(n)), sadd &#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A; O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zadd key score member [score member ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-&#x8BA1;&#x7B97;&#x6210;&#x5458;&#x4E2A;&#x6570;"><a href="#2-&#x8BA1;&#x7B97;&#x6210;&#x5458;&#x4E2A;&#x6570;" class="headerlink" title="2. &#x8BA1;&#x7B97;&#x6210;&#x5458;&#x4E2A;&#x6570;"></a>2. &#x8BA1;&#x7B97;&#x6210;&#x5458;&#x4E2A;&#x6570;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcard key</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-&#x8FD4;&#x56DE;&#x6210;&#x5458;&#x5206;&#x6570;"><a href="#3-&#x8FD4;&#x56DE;&#x6210;&#x5458;&#x5206;&#x6570;" class="headerlink" title="3. &#x8FD4;&#x56DE;&#x6210;&#x5458;&#x5206;&#x6570;"></a>3. &#x8FD4;&#x56DE;&#x6210;&#x5458;&#x5206;&#x6570;</h4><p>&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x8FD4;&#x56DE; nil</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zscore key member</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-&#x8BA1;&#x7B97;&#x6210;&#x5458;&#x7684;&#x6392;&#x540D;"><a href="#4-&#x8BA1;&#x7B97;&#x6210;&#x5458;&#x7684;&#x6392;&#x540D;" class="headerlink" title="4. &#x8BA1;&#x7B97;&#x6210;&#x5458;&#x7684;&#x6392;&#x540D;"></a>4. &#x8BA1;&#x7B97;&#x6210;&#x5458;&#x7684;&#x6392;&#x540D;</h4><p>Zrank: &#x6309;&#x7167;&#x5206;&#x6570;&#xFF0C;&#x4ECE;&#x4F4E;&#x5230;&#x9AD8;&#x8FD4;&#x56DE;&#x6392;&#x540D;&#xFF08;&#x6392;&#x540D;&#x4ECE; 0 &#x5F00;&#x59CB;)</p>
+<p>Zrevrank: &#x76F8;&#x53CD;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zrank key member</span><br><span class="line">zrevrank key member</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-&#x5220;&#x9664;&#x6210;&#x5458;"><a href="#5-&#x5220;&#x9664;&#x6210;&#x5458;" class="headerlink" title="5. &#x5220;&#x9664;&#x6210;&#x5458;"></a>5. &#x5220;&#x9664;&#x6210;&#x5458;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zrem key member [member ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-&#x589E;&#x52A0;-&#x6210;&#x5458;&#x7684;&#x5206;&#x6570;"><a href="#6-&#x589E;&#x52A0;-&#x6210;&#x5458;&#x7684;&#x5206;&#x6570;" class="headerlink" title="6. &#x589E;&#x52A0; &#x6210;&#x5458;&#x7684;&#x5206;&#x6570;"></a>6. &#x589E;&#x52A0; &#x6210;&#x5458;&#x7684;&#x5206;&#x6570;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zincrby key increment member</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x8303;&#x56F4;&#x6210;&#x5458;"><a href="#7-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x8303;&#x56F4;&#x6210;&#x5458;" class="headerlink" title="7. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x8303;&#x56F4;&#x6210;&#x5458;"></a>7. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x8303;&#x56F4;&#x6210;&#x5458;</h4><p>&#x6DFB;&#x52A0; withscore &#x9009;&#x9879;&#xFF0C;&#x5219;&#x540C;&#x65F6;&#x8FD4;&#x56DE;&#x6210;&#x5458;&#x7684;&#x5206;&#x6570;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zrange key start end [withscore]</span><br><span class="line">zrevrange key start end [withscore]</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6210;&#x5458;"><a href="#8-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6210;&#x5458;" class="headerlink" title="8. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6210;&#x5458;"></a>8. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6210;&#x5458;</h4><p>limit offset count &#x9009;&#x9879;&#x7528;&#x6765;&#x9650;&#x5236; &#x8F93;&#x51FA;&#x7684; &#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#x548C;&#x4E2A;&#x6570;</p>
+<p>min &#x548C; max &#x8FD8;&#x652F;&#x6301; &#x5F00;&#x533A;&#x95F4;(&#x5C0F;&#x62EC;&#x53F7;) &#x548C; &#x95ED;&#x533A;&#x95F4; (&#x4E2D;&#x62EC;&#x53F7;)</p>
+<p>-inf &#x548C; +inf &#x5206;&#x522B;&#x4EE3;&#x8868; &#x65E0;&#x7EBF;&#x5C0F; &#x548C; &#x65E0;&#x9650;&#x5927;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zrangebyscore key min max [withscore] [limit offset count]</span><br><span class="line">zrevrangebyscore key min max [withscore] [limit offset count]</span><br><span class="line"></span><br><span class="line">zrangebyscore  user:ranking (200 +inf withscore</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x6210;&#x5458;&#x4E2A;&#x6570;"><a href="#9-&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x6210;&#x5458;&#x4E2A;&#x6570;" class="headerlink" title="9. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x6210;&#x5458;&#x4E2A;&#x6570;"></a>9. &#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x5185;&#x6210;&#x5458;&#x4E2A;&#x6570;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcount key min max</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-&#x5220;&#x9664;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x5185;&#x7684;&#x5347;&#x5E8F;&#x5143;&#x7D20;"><a href="#10-&#x5220;&#x9664;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x5185;&#x7684;&#x5347;&#x5E8F;&#x5143;&#x7D20;" class="headerlink" title="10. &#x5220;&#x9664;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x5185;&#x7684;&#x5347;&#x5E8F;&#x5143;&#x7D20;"></a>10. &#x5220;&#x9664;&#x6307;&#x5B9A;&#x6392;&#x540D;&#x5185;&#x7684;&#x5347;&#x5E8F;&#x5143;&#x7D20;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zremrangebyrank key start end</span><br></pre></td></tr></table></figure>
+
+<h4 id="11-&#x5220;&#x9664;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x7684;&#x6210;&#x5458;"><a href="#11-&#x5220;&#x9664;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x7684;&#x6210;&#x5458;" class="headerlink" title="11. &#x5220;&#x9664;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x7684;&#x6210;&#x5458;"></a>11. &#x5220;&#x9664;&#x6307;&#x5B9A;&#x5206;&#x6570;&#x8303;&#x56F4;&#x7684;&#x6210;&#x5458;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
+
+<h4 id="12-&#x96C6;&#x5408;&#x95F4;&#x64CD;&#x4F5C;"><a href="#12-&#x96C6;&#x5408;&#x95F4;&#x64CD;&#x4F5C;" class="headerlink" title="12. &#x96C6;&#x5408;&#x95F4;&#x64CD;&#x4F5C;"></a>12. &#x96C6;&#x5408;&#x95F4;&#x64CD;&#x4F5C;</h4><p>&#x5BFC;&#x5165;&#x6709;&#x5E8F;&#x96C6;&#x5408;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103172328497.png" alt="image-20200103172328497"></p>
+<ul>
+<li>&#x4EA4;&#x96C6;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * destination&#xFF1A; &#x4EA4;&#x96C6;&#x8BA1;&#x7B97;&#x7ED3;&#x679C;&#x4FDD;&#x5B58;&#x5230;&#x8FD9;&#x4E2A; &#x952E;</span><br><span class="line"> * numkeys:      &#x9700;&#x8981;&#x505A;&#x4EA4;&#x96C6;&#x8BA1;&#x7B97;&#x952E;&#x7684;&#x4E2A;&#x6570;</span><br><span class="line"> * key[key ...]  &#x9700;&#x8981;&#x505A;&#x4EA4;&#x96C6;&#x8BA1;&#x7B97;&#x7684;&#x952E;</span><br><span class="line"> * weights weight [weight ...] &#x6BCF;&#x4E2A;&#x952E;&#x7684;&#x6743;&#x91CD;&#x3002;&#x5728;&#x505A;&#x4EA4;&#x96C6;&#x8BA1;&#x7B97;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;&#x952E;&#x4E2D;&#x6BCF;&#x4E2A;member&#x90FD;&#x4F1A;&#x5C06;&#x81EA;&#x5DF1;&#x5206;&#x6570;&#x4E58;&#x4EE5;&#x8FD9;&#x4E2A;&#x6743;&#x91CD;&#xFF0C;&#x6BCF;&#x4E2A;&#x952E;&#x7684;&#x6743;&#x91CD;&#x9ED8;&#x8BA4;&#x662F;1</span><br><span class="line"> * aggregate sum|min|max&#xFF1A; &#x8BA1;&#x7B97;&#x6210;&#x5458;&#x4EA4;&#x96C6;&#x4E4B;&#x540E;&#xFF0C;&#x5206;&#x503C;&#x53EF;&#x4EE5;&#x6309;&#x7167; sum(&#x548C;) min max &#x505A;&#x6C47;&#x603B;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;sum</span><br><span class="line"> */</span><br><span class="line">zinterstore destination numkeys key [key ...] [weights weight [weight ...]] [aggregate sum|min|max]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103172854212.png" alt="image-20200103172854212"></p>
+<p>&#x66F4;&#x6539; user:ranking:2 &#x7684;&#x6743;&#x91CD;&#x4E3A; 0.5, &#x5E76;&#x4E14;&#x4F7F;&#x7528; max &#x8FDB;&#x884C;&#x805A;&#x5408;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103172931406.png" alt="image-20200103172931406"></p>
+<ul>
+<li><p>&#x5E76;&#x96C6;</p>
+<p>&#x5BF9;&#x4E8E;&#x5E76;&#x96C6;&#xFF0C;&#x4F7F;&#x7528; zunionstore &#xFF0C;&#x5176;&#x4F59;&#x4E0E; &#x4EA4;&#x96C6;&#x4E00;&#x81F4;</p>
+</li>
+</ul>
+<h3 id="9-&#x952E;&#x7BA1;&#x7406;"><a href="#9-&#x952E;&#x7BA1;&#x7406;" class="headerlink" title="9. &#x952E;&#x7BA1;&#x7406;"></a>9. &#x952E;&#x7BA1;&#x7406;</h3><h4 id="1-&#x91CD;&#x547D;&#x540D;key"><a href="#1-&#x91CD;&#x547D;&#x540D;key" class="headerlink" title="1. &#x91CD;&#x547D;&#x540D;key"></a>1. &#x91CD;&#x547D;&#x540D;key</h4><p>&#x5982;&#x679C; rename &#x4E4B;&#x524D;&#xFF0C;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E00;&#x4E2A; newkey &#x7684;&#x952E;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x952E;&#x7684;&#x503C;&#x4F1A;&#x88AB;&#x8986;&#x76D6;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename key newkey</span><br></pre></td></tr></table></figure>
+
+<p>&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x88AB;&#x5F3A;&#x884C; rename, &#x53EF;&#x4EE5;&#x4F7F;&#x7528; renamenx, &#x786E;&#x4FDD;&#x53EA;&#x6709; newkey&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x65F6;&#x5019;&#x624D;&#x88AB;&#x8986;&#x76D6;</p>
+<h4 id="2-&#x968F;&#x673A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;-key"><a href="#2-&#x968F;&#x673A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;-key" class="headerlink" title="2. &#x968F;&#x673A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; key"></a>2. &#x968F;&#x673A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">randomkey</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-key-&#x8FC7;&#x671F;"><a href="#3-key-&#x8FC7;&#x671F;" class="headerlink" title="3. key &#x8FC7;&#x671F;"></a>3. key &#x8FC7;&#x671F;</h4><h4 id="4-&#x8FC1;&#x79FB;&#x952E;"><a href="#4-&#x8FC1;&#x79FB;&#x952E;" class="headerlink" title="4. &#x8FC1;&#x79FB;&#x952E;"></a>4. &#x8FC1;&#x79FB;&#x952E;</h4><p>&#x7528;&#x6765;&#x5C06;&#x90E8;&#x5206;&#x6570;&#x636E;&#x4ECE; &#x4E00;&#x4E2A; Redis &#x8FC1;&#x79FB;&#x5230; &#x53E6;&#x5916;&#x4E00;&#x4E2A; Redis &#xFF08;&#x6BD4;&#x5982;&#x4ECE;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x5230;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;)</p>
+<ul>
+<li><p>move</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move key db</span><br></pre></td></tr></table></figure>
+
+<p>mover &#x7528;&#x4E8E;&#x5728; Redis&#x5185;&#x90E8;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;&#x3002;Redis&#x7684;&#x5185;&#x90E8;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5E93;(&#x5F7C;&#x6B64;&#x5728;&#x6570;&#x636E;&#x4E0A;&#x662F;&#x9694;&#x79BB;&#x7684;)</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103174110457.png" alt="image-20200103174110457"></p>
+</li>
+<li><p>dump + restore</p>
+<p>&#x7528;&#x4E8E;&#x5728;&#x4E0D;&#x540C;&#x7684; Redis&#x5B9E;&#x4F8B;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x8FC1;&#x79FB;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8FC1;&#x79FB;&#x6B65;&#x9AA4;&#x5982;&#x4E0B;:</p>
+<ul>
+<li>&#x5728;&#x6E90;Redis&#x4E0A;&#xFF0C;dump &#x547D;&#x4EE4;&#x4F1A;&#x5C06; &#x952E;&#x503C;&#x8FDB;&#x884C;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x683C;&#x5F0F; &#x91C7;&#x7528; RDB &#x683C;&#x5F0F;</li>
+<li>&#x5728;&#x76EE;&#x6807;Redis&#x4E0A;&#xFF0C;restore&#x547D;&#x4EE4;&#x5C06;&#x4E0A;&#x9762; &#x5E8F;&#x5217;&#x5316;&#x7684;&#x503C;&#x8FDB;&#x884C;&#x590D;&#x539F;&#xFF0C;&#x5176;&#x4E2D; ttl &#x4EE3;&#x8868; &#x8FC7;&#x671F;&#x65F6;&#x95F4;&#xFF0C; &#x5982;&#x679C;ttl=0&#x6807;&#x8BC6;&#x6CA1;&#x6709;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dump key</span><br><span class="line">restore key ttl value</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200103180438871.png" alt="image-20200103180438871"></p>
+<p>&#x6CE8;&#x610F;: &#x8FC1;&#x79FB;&#x8FC7;&#x7A0B;&#x662F;&#x5206;&#x4E24;&#x6B65;&#x8FDB;&#x884C;&#x7684;</p>
+<ul>
+<li>&#x6574;&#x4E2A;&#x8FC1;&#x79FB;&#x8FC7;&#x7A0B;&#x5E76;&#x975E;&#x539F;&#x5B50;&#x6027;&#x7684;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;&#x5BA2;&#x6237;&#x7AEF;&#x5206;&#x6B65;&#x5B8C;&#x6210;&#x7684;</li>
+<li>&#x8FC1;&#x79FB;&#x662F;&#x5F00;&#x542F;&#x4E86;&#x4E24;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#xFF0C;&#x6240;&#x4EE5; dump&#x7684;&#x7ED3;&#x679C; &#x4E0D;&#x662F;&#x5728; &#x6E90;Redis &#x548C; &#x76EE;&#x6807;Redis&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x4F20;&#x8F93;</li>
+</ul>
+</li>
+<li><p>migrate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * host: &#x76EE;&#x6807;Redis&#x7684;IP&#x5730;&#x5740;</span><br><span class="line"> * port: &#x76EE;&#x6807;Redis&#x7684;&#x7AEF;&#x53E3;&#x54E6;</span><br><span class="line"> * key: &#x5982;&#x679C;&#x9700;&#x8981;&#x8FC1;&#x79FB;&#x591A;&#x4E2A;&#x952E;&#xFF0C;&#x4F7F;&#x7528;  &quot;&quot;</span><br><span class="line"> * destion-db: &#x76EE;&#x6807;Redis&#x7684;&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;</span><br><span class="line"> * timeout: &#x8FC1;&#x79FB;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#xFF08;&#x5355;&#x4F4D; &#x6BEB;&#x79D2;&#xFF09;</span><br><span class="line"> * [copy]: &#x6807;&#x8BC6; &#x8FC1;&#x79FB;&#x540E;&#xFF0C;&#x5E76;&#x4E0D;&#x5220;&#x9664;&#x6E90;&#x952E;</span><br><span class="line"> * [replace]: &#x8FC1;&#x79FB;&#x65F6;&#xFF0C;&#x5BF9;&#x76EE;&#x6807;Redis&#x4E2D;key&#x8FDB;&#x884C;&#x6570;&#x636E;&#x8986;&#x76D6;</span><br><span class="line"> * [keys key[key...]]: &#x8FC1;&#x79FB;&#x591A;&#x4E2A;&#x952E;,&#x6BD4;&#x5982; &quot;keys key1 key2 key4&quot;</span><br><span class="line"> */</span><br><span class="line">migrate host port key|&quot;&quot; destination-db timeout [copy] [replace] [keys key]</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p>  &#x7528;&#x4E8E;&#x5728;Redis&#x7684;&#x5B9E;&#x4F8B;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x7684;&#x8FC1;&#x79FB;&#xFF0C;&#x5E76;&#x4E14;&#x5177;&#x6709;&#x539F;&#x5B50;&#x6027;</p>
+<ol>
+<li><p>&#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x662F;&#x539F;&#x5B50;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5728;&#x591A;&#x4E2A; Redis&#x5B9E;&#x4F8B;&#x4E0A;&#x5F00;&#x542F;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x6E90; Redis&#x4E0A;&#x6267;&#x884C;migrate&#x547D;&#x4EE4;</p>
+</li>
+<li><p>migrate&#x547D;&#x4EE4;&#x7684;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x76F4;&#x63A5;&#x5728; &#x6E90;Redis &#x548C; &#x76EE;&#x6807;Redis&#x4E0A;&#x5B8C;&#x6210;</p>
+</li>
+<li><p>&#x76EE;&#x6807;Redis &#x5B8C;&#x6210; restore &#x4E4B;&#x540E;&#x4F1A;&#x53D1;&#x9001; OK &#x7ED9;&#x6E90; Redis&#xFF0C;&#x7136;&#x540E; &#x6E90;Redis &#x5728;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x5220;&#x9664;&#x5BF9;&#x5E94;&#x7684;&#x952E;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200104094842656.png" alt="image-20200104094842656"></p>
+</li>
+</ol>
+<h3 id="10-&#x904D;&#x5386;&#x952E;"><a href="#10-&#x904D;&#x5386;&#x952E;" class="headerlink" title="10. &#x904D;&#x5386;&#x952E;"></a>10. &#x904D;&#x5386;&#x952E;</h3><ul>
+<li><p>&#x5168;&#x91CF;&#x904D;&#x5386;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * keys &#x662F;&#x652F;&#x6301; pattern &#x5339;&#x914D;&#x7684;</span><br><span class="line"> *  * &#x4EE3;&#x8868;&#x5339;&#x914D;&#x4EFB;&#x610F;&#x5B57;&#x7B26;</span><br><span class="line"> *  . &#x4EE3;&#x8868;&#x5339;&#x914D;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;</span><br><span class="line"> *  [] &#x4EE3;&#x8868;&#x5339;&#x914D;&#x90E8;&#x5206;&#x5B57;&#x7B26;</span><br><span class="line"> *  \x &#x7528;&#x6765;&#x505A;&#x8F6C;&#x79FB;</span><br><span class="line"> */</span><br><span class="line">keys pattern</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6E10;&#x8FDB;&#x5F0F;&#x904D;&#x5386;</p>
+<p>&#x6709;&#x6548;&#x89E3;&#x51B3; keys &#x547D;&#x4EE4;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x91C7;&#x7528;&#x6E10;&#x8FDB;&#x5F0F;&#x904D;&#x5386;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x89E3;&#x51B3; keys&#x547D;&#x4EE4;&#x53EF;&#x80FD;&#x5E26;&#x6765;&#x7684;&#x963B;&#x585E;&#x95EE;&#x9898;&#x3002;&#x6BCF;&#x6B21; scan&#x547D;&#x4EE4;&#x7684;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x662F; O(1), &#x4F46;&#x662F;&#x771F;&#x6B63;&#x5B9E;&#x73B0;keys&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x591A;&#x6B21;&#x6267;&#x884C;scan</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *	cursor: &#x662F;&#x4E00;&#x4E2A;&#x6E38;&#x6807;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x904D;&#x5386;&#x4ECE;0&#x5F00;&#x59CB;&#xFF0C;&#x6BCF;&#x6B21;scan&#x904D;&#x5386;&#x5B8C;&#xFF0C;&#x90FD;&#x4F1A;&#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x6E38;&#x6807;&#x7684;&#x503C;&#xFF0C;&#x76F4;&#x5230;&#x4E3A;0&#xFF0C;&#x6807;&#x8BC6;&#x904D;&#x5386;&#x7ED3;&#x675F;</span><br><span class="line"> * [match pattern]: &#x7528;&#x6765;&#x505A; &#x6A21;&#x5F0F;&#x7684;&#x5339;&#x914D;</span><br><span class="line"> * [count number]: &#x6BCF;&#x6B21;&#x8981;&#x904D;&#x5386;&#x7684;&#x952E;&#x4E2A;&#x6570;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;10&#xFF0C;&#x53EA;&#x53EF;&#x4EE5;&#x9002;&#x5F53;&#x7684;&#x589E;&#x5927;</span><br><span class="line"> */</span><br><span class="line">scan cursor [match pattern] [count number]</span><br></pre></td></tr></table></figure>
+
+<h5 id="&#x5B58;&#x5728;&#x95EE;&#x9898;"><a href="#&#x5B58;&#x5728;&#x95EE;&#x9898;" class="headerlink" title="&#x5B58;&#x5728;&#x95EE;&#x9898;:"></a>&#x5B58;&#x5728;&#x95EE;&#x9898;:</h5><p>&#x200B;    &#x5982;&#x679C;&#x5728;scan&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x6709;&#x952E;&#x7684;&#x53D8;&#x5316;&#xFF08;&#x589E;&#x52A0;&#xFF0C;&#x5220;&#x9664;&#xFF0C;&#x4FEE;&#x6539;&#xFF09;&#xFF0C;&#x5219;&#x65B0;&#x589E;&#x7684;&#x952E;&#x53EF;&#x80FD;&#x6CA1;&#x6709;&#x904D;&#x5386;&#x5230;&#xFF0C;&#x6216;&#x8005;&#x51FA;&#x73B0;&#x904D;&#x5386;&#x51FA;&#x4E86;&#x91CD;&#x590D;&#x7684;&#x952E;</p>
+</li>
+<li><p>&#x54C8;&#x5E0C;&#xFF0C;&#x96C6;&#x5408;&#xFF0C;&#x6709;&#x5E8F;&#x96C6;&#x5408;&#x7684;&#x6E10;&#x8FDB;&#x5F0F;&#x904D;&#x5386;</p>
+<p>hscan, sscan, zscan</p>
+</li>
+</ul>
+<h3 id="11-&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;"><a href="#11-&#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;" class="headerlink" title="11. &#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;"></a>11. &#x6570;&#x636E;&#x5E93;&#x7BA1;&#x7406;</h3><h4 id="1-&#x5207;&#x6362;&#x6570;&#x636E;&#x5E93;"><a href="#1-&#x5207;&#x6362;&#x6570;&#x636E;&#x5E93;" class="headerlink" title="1. &#x5207;&#x6362;&#x6570;&#x636E;&#x5E93;"></a>1. &#x5207;&#x6362;&#x6570;&#x636E;&#x5E93;</h4><p>Redis &#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E2D;&#x6709; 16&#x4E2A;&#x6570;&#x636E;&#x5E93;&#xFF0C; &#x9ED8;&#x8BA4;&#x8FDB;&#x5165;&#x7684;&#x662F; 0&#x53F7;&#x6570;&#x636E;&#x5E93;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select dbIndex</span><br></pre></td></tr></table></figure>
+
+<p>&#x4F46;&#x662F;&#xFF0C;Redis&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x5B9E;&#x73B0;Redis Cluster &#x53EA;&#x5141;&#x8BB8;&#x4F7F;&#x7528; 0&#x53F7;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x5411;&#x4E0B;&#x517C;&#x5BB9;&#xFF0C;&#x8BE5;&#x529F;&#x80FD;&#x6CA1;&#x6709;&#x88AB;&#x5B8C;&#x5168;&#x5E9F;&#x5F03;</p>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x591A;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x7684;&#x529F;&#x80FD;&#x5462;</p>
+<blockquote>
+<p>&#x53EF;&#x4EE5;&#x5728;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x90E8;&#x7F72;&#x591A;&#x4E2A;Redis&#x5B9E;&#x4F8B;&#xFF0C;&#x5F7C;&#x6B64;&#x4F7F;&#x7528;&#x7AEF;&#x53E3;&#x6765;&#x533A;&#x5206;</p>
+</blockquote>
+<h4 id="2-flushdb-flushall"><a href="#2-flushdb-flushall" class="headerlink" title="2. flushdb/flushall"></a>2. flushdb/flushall</h4><p>&#x5982;&#x679C;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;&#x952E;&#x503C;&#x6BD4;&#x8F83;&#x591A;&#xFF0C;&#x5B58;&#x5728;&#x963B;&#x585E;Redis&#x7684;&#x53EF;&#x80FD;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flushdb: &#x6E05;&#x9664;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;</span><br><span class="line">flushall: &#x6E05;&#x9664;&#x6240;&#x6709;&#x6570;&#x636E;&#x5E93;</span><br></pre></td></tr></table></figure>
+
+<h2 id="&#x4E09;-&#x5176;&#x4ED6;&#x529F;&#x80FD;"><a href="#&#x4E09;-&#x5176;&#x4ED6;&#x529F;&#x80FD;" class="headerlink" title="&#x4E09;. &#x5176;&#x4ED6;&#x529F;&#x80FD;"></a>&#x4E09;. &#x5176;&#x4ED6;&#x529F;&#x80FD;</h2><h3 id="1-&#x6162;&#x67E5;&#x8BE2;&#x5206;&#x6790;"><a href="#1-&#x6162;&#x67E5;&#x8BE2;&#x5206;&#x6790;" class="headerlink" title="1. &#x6162;&#x67E5;&#x8BE2;&#x5206;&#x6790;"></a>1. &#x6162;&#x67E5;&#x8BE2;&#x5206;&#x6790;</h3><h4 id="1-&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;"><a href="#1-&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;" class="headerlink" title="1. &#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;"></a>1. &#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;</h4><blockquote>
+<p>&#x7CFB;&#x7EDF;&#x5728;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x524D;&#x540E;&#x8BA1;&#x7B97;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x5F53;&#x8D85;&#x8FC7;&#x9884;&#x8BBE;&#x9608;&#x503C;&#x540E;&#xFF0C;&#x5C06;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF08;&#x53D1;&#x751F;&#x65F6;&#x95F4;&#xFF0C;&#x8017;&#x65F6;&#xFF0C;&#x547D;&#x4EE4;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#xFF09;&#x7B49;&#x8FDB;&#x884C;&#x8BB0;&#x5F55;</p>
+</blockquote>
+<h4 id="2-&#x547D;&#x4EE4;&#x751F;&#x547D;&#x5468;&#x671F;"><a href="#2-&#x547D;&#x4EE4;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="2. &#x547D;&#x4EE4;&#x751F;&#x547D;&#x5468;&#x671F;"></a>2. &#x547D;&#x4EE4;&#x751F;&#x547D;&#x5468;&#x671F;</h4><ol>
+<li>&#x53D1;&#x9001;&#x547D;&#x4EE4;</li>
+<li>&#x547D;&#x4EE4;&#x6392;&#x961F;</li>
+<li>&#x547D;&#x4EE4;&#x6267;&#x884C;</li>
+<li>&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</li>
+</ol>
+<p>Redis&#x4E2D; &#x6162;&#x67E5;&#x8BE2;&#x53EA;&#x662F;&#x7EDF;&#x8BA1;&#x4E86; &#x6B65;&#x9AA4;3 &#x7684;&#x7ED3;&#x679C; ==&gt; &#x5982;&#x679C;&#x65E5;&#x5FD7;&#x4E2D;&#x6CA1;&#x6709;&#x6162;&#x67E5;&#x8BE2;&#x8BB0;&#x5F55;&#xFF0C;&#x4E5F;&#x5E76;&#x4E0D;&#x4EE3;&#x8868;&#x5BA2;&#x6237;&#x7AEF;&#x6CA1;&#x6709;&#x8D85;&#x65F6;&#x7684;&#x95EE;&#x9898;</p>
+<h4 id="3-&#x914D;&#x7F6E;&#x53C2;&#x6570;"><a href="#3-&#x914D;&#x7F6E;&#x53C2;&#x6570;" class="headerlink" title="3. &#x914D;&#x7F6E;&#x53C2;&#x6570;"></a>3. &#x914D;&#x7F6E;&#x53C2;&#x6570;</h4><ul>
+<li><p>&#x9884;&#x8BBE;&#x9608;&#x503C;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">slowlog-log-slower-than  &#x5355;&#x4F4D;&#x662F;&#x5FAE;&#x5999;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;10000</span><br><span class="line">&#x5982;&#x679C; = 0&#xFF1A; &#x6807;&#x8BC6;&#x8BB0;&#x5F55;&#x6240;&#x6709;&#x7684;&#x547D;&#x4EE4;&#xFF1B;</span><br><span class="line">&#x5982;&#x679C; &lt; 0; &#x6807;&#x8BC6;&#x4E0D;&#x8BB0;&#x5F55;&#x4EFB;&#x4F55;&#x547D;&#x4EE4;</span><br><span class="line"></span><br><span class="line">==&#x300B; &#x5982;&#x679C;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x5728; 1&#x6BEB;&#x79D2;&#x4EE5;&#x4E0A;&#xFF0C;&#x90A3;&#x4E48;Redis&#x7684;&#x5E76;&#x53D1; &#x4E0D;&#x5230; 1000&#xFF0C;&#x56E0;&#x6B64;&#x5BF9;&#x4E8E;&#x9AD8; OPS&#x7684;&#x573A;&#x666F;&#xFF0C;&#x9526;&#x8863;&#x8BBE;&#x7F6E;&#x4E3A; 1&#x6BEB;&#x79D2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x6162;&#x67E5;&#x8BE2;&#x8BB0;&#x5F55;&#x7684;&#x5B58;&#x653E;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">slowlog-max-len: &#x6307;&#x5B9A;&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x6700;&#x591A;&#x5B58;&#x50A8;&#x591A;&#x5C11;&#x6761;</span><br><span class="line">==&gt; Redis &#x4F7F;&#x7528; &#x4E00;&#x4E2A;&#x5217;&#x8868;&#x6765;&#x5B58;&#x50A8; &#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#xFF0C;&#x8BE5;&#x53C2;&#x6570;&#x6307;&#x5B9A;&#x7684;&#x5C31;&#x662F; &#x5217;&#x8868;&#x7684;&#x6700;&#x5927;&#x957F;&#x5EA6;</span><br><span class="line">&#x7EBF;&#x4E0A;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x5EFA;&#x8BAE;&#x8BBE;&#x7F6E;&#x5728; 1000&#x4EE5;&#x4E0A;&#x3002;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="4-&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x7684;&#x8BBF;&#x95EE;&#x7BA1;&#x7406;"><a href="#4-&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x7684;&#x8BBF;&#x95EE;&#x7BA1;&#x7406;" class="headerlink" title="4.&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x7684;&#x8BBF;&#x95EE;&#x7BA1;&#x7406;"></a>4.&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;&#x7684;&#x8BBF;&#x95EE;&#x7BA1;&#x7406;</h4><p>&#x867D;&#x7136; &#x65E5;&#x5FD7;&#x5B58;&#x50A8;&#x5728; Redis&#x7684;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x4F46;&#x662F; Redis &#x6CA1;&#x6709;&#x66B4;&#x9732;&#x8FD9;&#x4E9B;key&#xFF0C;&#x800C;&#x662F;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x7EC4;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#x548C;&#x7BA1;&#x7406;</p>
+<ul>
+<li>&#x83B7;&#x53D6;&#x6162;&#x67E5;&#x8BE2;&#x65E5;&#x5FD7;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slowlog get [n]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x957F;&#x5EA6;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slowlog len</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x91CD;&#x7F6E;(&#x6E05;&#x7406;&#x64CD;&#x4F5C;)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slowlog reset</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Redis-cli"><a href="#2-Redis-cli" class="headerlink" title="2. Redis-cli"></a>2. Redis-cli</h3><p>&#x4F7F;&#x7528; redis-cli-help &#x547D;&#x4EE4;&#x67E5;&#x8BE2;&#x5E2E;&#x52A9;</p>
+<h4 id="1-r"><a href="#1-r" class="headerlink" title="1. -r"></a>1. -r</h4><p>-r (repeat)&#xFF1A;&#x4EE3;&#x8868;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x591A;&#x6B21;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -r 3 ping</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-i"><a href="#2-i" class="headerlink" title="2. -i"></a>2. -i</h4><p>-i (interval): &#x6807;&#x8BC6;&#x6BCF;&#x9694;&#x51E0;&#x79D2;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x547D;&#x4EE4;&#x3002;&#x5355;&#x4F4D;&#x662F;&#x79D2;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<p>&#x200B;    -r &#x8981;&#x4E0E; -i &#x4E00;&#x8D77;&#x4F7F;&#x7528;</p>
+<h4 id="3-&#x2013;slave"><a href="#3-&#x2013;slave" class="headerlink" title="3. &#x2013;slave"></a>3. &#x2013;slave</h4><p>&#x5C06;&#x5F53;&#x524D;&#x5BA2;&#x6237;&#x7AEF;&#x6A21;&#x62DF;&#x4ED3;&#x5F53;&#x524D;Reids&#x8282;&#x70B9;&#x7684;&#x4ECE;&#x8282;&#x70B9;</p>
+<h3 id="3-Pipeline"><a href="#3-Pipeline" class="headerlink" title="3. Pipeline"></a>3. Pipeline</h3><h4 id="1-&#x6982;&#x5FF5;"><a href="#1-&#x6982;&#x5FF5;" class="headerlink" title="1. &#x6982;&#x5FF5;"></a>1. &#x6982;&#x5FF5;</h4><p>Redis&#x5BA2;&#x6237;&#x7AEF;&#x6267;&#x884C;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x6709;4&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x5176;&#x4E2D; &#x53D1;&#x9001;&#x547D;&#x4EE4; + &#x8FD4;&#x56DE;&#x7ED3;&#x679C; = Round Trip Time&#xFF08;RTT &#x5F80;&#x8FD4;&#x65F6;&#x95F4;)</p>
+<p>Reids &#x63D0;&#x4F9B;&#x4E86;&#x6279;&#x91CF;&#x5904;&#x7406;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x8282;&#x7EA6; RTT&#xFF0C;&#x4F46;&#x5927;&#x90E8;&#x5206;&#x7684;&#x547D;&#x4EE4;&#x662F;&#x4E0D;&#x652F;&#x6301;&#x6279;&#x91CF;&#x64CD;&#x4F5C;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x6267;&#x884C;n&#x6B21;hgetall&#x547D;&#x4EE4;&#xFF0C;&#x5219;&#x9700;&#x8981; n &#x6B21;RTT</p>
+<p>&#x5047;&#x5B9A; Redis &#x5BA2;&#x6237;&#x7AEF;&#x548C; &#x670D;&#x52A1;&#x7AEF;&#x90E8;&#x7F72;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9; &#xFF0C;&#x76F8;&#x8DDD;1300&#x516C;&#x91CC;&#xFF0C;&#x90A3;&#x4E48; </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *	&#x5149;&#x5728;&#x771F;&#x7A7A;&#x4E2D;&#x4F20;&#x8F93;&#x901F;&#x5EA6;&#x4E3A; 30&#x4E07;&#x516C;&#x91CC;/&#x79D2;&#xFF0C;&#x5047;&#x5B9A;&#x5149;&#x7EA4;&#x901F;&#x5EA6;&#x4E3A;&#x5149;&#x901F;&#x7684; 2/3</span><br><span class="line"> */</span><br><span class="line">1&#x6B21;RTT=1300*2/(300000 *2/3) = 13 &#x6BEB;&#x79D2;</span><br><span class="line">=&gt; &#x5BA2;&#x6237;&#x7AEF;1&#x79D2;&#x5185;&#x53EA;&#x80FD;&#x6267;&#x884C; 80&#x6B21;&#x5DE6;&#x53F3;&#x547D;&#x4EE4;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Pipeline &#x673A;&#x5236;</li>
+</ul>
+<blockquote>
+<p>&#x5C06;&#x4E00;&#x7EC4; Redis&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7EC4;&#x88C5;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x6B21; RTT&#x4F20;&#x8F93;&#x7ED9; Redis</p>
+</blockquote>
+<h4 id="2-&#x6279;&#x91CF;&#x547D;&#x4EE4;&#x4E0E;Pipeline&#x5BF9;&#x6BD4;"><a href="#2-&#x6279;&#x91CF;&#x547D;&#x4EE4;&#x4E0E;Pipeline&#x5BF9;&#x6BD4;" class="headerlink" title="2. &#x6279;&#x91CF;&#x547D;&#x4EE4;&#x4E0E;Pipeline&#x5BF9;&#x6BD4;"></a>2. &#x6279;&#x91CF;&#x547D;&#x4EE4;&#x4E0E;Pipeline&#x5BF9;&#x6BD4;</h4><ul>
+<li>&#x539F;&#x751F;&#x6279;&#x91CF;&#x547D;&#x4EE4;&#x662F;&#x539F;&#x5B50;&#x6027;&#x7684;&#xFF0C;pipeline&#x662F;&#x975E;&#x539F;&#x5B50;&#x6027;&#x7684;</li>
+<li>&#x539F;&#x751F;&#x6279;&#x91CF;&#x547D;&#x4EE4;&#x662F; Redis&#x670D;&#x52A1;&#x7AEF;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;pipeline&#x9700;&#x8981;&#x670D;&#x52A1;&#x7AEF;&#x548C;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x5171;&#x540C;&#x5B9E;&#x73B0;</li>
+</ul>
+<h3 id="4-&#x4E8B;&#x52A1;"><a href="#4-&#x4E8B;&#x52A1;" class="headerlink" title="4. &#x4E8B;&#x52A1;"></a>4. &#x4E8B;&#x52A1;</h3><p>Redis&#x63D0;&#x4F9B;&#x4E86;&#x7B80;&#x5355;&#x7684;&#x4E8B;&#x52A1;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x4E00;&#x7EC4;&#x9700;&#x8981;&#x4E00;&#x8D77;&#x6267;&#x884C;&#x7684;&#x547D;&#x4EE4;&#x653E;&#x5230; multi&#x548C; exec&#x4E24;&#x4E2A;&#x547D;&#x4EE4;&#x4E4B;&#x95F4;&#xFF0C;multi&#x4EE3;&#x8868;&#x4E8B;&#x52A1;&#x5F00;&#x59CB;&#xFF0C;exec&#x4EE3;&#x8868;&#x4E8B;&#x52A1;&#x7ED3;&#x675F;&#xFF0C;&#x4E2D;&#x95F4;&#x547D;&#x4EE4;&#x662F;&#x539F;&#x5B50;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200104114915788.png" alt="image-20200104114915788"></p>
+<p>QUEUED &#x4EE3;&#x8868;&#x547D;&#x4EE4;&#x6CA1;&#x6709;&#x771F;&#x6B63;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x6682;&#x65F6;&#x4FDD;&#x5B58;&#x5728; Redis&#x4E2D;</p>
+<ul>
+<li><p>&#x505C;&#x6B62;&#x4E8B;&#x52A1;</p>
+<p>&#x4F7F;&#x7528; discard &#x547D;&#x4EE4;&#x66FF;&#x4EE3; exec &#x547D;&#x4EE4;</p>
+</li>
+</ul>
+<h4 id="1-&#x547D;&#x4EE4;&#x9519;&#x8BEF;"><a href="#1-&#x547D;&#x4EE4;&#x9519;&#x8BEF;" class="headerlink" title="1. &#x547D;&#x4EE4;&#x9519;&#x8BEF;"></a>1. &#x547D;&#x4EE4;&#x9519;&#x8BEF;</h4><p>&#x5BF9;&#x4E8E;&#x5C06;&#x547D;&#x4EE4;&#x8F93;&#x5165;&#x9519;&#x8BEF;&#xFF0C;&#x5C5E;&#x4E8E;&#x8BED;&#x6CD5;&#x9519;&#x8BEF;&#xFF0C;&#x4F1A;&#x9020;&#x6210;&#x6574;&#x4E2A;&#x4E8B;&#x52A1;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#xFF0C;&#x7ED3;&#x679C;&#x672A;&#x53D1;&#x751F;&#x53D8;&#x5316;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200104115056763.png" alt="image-20200104115056763"></p>
+<h4 id="2-&#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;"><a href="#2-&#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;" class="headerlink" title="2. &#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;"></a>2. &#x8FD0;&#x884C;&#x65F6;&#x9519;&#x8BEF;</h4><p>&#x6BD4;&#x5982;&#x5C06;  sadd &#x547D;&#x4EE4;&#x5199;&#x4E3A;&#x4E86; zadd&#x547D;&#x4EE4;&#xFF0C;&#x8FD9;&#x662F;&#x662F;&#x8FD0;&#x884C;&#x65F6;&#x547D;&#x4EE4;&#xFF0C;&#x8BED;&#x6CD5;&#x6B63;&#x786E;&#xFF0C;&#x53EF;&#x4EE5;&#x6B63;&#x786E;&#x6267;&#x884C;</p>
+<p>&#x5BF9;&#x4E8E;&#x6B64;&#x7C7B;&#xFF0C;Redis&#x4E0D;&#x652F;&#x6301;&#x56DE;&#x6EDA;&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x52A8;&#x4FEE;&#x590D;</p>
+<h4 id="3-&#x4E8B;&#x52A1;&#x4E50;&#x89C2;&#x9501;"><a href="#3-&#x4E8B;&#x52A1;&#x4E50;&#x89C2;&#x9501;" class="headerlink" title="3. &#x4E8B;&#x52A1;&#x4E50;&#x89C2;&#x9501;"></a>3. &#x4E8B;&#x52A1;&#x4E50;&#x89C2;&#x9501;</h4><p>&#x573A;&#x666F;&#xFF1A;&#x786E;&#x4FDD;&#x4E8B;&#x52A1;&#x4E2D;&#x7684;key&#x6CA1;&#x6709;&#x88AB;&#x5176;&#x4ED6;&#x5BA2;&#x6237;&#x7AEF;&#x4FEE;&#x6539;&#x8FC7;&#xFF0C;&#x624D;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x4E8B;&#x52A1;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x6267;&#x884C;</p>
+<p>Redis&#x63D0;&#x4F9B;&#x4E86; watch&#x547D;&#x4EE4;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x7C7B;&#x95EE;&#x9898;</p>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200104132548176.png" alt="image-20200104132548176"></p>
+<h3 id="5-Bitmaps"><a href="#5-Bitmaps" class="headerlink" title="5. Bitmaps"></a>5. Bitmaps</h3><p>Redis&#x63D0;&#x4F9B;Bitmaps&#x8FD9;&#x4E2A;&#x201C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x201D;&#xFF0C;&#x7528;&#x6765;&#x5BF9;&#x4F4D;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<ul>
+<li>BItmaps &#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x5176;&#x672C;&#x8D28;&#x4E0A;&#x662F; &#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EA;&#x662F;&#x53EF;&#x4EE5;&#x5BF9; &#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4F4D;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</li>
+<li>&#x53EF;&#x4EE5;&#x5427; Bitmaps&#x60F3;&#x8C61;&#x4E3A;&#x4E00;&#x4E2A;&#x4EE5;&#x4F4D;&#x4E3A;&#x5355;&#x4F4D;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x6570;&#x7EC4;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x5143;&#x53EA;&#x80FD;&#x5B58;&#x50A8;0&#x548C;1&#xFF0C;&#x6570;&#x7EC4;&#x7684;&#x4E0B;&#x6807;&#x5728;Bitmaps&#x4E2D;&#x53EB;&#x505A; &#x504F;&#x79FB;&#x91CF;</li>
+</ul>
+<p><img src="/2020/01/03/Redis&#x5F00;&#x53D1;&#x4E0E;&#x8FD0;&#x7EF4;/image-20200104150028872.png" alt="image-20200104150028872"></p>
+<p>&#x6848;&#x4F8B;: &#x5C06;&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x662F;&#x5426;&#x8BBF;&#x95EE;&#x8FC7;  &#x7F51;&#x7AD9;&#xFF0C;&#x5B58;&#x653E;&#x5728; Bitmaps&#x4E2D;&#xFF0C;&#x8BBF;&#x95EE;&#x8FC7;&#x7684;&#x7528;&#x6237;&#x8BB0;1&#xFF0C;&#x672A;&#x8BBF;&#x95EE;&#x7684;&#x8BB0;0</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/02/微信点餐/" rel="next" title="微信点餐">
+                <i class="fa fa-chevron-left"></i> 微信点餐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="DayByDay">
+            
+              <p class="site-author-name" itemprop="name">DayByDay</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-使用场景"><span class="nav-number">1.</span> <span class="nav-text">一. 使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-缓存"><span class="nav-number">1.1.</span> <span class="nav-text">1. 缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-排行榜系统"><span class="nav-number">1.2.</span> <span class="nav-text">2. 排行榜系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-计数器应用"><span class="nav-number">1.3.</span> <span class="nav-text">3. 计数器应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-社交网络"><span class="nav-number">1.4.</span> <span class="nav-text">4. 社交网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-消息队列系统"><span class="nav-number">1.5.</span> <span class="nav-text">5. 消息队列系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-共享session"><span class="nav-number">1.6.</span> <span class="nav-text">6. 共享session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-限速"><span class="nav-number">1.7.</span> <span class="nav-text">7. 限速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-保存数据"><span class="nav-number">1.8.</span> <span class="nav-text">8. 保存数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-消息队列"><span class="nav-number">1.9.</span> <span class="nav-text">9. 消息队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-文章列表"><span class="nav-number">1.10.</span> <span class="nav-text">10.文章列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-用户标签"><span class="nav-number">1.11.</span> <span class="nav-text">11. 用户标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不适合的场景"><span class="nav-number">1.12.</span> <span class="nav-text">不适合的场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-API的使用"><span class="nav-number">2.</span> <span class="nav-text">二. API的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-全局命令"><span class="nav-number">2.1.</span> <span class="nav-text">1. 全局命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查看所有键"><span class="nav-number">2.1.1.</span> <span class="nav-text">1. 查看所有键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查看键总数"><span class="nav-number">2.1.2.</span> <span class="nav-text">2. 查看键总数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">注意:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检查键是否存在"><span class="nav-number">2.1.3.</span> <span class="nav-text">3. 检查键是否存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-删除键"><span class="nav-number">2.1.4.</span> <span class="nav-text">4. 删除键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-键过期"><span class="nav-number">2.1.5.</span> <span class="nav-text">5. 键过期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-查看键的剩余过期时间"><span class="nav-number">2.1.6.</span> <span class="nav-text">6. 查看键的剩余过期时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-键的数据结构类型"><span class="nav-number">2.1.7.</span> <span class="nav-text">7. 键的数据结构类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数据结构"><span class="nav-number">2.2.</span> <span class="nav-text">2. 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Redis-数据结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. Redis 数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-架构"><span class="nav-number">2.3.</span> <span class="nav-text">3. 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么单线程速度还这么快"><span class="nav-number">2.3.1.</span> <span class="nav-text">为什么单线程速度还这么快</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串"><span class="nav-number">2.4.</span> <span class="nav-text">4. 字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-设置值（set-setnx-setxx-mset"><span class="nav-number">2.4.1.</span> <span class="nav-text">1. 设置值（set, setnx, setxx, mset)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-获取值-get-mget"><span class="nav-number">2.4.2.</span> <span class="nav-text">2. 获取值 (get, mget)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-计数"><span class="nav-number">2.4.3.</span> <span class="nav-text">3. 计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-设置并返回原值"><span class="nav-number">2.4.4.</span> <span class="nav-text">4. 设置并返回原值</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-哈希"><span class="nav-number">2.5.</span> <span class="nav-text">5. 哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-设置值"><span class="nav-number">2.5.1.</span> <span class="nav-text">1. 设置值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-获取值"><span class="nav-number">2.5.2.</span> <span class="nav-text">2. 获取值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-删除field"><span class="nav-number">2.5.3.</span> <span class="nav-text">3. 删除field</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-计算field个数"><span class="nav-number">2.5.4.</span> <span class="nav-text">4. 计算field个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-批量设置或获取field-value"><span class="nav-number">2.5.5.</span> <span class="nav-text">5. 批量设置或获取field-value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-判断-field-是否存在"><span class="nav-number">2.5.6.</span> <span class="nav-text">6. 判断 field 是否存在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-获取所有-field"><span class="nav-number">2.5.7.</span> <span class="nav-text">7. 获取所有 field</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-获取所有value"><span class="nav-number">2.5.8.</span> <span class="nav-text">8. 获取所有value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-获取所有的-field-value"><span class="nav-number">2.5.9.</span> <span class="nav-text">9. 获取所有的 field-value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-递增"><span class="nav-number">2.5.10.</span> <span class="nav-text">10. 递增</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-列表"><span class="nav-number">2.6.</span> <span class="nav-text">6. 列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-添加操作"><span class="nav-number">2.6.1.</span> <span class="nav-text">1. 添加操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-查找"><span class="nav-number">2.6.2.</span> <span class="nav-text">2. 查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-删除"><span class="nav-number">2.6.3.</span> <span class="nav-text">3. 删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-按照所有范围修剪列表"><span class="nav-number">2.6.4.</span> <span class="nav-text">4. 按照所有范围修剪列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-修改"><span class="nav-number">2.6.5.</span> <span class="nav-text">5. 修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-阻塞操作"><span class="nav-number">2.6.6.</span> <span class="nav-text">6. 阻塞操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-集合"><span class="nav-number">2.7.</span> <span class="nav-text">7. 集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-添加元素"><span class="nav-number">2.7.1.</span> <span class="nav-text">1. 添加元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-删除元素"><span class="nav-number">2.7.2.</span> <span class="nav-text">2. 删除元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-计算元素个数"><span class="nav-number">2.7.3.</span> <span class="nav-text">3. 计算元素个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-判断元素是否在集合内"><span class="nav-number">2.7.4.</span> <span class="nav-text">4. 判断元素是否在集合内</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-随机从集合返回指定个数元素"><span class="nav-number">2.7.5.</span> <span class="nav-text">5. 随机从集合返回指定个数元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-随机从集合弹出元素"><span class="nav-number">2.7.6.</span> <span class="nav-text">6. 随机从集合弹出元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-获取所有元素"><span class="nav-number">2.7.7.</span> <span class="nav-text">7. 获取所有元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-多个集合的交集"><span class="nav-number">2.7.8.</span> <span class="nav-text">8. 多个集合的交集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-多个集合的并集"><span class="nav-number">2.7.9.</span> <span class="nav-text">9. 多个集合的并集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-多个集合的差集"><span class="nav-number">2.7.10.</span> <span class="nav-text">10. 多个集合的差集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-缓存-集合操作结果"><span class="nav-number">2.7.11.</span> <span class="nav-text">11. 缓存 集合操作结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-有序集合"><span class="nav-number">2.8.</span> <span class="nav-text">8. 有序集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-添加成员"><span class="nav-number">2.8.1.</span> <span class="nav-text">1. 添加成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-计算成员个数"><span class="nav-number">2.8.2.</span> <span class="nav-text">2. 计算成员个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-返回成员分数"><span class="nav-number">2.8.3.</span> <span class="nav-text">3. 返回成员分数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-计算成员的排名"><span class="nav-number">2.8.4.</span> <span class="nav-text">4. 计算成员的排名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-删除成员"><span class="nav-number">2.8.5.</span> <span class="nav-text">5. 删除成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-增加-成员的分数"><span class="nav-number">2.8.6.</span> <span class="nav-text">6. 增加 成员的分数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-返回指定排名范围成员"><span class="nav-number">2.8.7.</span> <span class="nav-text">7. 返回指定排名范围成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-返回指定分数范围内的成员"><span class="nav-number">2.8.8.</span> <span class="nav-text">8. 返回指定分数范围内的成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-返回指定分数范围内成员个数"><span class="nav-number">2.8.9.</span> <span class="nav-text">9. 返回指定分数范围内成员个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-删除指定排名内的升序元素"><span class="nav-number">2.8.10.</span> <span class="nav-text">10. 删除指定排名内的升序元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-删除指定分数范围的成员"><span class="nav-number">2.8.11.</span> <span class="nav-text">11. 删除指定分数范围的成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-集合间操作"><span class="nav-number">2.8.12.</span> <span class="nav-text">12. 集合间操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-键管理"><span class="nav-number">2.9.</span> <span class="nav-text">9. 键管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-重命名key"><span class="nav-number">2.9.1.</span> <span class="nav-text">1. 重命名key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-随机返回一个-key"><span class="nav-number">2.9.2.</span> <span class="nav-text">2. 随机返回一个 key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-key-过期"><span class="nav-number">2.9.3.</span> <span class="nav-text">3. key 过期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-迁移键"><span class="nav-number">2.9.4.</span> <span class="nav-text">4. 迁移键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-遍历键"><span class="nav-number">2.10.</span> <span class="nav-text">10. 遍历键</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存在问题"><span class="nav-number">2.10.0.1.</span> <span class="nav-text">存在问题:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-数据库管理"><span class="nav-number">2.11.</span> <span class="nav-text">11. 数据库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-切换数据库"><span class="nav-number">2.11.1.</span> <span class="nav-text">1. 切换数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-flushdb-flushall"><span class="nav-number">2.11.2.</span> <span class="nav-text">2. flushdb/flushall</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#三-其他功能"><span class="nav-number">3.</span> <span class="nav-text">三. 其他功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-慢查询分析"><span class="nav-number">3.1.</span> <span class="nav-text">1. 慢查询分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-慢查询日志"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. 慢查询日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-命令生命周期"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. 命令生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-配置参数"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 配置参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-慢查询日志的访问管理"><span class="nav-number">3.1.4.</span> <span class="nav-text">4.慢查询日志的访问管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Redis-cli"><span class="nav-number">3.2.</span> <span class="nav-text">2. Redis-cli</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-r"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. -r</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-i"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. -i</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-–slave"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. –slave</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Pipeline"><span class="nav-number">3.3.</span> <span class="nav-text">3. Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念"><span class="nav-number">3.3.1.</span> <span class="nav-text">1. 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-批量命令与Pipeline对比"><span class="nav-number">3.3.2.</span> <span class="nav-text">2. 批量命令与Pipeline对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-事务"><span class="nav-number">3.4.</span> <span class="nav-text">4. 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-命令错误"><span class="nav-number">3.4.1.</span> <span class="nav-text">1. 命令错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-运行时错误"><span class="nav-number">3.4.2.</span> <span class="nav-text">2. 运行时错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-事务乐观锁"><span class="nav-number">3.4.3.</span> <span class="nav-text">3. 事务乐观锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Bitmaps"><span class="nav-number">3.5.</span> <span class="nav-text">5. Bitmaps</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DayByDay</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
